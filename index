@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quizabend – Lernübersicht</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #161b26;
+    --card: #1b2030;
+    --card-hover: #1f2538;
+    --accent: #f5c842;
+    --accent2: #e05c3a;
+    --accent3: #4ec9b0;
+    --accent4: #b48ef5;
+    --accent5: #5ba4f5;
+    --text: #dde1ec;
+    --muted: #7a7f94;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(160deg, #1c2136 0%, #0f1117 70%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '?';
+    position: absolute;
+    right: 0; top: -40px;
+    font-size: 280px;
+    font-family: 'Playfair Display', serif;
+    color: rgba(245,200,66,0.035);
+    font-weight: 900;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .header-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+  }
+  header h1 em { color: var(--accent); font-style: normal; }
+  header p { color: var(--muted); font-size: 13.5px; margin-top: 8px; }
+
+  /* LAYOUT */
+  .layout { display: flex; min-height: calc(100vh - 130px); }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 210px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px 0 40px;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 130px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #2a3050 transparent;
+  }
+  .sidebar-group {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 18px 5px;
+    margin-top: 6px;
+  }
+  .sidebar-group:first-child { margin-top: 0; }
+  .nav-btn {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 8px 18px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+  .nav-btn.active { color: #fff; border-left-color: var(--accent); background: rgba(245,200,66,0.06); font-weight: 600; }
+
+  /* MOBILE NAV */
+  .mobile-nav {
+    display: none;
+    padding: 10px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .mob-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .mob-toggle .chev { font-size: 10px; color: var(--muted); transition: transform 0.2s; }
+  .mob-toggle.open .chev { transform: rotate(180deg); }
+  .mob-dropdown {
+    display: none;
+    margin-top: 8px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  .mob-dropdown.open { display: block; }
+  .mob-group {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px 4px;
+    background: rgba(255,255,255,0.02);
+  }
+  .mob-btn {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 11px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mob-btn:last-child { border-bottom: none; }
+  .mob-btn.active { color: var(--accent); font-weight: 600; background: rgba(245,200,66,0.05); }
+  .mob-btn:hover { background: rgba(255,255,255,0.03); color: var(--text); }
+
+  /* CONTENT */
+  .content {
+    flex: 1;
+    padding: 28px 26px 64px;
+    min-width: 0;
+    max-width: 880px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; animation: fadeUp 0.22s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .section-sub { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  /* CARDS */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+    gap: 13px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--border-strong); background: var(--card-hover); }
+
+  .tag {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
+    display: inline-block; margin-bottom: 10px;
+  }
+  .t-geo   { background: rgba(78,201,176,0.14);  color: var(--accent3); }
+  .t-hist  { background: rgba(229,92,58,0.14);   color: var(--accent2); }
+  .t-sci   { background: rgba(180,142,245,0.14); color: var(--accent4); }
+  .t-cult  { background: rgba(245,200,66,0.14);  color: var(--accent); }
+  .t-local { background: rgba(91,164,245,0.14);  color: var(--accent5); }
+  .t-pol   { background: rgba(229,92,58,0.11);   color: #f07a60; }
+  .t-sport { background: rgba(91,164,245,0.14);  color: #78b9ff; }
+  .t-tech  { background: rgba(180,142,245,0.11); color: #c9a8ff; }
+  .t-food  { background: rgba(78,201,176,0.11);  color: #6dd9c0; }
+
+  .card h3 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 9px; line-height: 1.3; }
+  .card ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .card ul li {
+    font-size: 13px; color: var(--text);
+    padding-left: 15px; position: relative; line-height: 1.45;
+  }
+  .card ul li::before { content: '›'; position: absolute; left: 0; color: var(--muted); font-weight: 700; }
+  .card ul li strong { color: var(--accent); font-weight: 600; }
+
+  .tip-box {
+    background: rgba(245,200,66,0.06);
+    border: 1px solid rgba(245,200,66,0.18);
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 13px; color: var(--text); margin-bottom: 18px; line-height: 1.5;
+  }
+  .tip-box strong { color: var(--accent); }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .sidebar { display: none; }
+    .mobile-nav { display: block; }
+    header { padding: 24px 18px 20px; }
+    .content { padding: 18px 14px 48px; }
+    .cards { grid-template-columns: 1fr; }
+    .layout { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Quizabend Vorbereitung</div>
+  <h1>Wissen für den <em>Quizabend</em></h1>
+  <p>Geografie, Geschichte, Wissenschaft, Kultur, Sport, Technik und Lokales – kompakt zum Lernen.</p>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <button class="mob-toggle" id="mobToggle" onclick="toggleMob()">
+    <span id="mobLabel">Geografie – Welt &amp; Rekorde</span>
+    <span class="chev">&#9660;</span>
+  </button>
+  <div class="mob-dropdown" id="mobDrop">
+    <div class="mob-group">Geografie</div>
+    <button class="mob-btn active" onclick="show('geo-welt','Geografie – Welt &amp; Rekorde',this)">Welt &amp; Rekorde</button>
+    <button class="mob-btn" onclick="show('geo-de','Geografie – Deutschland',this)">Deutschland</button>
+    <button class="mob-btn" onclick="show('geo-eu','Geografie – Europa',this)">Europa</button>
+    <div class="mob-group">Geschichte</div>
+    <button class="mob-btn" onclick="show('hist-alt','Geschichte – Antike &amp; Mittelalter',this)">Antike &amp; Mittelalter</button>
+    <button class="mob-btn" onclick="show('hist-neu','Geschichte – Neuzeit',this)">Neuzeit &amp; Revolutionen</button>
+    <button class="mob-btn" onclick="show('hist-20','Geschichte – 20. Jahrhundert',this)">20. Jahrhundert</button>
+    <div class="mob-group">Wissenschaft</div>
+    <button class="mob-btn" onclick="show('sci-bio','Wissenschaft – Biologie',this)">Biologie &amp; Natur</button>
+    <button class="mob-btn" onclick="show('sci-phys','Wissenschaft – Physik &amp; Chemie',this)">Physik &amp; Chemie</button>
+    <button class="mob-btn" onclick="show('sci-kosmos','Wissenschaft – Astronomie',this)">Astronomie &amp; Raumfahrt</button>
+    <div class="mob-group">Kultur</div>
+    <button class="mob-btn" onclick="show('cult-film','Kultur – Film &amp; TV',this)">Film &amp; TV</button>
+    <button class="mob-btn" onclick="show('cult-musik','Kultur – Musik',this)">Musik</button>
+    <button class="mob-btn" onclick="show('cult-lit','Kultur – Literatur &amp; Kunst',this)">Literatur &amp; Kunst</button>
+    <button class="mob-btn" onclick="show('cult-food','Kultur – Essen &amp; Trinken',this)">Essen &amp; Trinken</button>
+    <div class="mob-group">Sport</div>
+    <button class="mob-btn" onclick="show('sport-fuss','Sport – Fußball',this)">Fußball</button>
+    <button class="mob-btn" onclick="show('sport-rest','Sport – Olympia &amp; Weitere',this)">Olympia &amp; Weitere</button>
+    <div class="mob-group">Politik</div>
+    <button class="mob-btn" onclick="show('pol-de','Politik – Deutschland',this)">Deutschland</button>
+    <button class="mob-btn" onclick="show('pol-welt','Politik – Europa &amp; Welt',this)">Europa &amp; Welt</button>
+    <div class="mob-group">Technik</div>
+    <button class="mob-btn" onclick="show('tech-dig','Technik – Internet &amp; Digital',this)">Internet &amp; Digital</button>
+    <button class="mob-btn" onclick="show('tech-inv','Technik – Erfindungen',this)">Erfindungen &amp; Technik</button>
+    <div class="mob-group">Hessen &amp; Lokal</div>
+    <button class="mob-btn" onclick="show('local-hes','Hessen &amp; Idstein',this)">Hessen &amp; Idstein</button>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-group">Geografie</div>
+  <button class="nav-btn active" onclick="show('geo-welt','Geografie – Welt &amp; Rekorde',this)">Welt &amp; Rekorde</button>
+  <button class="nav-btn" onclick="show('geo-de','Geografie – Deutschland',this)">Deutschland</button>
+  <button class="nav-btn" onclick="show('geo-eu','Geografie – Europa',this)">Europa</button>
+  <div class="sidebar-group">Geschichte</div>
+  <button class="nav-btn" onclick="show('hist-alt','Geschichte – Antike &amp; Mittelalter',this)">Antike &amp; Mittelalter</button>
+  <button class="nav-btn" onclick="show('hist-neu','Geschichte – Neuzeit',this)">Neuzeit &amp; Revolutionen</button>
+  <button class="nav-btn" onclick="show('hist-20','Geschichte – 20. Jahrhundert',this)">20. Jahrhundert</button>
+  <div class="sidebar-group">Wissenschaft</div>
+  <button class="nav-btn" onclick="show('sci-bio','Wissenschaft – Biologie',this)">Biologie &amp; Natur</button>
+  <button class="nav-btn" onclick="show('sci-phys','Wissenschaft – Physik &amp; Chemie',this)">Physik &amp; Chemie</button>
+  <button class="nav-btn" onclick="show('sci-kosmos','Wissenschaft – Astronomie',this)">Astronomie &amp; Raumfahrt</button>
+  <div class="sidebar-group">Kultur</div>
+  <button class="nav-btn" onclick="show('cult-film','Kultur – Film &amp; TV',this)">Film &amp; TV</button>
+  <button class="nav-btn" onclick="show('cult-musik','Kultur – Musik',this)">Musik</button>
+  <button class="nav-btn" onclick="show('cult-lit','Kultur – Literatur &amp; Kunst',this)">Literatur &amp; Kunst</button>
+  <button class="nav-btn" onclick="show('cult-food','Kultur – Essen &amp; Trinken',this)">Essen &amp; Trinken</button>
+  <div class="sidebar-group">Sport</div>
+  <button class="nav-btn" onclick="show('sport-fuss','Sport – Fußball',this)">Fußball</button>
+  <button class="nav-btn" onclick="show('sport-rest','Sport – Olympia &amp; Weitere',this)">Olympia &amp; Weitere</button>
+  <div class="sidebar-group">Politik</div>
+  <button class="nav-btn" onclick="show('pol-de','Politik – Deutschland',this)">Deutschland</button>
+  <button class="nav-btn" onclick="show('pol-welt','Politik – Europa &amp; Welt',this)">Europa &amp; Welt</button>
+  <div class="sidebar-group">Technik</div>
+  <button class="nav-btn" onclick="show('tech-dig','Technik – Internet &amp; Digital',this)">Internet &amp; Digital</button>
+  <button class="nav-btn" onclick="show('tech-inv','Technik – Erfindungen',this)">Erfindungen &amp; Technik</button>
+  <div class="sidebar-group">Hessen &amp; Lokal</div>
+  <button class="nav-btn" onclick="show('local-hes','Hessen &amp; Idstein',this)">Hessen &amp; Idstein</button>
+</nav>
+
+<main class="content">
+
+<!-- GEO WELT -->
+<div id="geo-welt" class="section active">
+  <div class="section-title">Geografie – Welt &amp; Rekorde</div>
+  <div class="section-sub">Hauptstädte, Kontinente, Flüsse, Meere, Rekorde</div>
+  <div class="tip-box"><strong>Tipp:</strong> Verwechslungs-Hauptstädte (Australien, Schweiz, Brasilien) kommen bei fast jedem Quizabend dran.</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-geo">Knifflige Hauptstädte</span>
+      <h3>Hauptstädte, die oft verwechselt werden</h3>
+      <ul>
+        <li><strong>Australien</strong> – Canberra (nicht Sydney!)</li>
+        <li><strong>Schweiz</strong> – Bern (nicht Zürich!)</li>
+        <li><strong>Brasilien</strong> – Brasília (nicht Rio!)</li>
+        <li><strong>Kanada</strong> – Ottawa (nicht Toronto!)</li>
+        <li><strong>Neuseeland</strong> – Wellington (nicht Auckland!)</li>
+        <li><strong>Niederlande</strong> – Amsterdam; Regierungssitz: Den Haag</li>
+        <li><strong>Südafrika</strong> – 3 Hauptstädte: Pretoria, Kapstadt, Bloemfontein</li>
+        <li><strong>Myanmar</strong> – Naypyidaw (seit 2006, nicht Rangun)</li>
+        <li><strong>Kasachstan</strong> – Astana (früher Nursultan)</li>
+        <li><strong>USA</strong> – Washington D.C. (nicht New York!)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Weltrekorde</span>
+      <h3>Geografische Rekorde</h3>
+      <ul>
+        <li>Längster Fluss: <strong>Nil</strong> (~6.650 km)</li>
+        <li>Wasserreichster Fluss: <strong>Amazonas</strong></li>
+        <li>Größter See: <strong>Kaspisches Meer</strong> (eigentl. Salzsee)</li>
+        <li>Tiefster See: <strong>Baikalsee</strong> (1.620 m, Sibirien)</li>
+        <li>Höchster Berg: <strong>Mount Everest</strong> (8.849 m)</li>
+        <li>Längste Gebirgskette: <strong>Anden</strong> (~7.000 km)</li>
+        <li>Größtes Land: <strong>Russland</strong> (17,1 Mio. km²)</li>
+        <li>Kleinstes Land: <strong>Vatikan</strong> (0,44 km²)</li>
+        <li>Bevölkerungsreichstes: <strong>Indien</strong> (seit 2023 vor China)</li>
+        <li>Tiefster Punkt Erdoberfläche: <strong>Totes Meer</strong> (–430 m)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Kontinente &amp; Ozeane</span>
+      <h3>Kontinente &amp; Ozeane</h3>
+      <ul>
+        <li>7 Kontinente: Asien, Afrika, N-Amerika, S-Amerika, Antarktika, Europa, <strong>Australien</strong></li>
+        <li>Größter Kontinent: <strong>Asien</strong> (~44 Mio. km²)</li>
+        <li>Bevölkerungsreichster: <strong>Asien</strong> (~4,7 Mrd.)</li>
+        <li>Größter Ozean: <strong>Pazifik</strong> (165 Mio. km²)</li>
+        <li>Tiefster Punkt Ozeane: <strong>Marianengraben</strong> (11.034 m)</li>
+        <li>Größte Wüste gesamt: <strong>Antarktis</strong> (Kältewüste)</li>
+        <li>Größte Heiße Wüste: <strong>Sahara</strong> (~9 Mio. km²)</li>
+        <li>Größte Insel: <strong>Grönland</strong></li>
+        <li>Bevölkerungsreichste Insel: <strong>Java</strong> (Indonesien)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Flüsse</span>
+      <h3>Wichtige Flüsse der Welt</h3>
+      <ul>
+        <li><strong>Donau</strong> – fließt durch 10 Länder (Weltrekord); Quelle: Schwarzwald</li>
+        <li><strong>Rhein</strong> – Quelle: Schweizer Alpen, Mündung: Nordsee</li>
+        <li><strong>Jangtse</strong> – längster Fluss Asiens (~6.300 km)</li>
+        <li><strong>Mississippi</strong> – wichtigster Fluss Nordamerikas</li>
+        <li><strong>Wolga</strong> – längster Fluss Europas (~3.530 km)</li>
+        <li><strong>Kongo</strong> – tiefster Fluss der Welt</li>
+        <li><strong>Main</strong> – Nebenfluss des Rheins, fließt durch Frankfurt</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Lage &amp; Zonen</span>
+      <h3>Besondere Orte &amp; Koordinaten</h3>
+      <ul>
+        <li>Äquator: teilt Erde in Nord- und <strong>Südhalbkugel</strong></li>
+        <li>Null-Meridian: läuft durch <strong>Greenwich</strong>, London</li>
+        <li>Wendekreise: Krebs (nördl.) und <strong>Steinbock</strong> (südl.)</li>
+        <li>Kanaren: gehören zu <strong>Spanien</strong> (vor Westafrika)</li>
+        <li>Hawaii: US-Bundesstaat, liegt im <strong>Pazifik</strong></li>
+        <li>Island liegt weiter südlich als <strong>Grönland</strong></li>
+        <li>Antipodenpunkt von D: ungefähr im südlichen <strong>Pazifik</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- GEO DE -->
+<div id="geo-de" class="section">
+  <div class="section-title">Geografie – Deutschland</div>
+  <div class="section-sub">Bundesländer, Städte, Flüsse, Berge</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-geo">Grundfakten</span>
+      <h3>Deutschland – Basiswissen</h3>
+      <ul>
+        <li>16 Bundesländer, Hauptstadt <strong>Berlin</strong></li>
+        <li>Bevölkerung: ca. <strong>84 Mio.</strong></li>
+        <li>Fläche: <strong>357.376 km²</strong></li>
+        <li>9 Nachbarstaaten: DK, NL, BE, LU, FR, CH, AT, CZ, PL</li>
+        <li>Höchster Berg: <strong>Zugspitze</strong> (2.962 m, Bayern)</li>
+        <li>Längster Fluss (auf dt. Gebiet): <strong>Rhein</strong></li>
+        <li>Größter See: <strong>Bodensee</strong> (dt.-schweiz.-österr.)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Bundesländer</span>
+      <h3>Bundesländer – Merkhilfen</h3>
+      <ul>
+        <li>Größtes BL nach Fläche: <strong>Bayern</strong></li>
+        <li>Bevölkerungsreichstes BL: <strong>NRW</strong> (~18 Mio.)</li>
+        <li>Kleinstes BL: <strong>Bremen</strong></li>
+        <li>Stadtstaaten: Berlin, Hamburg, <strong>Bremen</strong></li>
+        <li>BL an Nordsee: NW, SH, HH, HB, Niedersachsen</li>
+        <li>Einziges BL komplett ohne Auslandsgrenze: <strong>Thüringen</strong></li>
+        <li>BL mit meisten Nachbarländern: <strong>Bayern</strong> (AT, CZ)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Größte Städte</span>
+      <h3>Die größten deutschen Städte</h3>
+      <ul>
+        <li>1. <strong>Berlin</strong> (~3,7 Mio.)</li>
+        <li>2. <strong>Hamburg</strong> (~1,9 Mio.)</li>
+        <li>3. <strong>München</strong> (~1,6 Mio.)</li>
+        <li>4. <strong>Köln</strong> (~1,1 Mio.)</li>
+        <li>5. <strong>Frankfurt a.M.</strong> (~770.000)</li>
+        <li>Finanzmetropole: <strong>Frankfurt</strong> (EZB, Deutsche Börse)</li>
+        <li>Größter Hafen: <strong>Hamburg</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Landschaften</span>
+      <h3>Gebirge &amp; Regionen</h3>
+      <ul>
+        <li>Alpen (Bayern): Zugspitze, Berchtesgaden, <strong>Allgäu</strong></li>
+        <li>Mittelgebirge: Taunus, Harz, <strong>Schwarzwald</strong>, Erzgebirge</li>
+        <li>Höchster Harzgipfel: <strong>Brocken</strong> (1.141 m)</li>
+        <li>Höchster Schwarzwaldgipfel: <strong>Feldberg</strong> (1.493 m)</li>
+        <li>Norddeutsche Tiefebene: flachstes Gebiet Deutschlands</li>
+        <li>Ruhrgebiet: größtes <strong>Ballungsgebiet</strong> Deutschlands (NRW)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- GEO EU -->
+<div id="geo-eu" class="section">
+  <div class="section-title">Geografie – Europa</div>
+  <div class="section-sub">Länder, Hauptstädte, Gebirge, Meere</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-geo">Länder</span>
+      <h3>Europäische Länder – Merkhilfen</h3>
+      <ul>
+        <li>Größtes Land Europas: <strong>Russland</strong></li>
+        <li>Größtes Land ohne Russland: <strong>Ukraine</strong></li>
+        <li>Bevölkerungsreichstes EU-Land: <strong>Deutschland</strong></li>
+        <li>Kleinste Staaten: Vatikan, <strong>Monaco</strong>, San Marino, Liechtenstein</li>
+        <li>Einzige Monarchien in EU: BE, NL, LU, SE, DK, ES</li>
+        <li>Nicht in der EU: Schweiz, Norwegen, Island, <strong>UK</strong> (Brexit 2020)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Hauptstädte Europa</span>
+      <h3>Knifflige europäische Hauptstädte</h3>
+      <ul>
+        <li><strong>Bern</strong> – Schweiz (nicht Zürich!)</li>
+        <li><strong>Vaduz</strong> – Liechtenstein</li>
+        <li><strong>Valletta</strong> – Malta (kleinste EU-Hauptstadt)</li>
+        <li><strong>Nikosia</strong> – Zypern (geteilte Stadt)</li>
+        <li><strong>Reykjavik</strong> – Island (nördlichste europ. Hauptstadt)</li>
+        <li><strong>Ankara</strong> – Türkei (nicht Istanbul!)</li>
+        <li><strong>Kiew</strong> – Ukraine; <strong>Minsk</strong> – Belarus</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Gebirge</span>
+      <h3>Europäische Gebirge</h3>
+      <ul>
+        <li>Höchster Alpengipfel: <strong>Mont Blanc</strong> (4.808 m, FR/IT)</li>
+        <li>Höchster Gipfel Europas: <strong>Elbrus</strong> (5.642 m, Russland/Kaukasus)</li>
+        <li>Pyrenäen: Grenze <strong>Spanien – Frankreich</strong></li>
+        <li>Karpaten: Mitteleuropa (SK, CZ, PL, RO)</li>
+        <li>Apennin: Rückgrat <strong>Italiens</strong></li>
+        <li>Skandinavische Gebirge: Norwegen/Schweden</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-geo">Meere</span>
+      <h3>Meere Europas</h3>
+      <ul>
+        <li>Mittelmeer: Grenze Europa, <strong>Afrika</strong>, Asien</li>
+        <li>Nordsee: D, NL, DK, NO, UK</li>
+        <li>Ostsee: Binnenmeer; Anrainer: D, PL, SE, FI, EE, LV, LT, RU</li>
+        <li>Schwarzes Meer: RO, BG, TR, GE, RU, UA</li>
+        <li>Adria: IT, SI, HR, BA, ME, AL</li>
+        <li>Gibraltar-Meerenge: verbindet Atlantik mit Mittelmeer</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- HIST ANTIKE -->
+<div id="hist-alt" class="section">
+  <div class="section-title">Geschichte – Antike &amp; Mittelalter</div>
+  <div class="section-sub">Von den ersten Hochkulturen bis ca. 1500</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-hist">Hochkulturen</span>
+      <h3>Alte Hochkulturen</h3>
+      <ul>
+        <li>Älteste Hochkultur: <strong>Mesopotamien</strong> (Sumerer, ~3500 v. Chr.)</li>
+        <li>Ägypten: Stufenpyramide Sakkara ~<strong>2650 v. Chr.</strong></li>
+        <li>Cheops-Pyramide: ca. <strong>2560 v. Chr.</strong> – einziges erhaltenes Weltwunder</li>
+        <li>7 Weltwunder der Antike: nur die <strong>Pyramiden von Gizeh</strong> erhalten</li>
+        <li>Griechenland: <strong>Athen</strong> als Wiege der Demokratie</li>
+        <li>Erste Olympische Spiele: <strong>776 v. Chr.</strong> in Olympia</li>
+        <li>Alexander der Große: starb <strong>323 v. Chr.</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Rom</span>
+      <h3>Das Römische Reich</h3>
+      <ul>
+        <li>Rom gegründet: Tradition <strong>753 v. Chr.</strong></li>
+        <li>Julius Caesar ermordet: <strong>44 v. Chr.</strong> (Iden des März)</li>
+        <li>Vesuv / Pompeji: <strong>79 n. Chr.</strong></li>
+        <li>Colosseum fertiggestellt: <strong>80 n. Chr.</strong></li>
+        <li>Konstantinopel gegründet: <strong>330 n. Chr.</strong> (Kaiser Konstantin)</li>
+        <li>Untergang Westroms: <strong>476 n. Chr.</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Mittelalter</span>
+      <h3>Mittelalter (500–1500)</h3>
+      <ul>
+        <li>Karl der Große: Kaiser seit <strong>800 n. Chr.</strong>, gest. 814</li>
+        <li>Heiliges Röm. Reich: <strong>962–1806</strong></li>
+        <li>Magna Carta: <strong>1215</strong>, England (König Johann)</li>
+        <li>Schwarzer Tod: Pest 1347–51, tötete ~<strong>1/3 Europas</strong></li>
+        <li>Hundertjähriger Krieg: 1337–<strong>1453</strong> (England vs. Frankreich)</li>
+        <li>Konstantinopel fällt: <strong>1453</strong> (osmanische Eroberung)</li>
+        <li>Kolumbus in Amerika: <strong>12. Oktober 1492</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Personen</span>
+      <h3>Bedeutende Personen der Antike</h3>
+      <ul>
+        <li><strong>Sokrates</strong> – griech. Philosoph, hingerichtet 399 v. Chr.</li>
+        <li><strong>Aristoteles</strong> – Schüler Platons, Lehrer Alexanders</li>
+        <li><strong>Kleopatra</strong> – letzte Pharaonin Ägyptens, gest. 30 v. Chr.</li>
+        <li><strong>Archimedes</strong> – „Heureka!"; Hebelgesetz</li>
+        <li><strong>Attila</strong> – Hunnenkönig, „Geißel Gottes"</li>
+        <li><strong>Jeanne d'Arc</strong> – frz. Nationalheldin, 1431 verbrannt</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- HIST NEUZEIT -->
+<div id="hist-neu" class="section">
+  <div class="section-title">Geschichte – Neuzeit &amp; Revolutionen</div>
+  <div class="section-sub">Renaissance, Reformation, Aufklärung, Revolutionen (1500–1900)</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-hist">Reformation</span>
+      <h3>Reformation &amp; Renaissance</h3>
+      <ul>
+        <li>Buchdruck: <strong>Gutenberg</strong> ~1450 (Mainz)</li>
+        <li>Luthers Thesenanschlag: <strong>31. Oktober 1517</strong></li>
+        <li>Augsburger Religionsfrieden: <strong>1555</strong></li>
+        <li>Dreißigjähriger Krieg: 1618–<strong>1648</strong></li>
+        <li>Westfälischer Friede <strong>1648</strong>: Grundlage moderner Staatenwelt</li>
+        <li>Kopernikus: Erde dreht sich um die <strong>Sonne</strong> (heliozentrisch)</li>
+        <li>Galileo Galilei: Hausarrest wegen Heliozentrismus</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Revolutionen</span>
+      <h3>Große Revolutionen</h3>
+      <ul>
+        <li>Amerikanische Unabhängigkeit: <strong>4. Juli 1776</strong></li>
+        <li>Französische Revolution: <strong>1789</strong> (Bastille: 14. Juli)</li>
+        <li>Hinrichtung Ludwig XVI.: <strong>1793</strong></li>
+        <li>Napoleon Kaiser: <strong>1804</strong>; verbannt Elba 1814, St. Helena 1815</li>
+        <li>Wiener Kongress: <strong>1814/15</strong> – Neuordnung Europas</li>
+        <li>Europäische Revolutionen: <strong>1848</strong> (Völkerfrühling)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Deutschland 19. Jh.</span>
+      <h3>Deutschland im 19. Jahrhundert</h3>
+      <ul>
+        <li>Deutsches Kaiserreich: <strong>18. Januar 1871</strong> (Versailles)</li>
+        <li>Erster Reichskanzler: <strong>Otto von Bismarck</strong></li>
+        <li>Erste dt. Eisenbahnlinie: <strong>1835</strong> Nürnberg–Fürth</li>
+        <li>Bismarck führte <strong>Kranken- und Rentenversicherung</strong> ein</li>
+        <li>Industrialisierung in D: ab ~<strong>1850</strong> stärker werdend</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Erfindungen 1500–1900</span>
+      <h3>Wichtige Erfindungen</h3>
+      <ul>
+        <li>Dampfmaschine: <strong>James Watt</strong>, 1769</li>
+        <li>Telefon: <strong>Alexander Graham Bell</strong>, 1876</li>
+        <li>Automobil: <strong>Carl Benz</strong>, Patent 1886</li>
+        <li>Röntgenstrahlen: <strong>Wilhelm Röntgen</strong>, 1895 (Nobelpreis 1901)</li>
+        <li>Dynamit: <strong>Alfred Nobel</strong>, 1867</li>
+        <li>Glühlampe: <strong>Thomas Edison</strong>, 1879</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- HIST 20 JH -->
+<div id="hist-20" class="section">
+  <div class="section-title">Geschichte – 20. Jahrhundert</div>
+  <div class="section-sub">Weltkriege, Kalter Krieg, geteiltes und wiedervereinigtes Deutschland</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-hist">Erster Weltkrieg</span>
+      <h3>Erster Weltkrieg 1914–1918</h3>
+      <ul>
+        <li>Beginn: Attentat auf <strong>Franz Ferdinand</strong>, Sarajevo, 28. Juni 1914</li>
+        <li>Kriegseintritt USA: <strong>1917</strong></li>
+        <li>Ende: <strong>11. November 1918</strong> (11:11 Uhr)</li>
+        <li>Versailler Vertrag: <strong>1919</strong> (Kriegsschuldartikel 231)</li>
+        <li>Völkerbund gegründet: <strong>1920</strong></li>
+        <li>Ca. <strong>17 Mio.</strong> Tote</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Zweiter Weltkrieg</span>
+      <h3>Zweiter Weltkrieg 1939–1945</h3>
+      <ul>
+        <li>Beginn: <strong>1. September 1939</strong> (Überfall auf Polen)</li>
+        <li>D-Day: <strong>6. Juni 1944</strong> (Normandie-Landung)</li>
+        <li>Atombombe Hiroshima: <strong>6. August 1945</strong></li>
+        <li>Kriegsende Europa: <strong>8. Mai 1945</strong></li>
+        <li>Ca. <strong>60–80 Mio.</strong> Tote</li>
+        <li>Holocaust: ~6 Mio. Juden ermordet</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Deutschland nach 1945</span>
+      <h3>Nachkrieg &amp; Geteiltes Deutschland</h3>
+      <ul>
+        <li>UN gegründet: <strong>26. Juni 1945</strong></li>
+        <li>Gründung BRD: <strong>23. Mai 1949</strong></li>
+        <li>Gründung DDR: <strong>7. Oktober 1949</strong></li>
+        <li>Mauerbau: <strong>13. August 1961</strong></li>
+        <li>Mauerfall: <strong>9. November 1989</strong></li>
+        <li>Deutsche Einheit: <strong>3. Oktober 1990</strong></li>
+        <li>Erster Bundeskanzler: <strong>Konrad Adenauer</strong> (CDU, 1949–63)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-hist">Kalter Krieg</span>
+      <h3>Kalter Krieg &amp; Weltpolitik</h3>
+      <ul>
+        <li>NATO gegründet: <strong>1949</strong>; Warschauer Pakt: 1955</li>
+        <li>Sputnik: <strong>4. Oktober 1957</strong> – erstes Objekt im Erdorbit</li>
+        <li>Kubakrise: <strong>Oktober 1962</strong></li>
+        <li>Mondlandung: <strong>20. Juli 1969</strong> (Apollo 11)</li>
+        <li>Vietnamkrieg: USA-Engagement 1965–<strong>1975</strong></li>
+        <li>Ende Kalter Krieg: <strong>1991</strong> (Auflösung UdSSR)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SCI BIO -->
+<div id="sci-bio" class="section">
+  <div class="section-title">Wissenschaft – Biologie &amp; Natur</div>
+  <div class="section-sub">Tiere, Pflanzen, Evolution, menschlicher Körper</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-sci">Biologie</span>
+      <h3>Grundlagen der Biologie</h3>
+      <ul>
+        <li>Fotosynthese: Pflanzen wandeln <strong>CO₂ + H₂O + Licht</strong> in Glukose um</li>
+        <li>DNA: Doppelhelix, entdeckt <strong>1953</strong> (Watson &amp; Crick)</li>
+        <li>Menschl. Chromosomen: <strong>46</strong> (23 Paare)</li>
+        <li>Mendel: Erbsen-Experimente, Grundlage der <strong>Genetik</strong></li>
+        <li>Evolution: Darwin, „<strong>On the Origin of Species</strong>", 1859</li>
+        <li>Zelle: entdeckt von <strong>Robert Hooke</strong>, 1665</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Tiere</span>
+      <h3>Tiere – Rekorde &amp; Fakten</h3>
+      <ul>
+        <li>Schnellstes Tier: <strong>Gepard</strong> (~112 km/h kurze Distanz)</li>
+        <li>Schnellstes in der Luft: <strong>Wanderfalke</strong> (~320 km/h Sturzflug)</li>
+        <li>Größtes Tier: <strong>Blauwal</strong> (bis 33 m, 190 t)</li>
+        <li>Größtes Landtier: <strong>Afrikanischer Elefant</strong></li>
+        <li>Ältestes bekanntes Tier: <strong>Grönlandhai</strong> (400+ Jahre)</li>
+        <li>Einzige Säugetiere die fliegen: <strong>Fledermäuse</strong></li>
+        <li>Einzige eierlegende Säugetiere: Schnabeltier, <strong>Ameisenigel</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Menschl. Körper</span>
+      <h3>Der menschliche Körper</h3>
+      <ul>
+        <li>Knochen: <strong>206</strong> beim Erwachsenen (Baby: ~270)</li>
+        <li>Größter Knochen: <strong>Femur</strong> (Oberschenkelknochen)</li>
+        <li>Kleinstes Knochen: <strong>Steigbügel</strong> (Mittelohr)</li>
+        <li>Größtes Organ: <strong>Haut</strong> (~1,5–2 m²)</li>
+        <li>Blutgruppen: A, B, AB, <strong>0</strong> (0 = Universalspender)</li>
+        <li>Herzschläge: ~<strong>100.000</strong>/Tag</li>
+        <li>Neuronen im Gehirn: ~<strong>86 Milliarden</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Medizin</span>
+      <h3>Medizin &amp; Entdeckungen</h3>
+      <ul>
+        <li>Penicillin: <strong>Alexander Fleming</strong>, 1928</li>
+        <li>Erste Herztransplantation: <strong>1967</strong> (Christiaan Barnard)</li>
+        <li>Röntgen: <strong>Wilhelm Röntgen</strong>, 1895</li>
+        <li>Erste Impfung: <strong>Edward Jenner</strong>, Pocken 1796</li>
+        <li>Humangenomprojekt abgeschlossen: <strong>2003</strong></li>
+        <li>mRNA-Impfstoffe: breite Anwendung ab <strong>2020/21</strong> (COVID-19)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SCI PHYS -->
+<div id="sci-phys" class="section">
+  <div class="section-title">Wissenschaft – Physik &amp; Chemie</div>
+  <div class="section-sub">Grundgesetze, Elemente, bedeutende Wissenschaftler</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-sci">Physik</span>
+      <h3>Physikalische Gesetze &amp; Konstanten</h3>
+      <ul>
+        <li>Lichtgeschwindigkeit: <strong>~300.000 km/s</strong></li>
+        <li>Schallgeschwindigkeit (Luft): <strong>~343 m/s</strong></li>
+        <li>E = mc²: Einstein, <strong>1905</strong> (Spezielle Relativitätstheorie)</li>
+        <li>Gravitationsgesetz: <strong>Isaac Newton</strong></li>
+        <li>Absoluter Nullpunkt: <strong>–273,15 °C</strong> (0 Kelvin)</li>
+        <li>Netzspannung Deutschland: <strong>230 V</strong>, 50 Hz</li>
+        <li>USA: <strong>120 V</strong>, 60 Hz</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Chemie</span>
+      <h3>Chemie – Elemente &amp; Grundlagen</h3>
+      <ul>
+        <li>Periodensystem: aktuell <strong>118 Elemente</strong></li>
+        <li>Häufigstes Element im Universum: <strong>Wasserstoff (H)</strong></li>
+        <li>Häufigstes Element Erdkruste: <strong>Sauerstoff (O)</strong></li>
+        <li>Schwerste natürliche Element: <strong>Uran (U)</strong></li>
+        <li>Edelgase: He, Ne, Ar, Kr, Xe, Rn – reaktionsträge</li>
+        <li>Wasser: H₂O – Siedep. <strong>100°C</strong>, Gefrierpunkt <strong>0°C</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Wissenschaftler</span>
+      <h3>Bedeutende Wissenschaftler</h3>
+      <ul>
+        <li><strong>Isaac Newton</strong> – Gravitation, 3 Bewegungsgesetze, Optik</li>
+        <li><strong>Albert Einstein</strong> – Relativitätstheorie (Nobelpreis 1921)</li>
+        <li><strong>Marie Curie</strong> – 2 Nobelpreise (Physik 1903, Chemie 1911)</li>
+        <li><strong>Charles Darwin</strong> – Evolutionstheorie, 1859</li>
+        <li><strong>Stephen Hawking</strong> – Schwarze Löcher, Hawking-Strahlung</li>
+        <li><strong>Max Planck</strong> – Quantentheorie, Nobelpreis 1918</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Nobelpreis</span>
+      <h3>Nobelpreis – Wissenswertes</h3>
+      <ul>
+        <li>Gestiftet von: <strong>Alfred Nobel</strong> (Dynamit-Erfinder)</li>
+        <li>Erstmals vergeben: <strong>1901</strong></li>
+        <li>Kategorien: Physik, Chemie, Medizin, Literatur, Frieden, <strong>Wirtschaft</strong></li>
+        <li>Friedensnobelpreis: vergeben in <strong>Oslo</strong> (alle anderen Stockholm)</li>
+        <li>Marie Curie: einzige Person mit Preis in <strong>zwei</strong> naturwiss. Fächern</li>
+        <li>Jüngste Friedensnobelpreisträgerin: <strong>Malala Yousafzai</strong> (17 Jahre, 2014)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SCI KOSMOS -->
+<div id="sci-kosmos" class="section">
+  <div class="section-title">Wissenschaft – Astronomie &amp; Raumfahrt</div>
+  <div class="section-sub">Planeten, Sterne, Weltraumgeschichte</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-sci">Sonnensystem</span>
+      <h3>Sonnensystem</h3>
+      <ul>
+        <li>8 Planeten: Merkur, Venus, Erde, Mars, Jupiter, Saturn, Uranus, <strong>Neptun</strong></li>
+        <li>Pluto: seit <strong>2006</strong> nur Zwergplanet</li>
+        <li>Größter Planet: <strong>Jupiter</strong></li>
+        <li>Kleinster Planet: <strong>Merkur</strong></li>
+        <li>Heißester Planet: <strong>Venus</strong> (~465°C, Treibhauseffekt)</li>
+        <li>Markanteste Ringe: <strong>Saturn</strong></li>
+        <li>Erdumlauf um Sonne: <strong>365,25 Tage</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Erde &amp; Mond</span>
+      <h3>Erde, Mond &amp; Sonne</h3>
+      <ul>
+        <li>Erde–Mond: ~<strong>384.400 km</strong></li>
+        <li>Erde–Sonne: ~<strong>150 Mio. km</strong> (1 Astronomische Einheit)</li>
+        <li>Licht Sonne → Erde: <strong>~8 Minuten</strong></li>
+        <li>Mondumkreisung: <strong>27,3 Tage</strong> (siderisch)</li>
+        <li>Nächster Stern n. der Sonne: <strong>Proxima Centauri</strong> (4,24 Lj.)</li>
+        <li>Milchstraße: ~<strong>200–400 Mrd.</strong> Sterne</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Raumfahrt</span>
+      <h3>Meilensteine der Raumfahrt</h3>
+      <ul>
+        <li>1. Satellit: <strong>Sputnik 1</strong> – UdSSR, 4. Oktober 1957</li>
+        <li>1. Mensch im All: <strong>Juri Gagarin</strong> – 12. April 1961</li>
+        <li>1. Frau im All: <strong>Valentina Tereschkowa</strong> – 1963</li>
+        <li>Mondlandung: <strong>Neil Armstrong</strong> – 20. Juli 1969 (Apollo 11)</li>
+        <li>2. Mensch auf dem Mond: <strong>Buzz Aldrin</strong></li>
+        <li>ISS: bewohnt seit <strong>November 2000</strong></li>
+        <li>Hubble-Teleskop: im Orbit seit <strong>1990</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sci">Universum</span>
+      <h3>Universum &amp; Kosmologie</h3>
+      <ul>
+        <li>Alter des Universums: ~<strong>13,8 Mrd.</strong> Jahre</li>
+        <li>Entstehung: <strong>Big Bang</strong> – Standardmodell der Kosmologie</li>
+        <li>1. Foto eines Schwarzen Lochs: <strong>2019</strong> (M87*)</li>
+        <li>Dunkle Materie: ~<strong>27%</strong> des Universums (unsichtbar)</li>
+        <li>Lichtjahr: ~<strong>9,46 Billionen km</strong></li>
+        <li>Nächste Galaxie: <strong>Andromeda</strong> (~2,5 Mio. Lj.)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CULT FILM -->
+<div id="cult-film" class="section">
+  <div class="section-title">Kultur – Film &amp; TV</div>
+  <div class="section-sub">Kino, Oscars, Serien, Regisseure</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-cult">Kino-Rekorde</span>
+      <h3>Erfolgreichste Filme</h3>
+      <ul>
+        <li>Erfolgreichster Film: <strong>Avatar</strong> (James Cameron, 2009/22, ~2,9 Mrd. $)</li>
+        <li>Erfolgreichste Filmreihe: <strong>Marvel Cinematic Universe</strong></li>
+        <li>Meiste Oscar-Nominierungen: <strong>All About Eve</strong> &amp; Titanic (je 14)</li>
+        <li>Meiste Oscar-Siege (Film): <strong>Ben-Hur, Titanic, Return of the King</strong> (je 11)</li>
+        <li>Oscar „Bester Film" 2024: <strong>Oppenheimer</strong></li>
+        <li>Älteste Filmpreisverleihung: <strong>Oscar</strong> (seit 1929)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Regisseure</span>
+      <h3>Filmklassiker &amp; Regisseure</h3>
+      <ul>
+        <li><strong>Alfred Hitchcock</strong> – Psycho, Vertigo; „Meister des Suspense"</li>
+        <li><strong>Stanley Kubrick</strong> – 2001, Shining, Full Metal Jacket</li>
+        <li><strong>Steven Spielberg</strong> – E.T., Schindlers Liste, Jurassic Park</li>
+        <li>Star Wars (1977): Regisseur <strong>George Lucas</strong></li>
+        <li>James Bond: bisher <strong>6 Darsteller</strong>, 25+ offizielle Filme</li>
+        <li>Goldene Palme Cannes: höchste Auszeichnung des Festivals</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Serien</span>
+      <h3>Serien &amp; Streaming</h3>
+      <ul>
+        <li>Meistgeschaute Serie Netflix: <strong>Squid Game</strong> (2021)</li>
+        <li>Emmy-Rekordgewinner: <strong>Game of Thrones</strong></li>
+        <li>Längste laufende US-Zeichentrickserie: <strong>The Simpsons</strong> (seit 1989)</li>
+        <li>Netflix: gegründet <strong>1997</strong> als DVD-Verleih</li>
+        <li>Streaming-Marktführer: <strong>Netflix</strong> (~280 Mio. Abonnenten)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Deutscher Film</span>
+      <h3>Deutscher Film</h3>
+      <ul>
+        <li>Dt. Filmpreis: <strong>Lola</strong> (Goldene Lola, seit 1951)</li>
+        <li>„Das Boot" (1981): Regisseur <strong>Wolfgang Petersen</strong>, 6 Oscar-Nom.</li>
+        <li>„Lola rennt" (1998): Regisseur <strong>Tom Tykwer</strong></li>
+        <li>Berlinale: int. Filmfestival in <strong>Berlin</strong></li>
+        <li>Berlinale-Hauptpreis: <strong>Goldener Bär</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CULT MUSIK -->
+<div id="cult-musik" class="section">
+  <div class="section-title">Kultur – Musik</div>
+  <div class="section-sub">Klassik, Pop, Rock, Rekorde, Instrumente</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-cult">Klassik</span>
+      <h3>Klassische Musik</h3>
+      <ul>
+        <li><strong>Beethoven</strong> – 9. Sinfonie; schrieb sie <strong>taub</strong></li>
+        <li><strong>Mozart</strong> – starb mit nur <strong>35 Jahren</strong> (1756–1791)</li>
+        <li><strong>Bach</strong> – Barockkomponist, Matthäuspassion</li>
+        <li><strong>Schubert</strong> – „Erlkönig", „Die Winterreise"</li>
+        <li><strong>Wagner</strong> – Bayreuther Festspiele, Ring-Zyklus</li>
+        <li>Ode an die Freude (Beethoven): heute <strong>Hymne der EU</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Pop &amp; Rock</span>
+      <h3>Pop, Rock &amp; Weltrekorde</h3>
+      <ul>
+        <li>Meistverkauftes Album: <strong>Thriller</strong> – Michael Jackson (~70 Mio.)</li>
+        <li>Meistverkaufter Künstler: <strong>The Beatles</strong> (~600 Mio. Alben)</li>
+        <li>Grammy Album des Jahres 2024: <strong>Taylor Swift</strong> (4× Rekord)</li>
+        <li>Rock 'n' Roll: <strong>Elvis Presley</strong> = „King of Rock 'n' Roll"</li>
+        <li>Woodstock: <strong>1969</strong>, erstes großes Musikfestival</li>
+        <li>Meistgestreamtes Lied: <strong>„Blinding Lights"</strong> – The Weeknd</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Eurovision</span>
+      <h3>Eurovision &amp; Deutsches</h3>
+      <ul>
+        <li>Eurovision Song Contest (ESC): erstmals <strong>1956</strong></li>
+        <li>D gewann ESC: <strong>1982</strong> (Nicole – „Ein bisschen Frieden")</li>
+        <li>Meiste ESC-Siege: <strong>Irland</strong> (7×)</li>
+        <li><strong>Rammstein</strong>: erfolgreichste dt. Band international</li>
+        <li>Kraftwerk: Düsseldorf, Pioniere der <strong>elektronischen Musik</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Instrumente</span>
+      <h3>Instrumente &amp; Begriffe</h3>
+      <ul>
+        <li>Streichinstrumente: Violine, Viola, <strong>Cello</strong>, Kontrabass</li>
+        <li>Holzblasinstrumente: Flöte, Klarinette, <strong>Saxofon</strong>, Oboe</li>
+        <li>Saxofon erfunden von: <strong>Adolphe Sax</strong>, 1840er</li>
+        <li>Tonarten: Dur (fröhlich) und <strong>Moll</strong> (traurig)</li>
+        <li>Stimmton: <strong>440 Hz</strong> = Kammerton A</li>
+        <li>Beethoven: Eroica ursprünglich <strong>Napoleon</strong> gewidmet</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CULT LIT -->
+<div id="cult-lit" class="section">
+  <div class="section-title">Kultur – Literatur &amp; Kunst</div>
+  <div class="section-sub">Bücher, Autoren, Gemälde, Architektur, Mythen</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-cult">Weltliteratur</span>
+      <h3>Weltliteratur – Klassiker</h3>
+      <ul>
+        <li>Meistverkauftes Buch: <strong>Bibel</strong> (&gt;5 Mrd. Exemplare)</li>
+        <li>Meistverkaufter Roman: <strong>Don Quijote</strong> (Cervantes, ~500 Mio.)</li>
+        <li>Shakespeare: <strong>37 Stücke</strong>, darunter Hamlet, Romeo &amp; Julia</li>
+        <li>Goethe: Faust, Werther; Schiller: <strong>Wilhelm Tell</strong>, Die Räuber</li>
+        <li>Harry Potter: 7 Bände, Autorin <strong>J.K. Rowling</strong></li>
+        <li>Literaturnobelpreis 2023: <strong>Jon Fosse</strong> (Norwegen)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Bildende Kunst</span>
+      <h3>Bedeutende Kunstwerke</h3>
+      <ul>
+        <li>Mona Lisa: <strong>Leonardo da Vinci</strong>, im Louvre Paris</li>
+        <li>Sixtinische Kapelle: <strong>Michelangelo</strong>, 1508–1512</li>
+        <li>Teuerste Auktion: <strong>Salvator Mundi</strong> – 450 Mio. $, 2017</li>
+        <li>Van Gogh: „Sternennacht"; zu Lebzeiten kaum Ruhm</li>
+        <li>Picasso: begründete den <strong>Kubismus</strong></li>
+        <li>Louvre Paris: <strong>meistbesuchtes Museum</strong> der Welt</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Architektur</span>
+      <h3>Berühmte Bauwerke</h3>
+      <ul>
+        <li>Chinesische Mauer: ~<strong>21.196 km</strong> (alle Teile)</li>
+        <li>Eiffelturm: <strong>1889</strong> errichtet von Gustave Eiffel</li>
+        <li>Taj Mahal: <strong>Agra, Indien</strong> – Mausoleum, 1632–1653</li>
+        <li>Sagrada Família (Barcelona): Architekt <strong>Antoni Gaudí</strong></li>
+        <li>Brandenburger Tor: fertiggestellt <strong>1791</strong></li>
+        <li>Kolosseum Rom: Fertigstellung <strong>80 n. Chr.</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-cult">Mythen &amp; Religion</span>
+      <h3>Mythologie &amp; Weltreligionen</h3>
+      <ul>
+        <li>Weltreligionen (Größe): <strong>Christentum</strong> (~2,4 Mrd.), Islam (~1,9 Mrd.), Hinduismus, Buddhismus</li>
+        <li>Islam: Heilige Stadt <strong>Mekka</strong> (Saudi-Arabien)</li>
+        <li>Olympische Götter: Zeus, Hera, Poseidon, <strong>Athene</strong>, Apollo…</li>
+        <li>Wikinger-Götter: <strong>Odin</strong> (Allvater), Thor, Loki</li>
+        <li>Ägyptische Götter: Ra (Sonne), <strong>Osiris</strong> (Totengott), Isis</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CULT FOOD -->
+<div id="cult-food" class="section">
+  <div class="section-title">Kultur – Essen &amp; Trinken</div>
+  <div class="section-sub">Gerichte, Herkunft, Getränke, Spezialitäten</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-food">Gerichte &amp; Herkunft</span>
+      <h3>Gerichte und ihre Herkunft</h3>
+      <ul>
+        <li><strong>Pizza</strong> – Neapel, Italien</li>
+        <li><strong>Sushi</strong> – Japan</li>
+        <li><strong>Currywurst</strong> – erfunden 1949 von <strong>Herta Heuwer</strong>, Berlin</li>
+        <li><strong>Döner Kebab</strong> (heutige Form) – in Deutschland entwickelt (Berlin, 1970er)</li>
+        <li><strong>Croissant</strong> – österr. Ursprung (Kipferl), in Frankreich berühmt</li>
+        <li><strong>Hamburger</strong> – USA, inspiriert von dt. Einwanderern</li>
+        <li><strong>Wiener Schnitzel</strong> – aus Wien</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-food">Deutsche Küche</span>
+      <h3>Deutsche Spezialitäten</h3>
+      <ul>
+        <li>Frankfurt: <strong>Grüne Soße</strong> (7 Kräuter) und Äpfelwoi</li>
+        <li>Hessen: <strong>Handkäse mit Musik</strong></li>
+        <li>Bayern: <strong>Weißwurst</strong>, Obazda, Brezn</li>
+        <li>Rheinland: <strong>Sauerbraten</strong></li>
+        <li>Hamburg: <strong>Labskaus</strong>, Franzbrötchen</li>
+        <li>Baden-Württemberg: <strong>Maultaschen</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-food">Wein &amp; Bier</span>
+      <h3>Wein, Bier &amp; Getränke</h3>
+      <ul>
+        <li>Dt. Weinanbaugebiete: 13, u.a. <strong>Rheingau, Mosel, Pfalz</strong></li>
+        <li>Bekannteste dt. Weißweinsorbe: <strong>Riesling</strong></li>
+        <li>Reinheitsgebot: seit <strong>1516</strong></li>
+        <li>Champagner: nur aus der Region <strong>Champagne</strong> (Frankreich)</li>
+        <li>Kaffee: ursprünglich aus <strong>Äthiopien</strong></li>
+        <li>Bier-Herkunft: erstmals in <strong>Mesopotamien</strong> (~5000 v. Chr.)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-food">Welternährung</span>
+      <h3>Nahrungsmittel der Welt</h3>
+      <ul>
+        <li>Meistkonsumiertes Getreide (Kalorien): <strong>Reis</strong></li>
+        <li>Teuerstes Gewürz: <strong>Safran</strong></li>
+        <li>Schärfstes Chili: <strong>Carolina Reaper</strong></li>
+        <li>Schokolade: stammt von den <strong>Azteken/Maya</strong></li>
+        <li>Tomaten: botanisch <strong>Obst</strong> (nicht Gemüse)</li>
+        <li>Meistproduziertes Obst weltweit: <strong>Banane</strong> (nach Gewicht: Zuckerrohr)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SPORT FUSS -->
+<div id="sport-fuss" class="section">
+  <div class="section-title">Sport – Fußball</div>
+  <div class="section-sub">WM, Bundesliga, Champions League, Legenden</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-sport">WM</span>
+      <h3>FIFA Weltmeisterschaft</h3>
+      <ul>
+        <li>Meiste WM-Titel: <strong>Brasilien</strong> (5×: 1958, 62, 70, 94, 2002)</li>
+        <li>Deutschland: <strong>4 Titel</strong> (1954, 1974, 1990, 2014)</li>
+        <li>WM 2022: <strong>Argentinien</strong> (Endspiel vs. Frankreich)</li>
+        <li>WM 2026: USA, Kanada, <strong>Mexiko</strong></li>
+        <li>Bester WM-Torschütze: <strong>Miroslav Klose</strong> (16 Tore)</li>
+        <li>Jüngster WM-Torschütze: <strong>Pelé</strong> (17 Jahre, 1958)</li>
+        <li>Erste WM: <strong>1930</strong> in Uruguay</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sport">Bundesliga</span>
+      <h3>Bundesliga Deutschland</h3>
+      <ul>
+        <li>Rekord-Meister: <strong>Bayern München</strong> (32+ Titel)</li>
+        <li>Meiste Bundesliga-Tore: <strong>Gerd Müller</strong> (365)</li>
+        <li>Rekord-Torschütze einer Saison: <strong>Robert Lewandowski</strong> (41 Tore, 20/21)</li>
+        <li>Bundesliga gegründet: <strong>1963</strong></li>
+        <li>Größtes Stadion Dt.: <strong>Dortmund</strong> (Signal Iduna Park, ~81.000)</li>
+        <li>DFB-Pokal-Rekordsieger: <strong>Bayern München</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sport">Champions League</span>
+      <h3>Champions League &amp; Europa</h3>
+      <ul>
+        <li>Rekord-CL-Sieger: <strong>Real Madrid</strong> (15+)</li>
+        <li>Meiste CL-Tore: <strong>Cristiano Ronaldo</strong></li>
+        <li>Dt. CL-Sieger: <strong>Bayern München</strong> (6×)</li>
+        <li>Premier League: Gründung <strong>1992</strong></li>
+        <li>Meiste Länderspiele: <strong>Cristiano Ronaldo</strong> (&gt;210)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sport">Legenden</span>
+      <h3>Fußball-Legenden</h3>
+      <ul>
+        <li><strong>Pelé</strong> (Brasilien) – 3× Weltmeister; gilt als GOAT</li>
+        <li><strong>Diego Maradona</strong> – „Hand Gottes" 1986; WM-Titel Argentinien</li>
+        <li><strong>Franz Beckenbauer</strong> – WM als Spieler (1974) &amp; Trainer (1990)</li>
+        <li><strong>Gerd Müller</strong> – „Bomber der Nation", WM-Torrekord</li>
+        <li>Messi vs. Ronaldo: beide &gt;800 Tore; Messi mit WM-Titel <strong>2022</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SPORT REST -->
+<div id="sport-rest" class="section">
+  <div class="section-title">Sport – Olympia &amp; Weitere</div>
+  <div class="section-sub">Tennis, Formel 1, Olympia, Leichtathletik, Weitere</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-sport">Olympia</span>
+      <h3>Olympische Spiele</h3>
+      <ul>
+        <li>Erste moderne Olympiade: <strong>Athen 1896</strong></li>
+        <li>Motto: „Citius, Altius, Fortius" = Schneller, Höher, <strong>Stärker</strong></li>
+        <li>Meiste Goldmedaillen: <strong>Michael Phelps</strong> (Schwimmen, 23 Gold)</li>
+        <li>Sommer 2024: <strong>Paris</strong>; Sommer 2028: Los Angeles</li>
+        <li>Winter 2026: <strong>Mailand-Cortina</strong></li>
+        <li>Dt. Rekord-Olympiasportlerin: <strong>Birgit Fischer</strong> (Kanu, 8 Gold)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sport">Tennis</span>
+      <h3>Tennis</h3>
+      <ul>
+        <li>Meiste Grand-Slam-Titel (Herren): <strong>Novak Djokovic</strong> (24+)</li>
+        <li>Meiste Wimbledon-Titel: <strong>Roger Federer</strong> (8×)</li>
+        <li>Wimbledon: ältestes Grand-Slam-Turnier (<strong>1877</strong>)</li>
+        <li>4 Grand Slams: Aus. Open, Roland Garros, <strong>Wimbledon</strong>, US Open</li>
+        <li>Jüngster Wimbledon-Sieger dt.: <strong>Boris Becker</strong>, 1985 (17 J.)</li>
+        <li>Steffi Graf: einzige mit <strong>Golden Slam</strong> (1988)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sport">Formel 1</span>
+      <h3>Formel 1 &amp; Motorsport</h3>
+      <ul>
+        <li>Meiste F1-Titel: <strong>Schumacher</strong> &amp; Hamilton (je 7)</li>
+        <li>Jüngster F1-Weltmeister: <strong>Max Verstappen</strong> (24 Jahre, 2021)</li>
+        <li>Meiste Rennsiege: <strong>Lewis Hamilton</strong> (103+)</li>
+        <li>Dt. Traditionsrennstrecke: <strong>Nürburgring</strong> (Eifel)</li>
+        <li>Le Mans: <strong>24-Stunden</strong>-Rennen, Frankreich</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-sport">Leichtathletik &amp; Weitere</span>
+      <h3>Leichtathletik &amp; Weitere Sportarten</h3>
+      <ul>
+        <li>100m-Weltrekord: <strong>Usain Bolt</strong> (9,58 s, 2009)</li>
+        <li>Marathon-Weltrekord: <strong>Kelvin Kiptum</strong> (2:00:35, 2023)</li>
+        <li>NBA Rekordpunktesammler: <strong>LeBron James</strong></li>
+        <li>Tour de France meiste Siege (anerkannt): <strong>Eddy Merckx</strong> (5×)</li>
+        <li>Schach-Weltmeister aktuell: <strong>Ding Liren</strong> (China)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- POL DE -->
+<div id="pol-de" class="section">
+  <div class="section-title">Politik – Deutschland</div>
+  <div class="section-sub">Staatssystem, Institutionen, Parteien, Bundeskanzler</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-pol">Staatssystem</span>
+      <h3>Politisches System</h3>
+      <ul>
+        <li>Staatsform: <strong>Parlamentarische Bundesrepublik</strong></li>
+        <li>Grundgesetz in Kraft: <strong>23. Mai 1949</strong></li>
+        <li>Bundestag: Volkskammer, aktuell ~<strong>736</strong> Abgeordnete</li>
+        <li>Bundesrat: Vertretung der <strong>16 Länder</strong></li>
+        <li>Bundesverfassungsgericht: Sitz <strong>Karlsruhe</strong></li>
+        <li>Wahlrecht: ab <strong>18 Jahren</strong> aktiv (Bundesebene)</li>
+        <li>5%-Hürde für Einzug in den <strong>Bundestag</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-pol">Amtsinhaber 2025</span>
+      <h3>Aktuelle Amtsinhaber</h3>
+      <ul>
+        <li>Bundespräsident: <strong>Frank-Walter Steinmeier</strong> (SPD)</li>
+        <li>Bundeskanzler: <strong>Friedrich Merz</strong> (CDU, seit Feb. 2025)</li>
+        <li>Hess. Ministerpräsident: <strong>Boris Rhein</strong> (CDU)</li>
+        <li>Hessens Hauptstadt: <strong>Wiesbaden</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-pol">Parteien</span>
+      <h3>Deutsche Parteien</h3>
+      <ul>
+        <li><strong>CDU/CSU</strong> – konservativ (CSU nur Bayern)</li>
+        <li><strong>SPD</strong> – sozialdemokratisch; älteste Partei (1863)</li>
+        <li><strong>Grüne</strong> – Umwelt, gegründet 1980</li>
+        <li><strong>FDP</strong> – liberal, freie Marktwirtschaft</li>
+        <li><strong>AfD</strong> – rechtspopulistisch, 2013 gegründet</li>
+        <li><strong>BSW</strong> – 2024 gegründet (Sahra Wagenknecht)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-pol">Bundeskanzler</span>
+      <h3>Alle Bundeskanzler</h3>
+      <ul>
+        <li><strong>Adenauer</strong> (CDU) 1949–1963 – Erster Kanzler</li>
+        <li><strong>Erhard</strong> (CDU) 1963–66 – „Wirtschaftswunder"</li>
+        <li><strong>Willy Brandt</strong> (SPD) 1969–74 – Kniefall Warschau</li>
+        <li><strong>Helmut Schmidt</strong> (SPD) 1974–82</li>
+        <li><strong>Helmut Kohl</strong> (CDU) 1982–98 – Kanzler der Einheit</li>
+        <li><strong>Schröder</strong> (SPD) 1998–2005</li>
+        <li><strong>Angela Merkel</strong> (CDU) 2005–21 (16 Jahre)</li>
+        <li><strong>Olaf Scholz</strong> (SPD) 2021–25</li>
+        <li><strong>Friedrich Merz</strong> (CDU) seit 2025</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- POL WELT -->
+<div id="pol-welt" class="section">
+  <div class="section-title">Politik – Europa &amp; Welt</div>
+  <div class="section-sub">EU, NATO, UN, internationale Politik</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-pol">EU</span>
+      <h3>Europäische Union</h3>
+      <ul>
+        <li>Aktuell <strong>27 Mitgliedsstaaten</strong> (nach Brexit 2020)</li>
+        <li>Eurozone: <strong>20 Länder</strong> mit Euro</li>
+        <li>EU-Kommissionspräsidentin: <strong>Ursula von der Leyen</strong></li>
+        <li>Gründungsvertrag: Römer Verträge <strong>1957</strong></li>
+        <li>Größtes EU-Land nach Fläche: <strong>Frankreich</strong></li>
+        <li>EU-Parlament sitzt in: <strong>Straßburg</strong> (und Brüssel)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-pol">NATO &amp; UN</span>
+      <h3>NATO &amp; Vereinte Nationen</h3>
+      <ul>
+        <li>NATO gegründet: <strong>4. April 1949</strong></li>
+        <li>NATO-Hauptquartier: <strong>Brüssel</strong></li>
+        <li>NATO-Generalsekretär: <strong>Mark Rutte</strong> (NL, seit 2024)</li>
+        <li>UN gegründet: <strong>26. Juni 1945</strong></li>
+        <li>UN-Generalsekretär: <strong>António Guterres</strong> (Portugal)</li>
+        <li>UN-Sicherheitsrat ständige Mitglieder: USA, UK, Frankreich, Russland, <strong>China</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-pol">Staatsoberhäupter</span>
+      <h3>Wichtige Staatsoberhäupter 2025</h3>
+      <ul>
+        <li>USA: <strong>Donald Trump</strong> (seit Jan. 2025, 2. Amtszeit)</li>
+        <li>UK: <strong>Keir Starmer</strong> (Labour, seit Juli 2024)</li>
+        <li>Frankreich: Präsident <strong>Emmanuel Macron</strong></li>
+        <li>China: <strong>Xi Jinping</strong></li>
+        <li>Russland: <strong>Wladimir Putin</strong></li>
+        <li>Papst: <strong>Franziskus</strong> (Argentinien, seit 2013)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-pol">Symbole &amp; Fakten</span>
+      <h3>Staatssymbole &amp; Fakten</h3>
+      <ul>
+        <li>Dt. Nationalhymne: <strong>3. Strophe</strong> des Deutschlandlieds</li>
+        <li>Freiheitsstatue: Geschenk von <strong>Frankreich</strong>, eingeweiht 1886</li>
+        <li>Rotes Kreuz: gegründet von <strong>Henry Dunant</strong>, 1863</li>
+        <li>Friedensnobelpreis: vergeben in <strong>Oslo</strong> (alle anderen Stockholm)</li>
+        <li>G7: sieben größte Industrienationen (D, FR, IT, JP, CA, UK, USA)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TECH DIG -->
+<div id="tech-dig" class="section">
+  <div class="section-title">Technik – Internet &amp; Digital</div>
+  <div class="section-sub">Computer, Internet, Soziale Medien, KI</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-tech">Internet</span>
+      <h3>Internet &amp; Technologiefirmen</h3>
+      <ul>
+        <li>WWW erfunden: <strong>Tim Berners-Lee</strong>, 1989 (CERN, Genf)</li>
+        <li>1. Website online: <strong>6. August 1991</strong></li>
+        <li>Apple gegründet: <strong>1976</strong> (Wozniak &amp; Jobs, Garage)</li>
+        <li>Microsoft gegründet: <strong>1975</strong> (Gates &amp; Allen)</li>
+        <li>Google gegründet: <strong>1998</strong> (Brin &amp; Page, Stanford)</li>
+        <li>Meistgenutzte Suchmaschine: <strong>Google</strong> (~93% Marktanteil)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-tech">Soziale Medien</span>
+      <h3>Soziale Netzwerke</h3>
+      <ul>
+        <li>Facebook/Meta: gegründet <strong>2004</strong> (Mark Zuckerberg)</li>
+        <li>YouTube: <strong>2005</strong>, von Google für 1,65 Mrd. $ gekauft (2006)</li>
+        <li>Twitter/X: <strong>2006</strong>; Musk kaufte für 44 Mrd. $ (2022)</li>
+        <li>Instagram: 2010, für <strong>1 Mrd. $</strong> von Meta gekauft (2012)</li>
+        <li>TikTok: Unternehmen <strong>ByteDance</strong> (China)</li>
+        <li>Meistgefolgte Person Instagram: <strong>Cristiano Ronaldo</strong> (&gt;620 Mio.)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-tech">Smartphones</span>
+      <h3>Smartphone-Geschichte</h3>
+      <ul>
+        <li>1. Handy-Anruf: <strong>1973</strong> (Martin Cooper, Motorola)</li>
+        <li>Erstes iPhone: <strong>9. Januar 2007</strong> (Steve Jobs)</li>
+        <li>Erstes Android-Smartphone: <strong>2008</strong> (HTC Dream)</li>
+        <li>Marktführer Smartphones: <strong>Samsung</strong> (Stückzahl)</li>
+        <li>iOS vs. Android: Android ~<strong>72%</strong> Marktanteil weltweit</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-tech">KI</span>
+      <h3>Künstliche Intelligenz</h3>
+      <ul>
+        <li>Begriff „AI": geprägt <strong>1956</strong> (John McCarthy)</li>
+        <li>Deep Blue schlägt Kasparow: <strong>1997</strong></li>
+        <li>ChatGPT: veröffentlicht <strong>November 2022</strong> (OpenAI)</li>
+        <li>Wichtige KI-Unternehmen: <strong>OpenAI, Anthropic, Google DeepMind</strong></li>
+        <li>KI-Chip-Marktführer: <strong>NVIDIA</strong></li>
+        <li>Claude: KI von <strong>Anthropic</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TECH INV -->
+<div id="tech-inv" class="section">
+  <div class="section-title">Technik – Erfindungen &amp; Technik</div>
+  <div class="section-sub">Alltagstechnik, Energie, Verkehr, Kommunikation</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-tech">Alltagstechnik</span>
+      <h3>Alltagstechnik &amp; Physik</h3>
+      <ul>
+        <li>Netzspannung Deutschland: <strong>230 V</strong>, 50 Hz</li>
+        <li>USA: <strong>120 V</strong>, 60 Hz</li>
+        <li>GPS: entwickelt vom <strong>US-Militär</strong>, zivil freigegeben 1983</li>
+        <li>Laser erfunden: <strong>1960</strong> (Theodore Maiman)</li>
+        <li>Transistor: <strong>1947</strong> (Bell Labs) – Grundlage mod. Elektronik</li>
+        <li>Wi-Fi kommerziell: ab <strong>1999</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-tech">Energie</span>
+      <h3>Energie &amp; Strom</h3>
+      <ul>
+        <li>Erstes Kraftwerk: <strong>Thomas Edison</strong>, New York 1882</li>
+        <li>Atomkern-Spaltung: <strong>Otto Hahn</strong> &amp; Fritz Straßmann, 1938</li>
+        <li>Letztes dt. AKW abgeschaltet: <strong>April 2023</strong></li>
+        <li>Größter erneuerbarer Anteil in D: <strong>Wind</strong></li>
+        <li>Elektroauto-Pionier: <strong>Tesla</strong> (Elon Musk)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-tech">Verkehr</span>
+      <h3>Verkehr &amp; Transport</h3>
+      <ul>
+        <li>Erstes Automobil mit Patent: <strong>Carl Benz</strong>, 1886</li>
+        <li>Erste dt. Eisenbahnlinie: <strong>1835</strong> Nürnberg–Fürth</li>
+        <li>Erster Motorflug: <strong>Gebrüder Wright</strong>, 17. Dez. 1903</li>
+        <li>Concorde: Erstflug <strong>1969</strong>, Betrieb 1976–2003</li>
+        <li>Schnellster Zug: <strong>Shanghai Maglev</strong> (431 km/h)</li>
+        <li>Längster Eisenbahntunnel: <strong>Gotthard-Basistunnel</strong> (57 km, CH)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-tech">Kommunikation</span>
+      <h3>Kommunikation &amp; Medien</h3>
+      <ul>
+        <li>Buchdruck: <strong>Gutenberg</strong>, ~1450</li>
+        <li>Telegraf: <strong>Samuel Morse</strong>, 1837</li>
+        <li>Radio (Rundfunk): erste Sendung <strong>1906</strong></li>
+        <li>Erstes dt. Fernsehprogramm: <strong>1952</strong> (ARD)</li>
+        <li>Spotify gegründet: <strong>2006</strong> (Schweden, Daniel Ek)</li>
+        <li>Vinyl-Schallplatte: Markteinführung <strong>1948</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- LOCAL HES -->
+<div id="local-hes" class="section">
+  <div class="section-title">Hessen &amp; Idstein</div>
+  <div class="section-sub">Regionales Wissen: Idstein, Taunus, Frankfurt, Hessen</div>
+  <div class="tip-box"><strong>Lokaler Vorteil:</strong> Hexenturm, Hochschule Fresenius, Brüder Grimm (Hanau!), Frankfurt als Finanzstadt und Geburtsort Goethes – diese Fragen kommen häufig.</div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag t-local">Idstein</span>
+      <h3>Idstein – Stadtfakten</h3>
+      <ul>
+        <li>Landkreis: <strong>Rheingau-Taunus-Kreis</strong></li>
+        <li>Einwohner: ca. <strong>25.000</strong></li>
+        <li>Wahrzeichen: <strong>Hexenturm</strong> (ehem. Bergfried)</li>
+        <li>Schloss Idstein: heute <strong>Nassau-Gymnasium</strong></li>
+        <li>Hexenprozess: <strong>1676</strong> – über 30 Hinrichtungen</li>
+        <li>Hochschule: <strong>Hochschule Fresenius</strong> (Campus Idstein)</li>
+        <li>Wörsdorf: westlicher <strong>Stadtteil</strong> von Idstein</li>
+        <li>Historische <strong>Fachwerkaltstadt</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-local">Taunus &amp; Rheingau</span>
+      <h3>Taunus &amp; Rheingau-Taunus</h3>
+      <ul>
+        <li>Taunus: Mittelgebirge nördl. von <strong>Frankfurt</strong></li>
+        <li>Höchster Taunusgipfel: <strong>Großer Feldberg</strong> (879 m)</li>
+        <li>Saalburg: <strong>Römerkastell</strong> im Taunus (UNESCO Limes)</li>
+        <li>Bad Homburg: Kurstadt, bekannte <strong>Spielbank</strong></li>
+        <li>Rheingau: berühmtes <strong>Weinanbaugebiet</strong> (Riesling)</li>
+        <li>Kloster Eberbach: bekannter <strong>Weinkeller</strong></li>
+        <li>Bad Schwalbach: Kreisstadt des <strong>Rheingau-Taunus-Kreises</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-local">Hessen</span>
+      <h3>Hessen – Bundesland</h3>
+      <ul>
+        <li>Hauptstadt: <strong>Wiesbaden</strong></li>
+        <li>Größte Stadt: <strong>Frankfurt am Main</strong></li>
+        <li>Bevölkerung: ~<strong>6,4 Mio.</strong></li>
+        <li>Höchste Erhebung: <strong>Wasserkuppe</strong> (950 m, Rhön)</li>
+        <li>Landesfarben: <strong>Rot-Weiß</strong></li>
+        <li>Regionen: Rheingau, Taunus, Odenwald, Bergstraße, <strong>Rhön</strong></li>
+        <li>Hessischer Rundfunk (hr): Sitz in <strong>Frankfurt</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-local">Frankfurt</span>
+      <h3>Frankfurt am Main</h3>
+      <ul>
+        <li>Finanzmetropole: Sitz <strong>EZB</strong>, Deutsche Börse, Bundesbank</li>
+        <li>Größter Flughafen D: <strong>Frankfurt Airport</strong> (FRA)</li>
+        <li>Geburtsort: <strong>Johann Wolfgang von Goethe</strong> (1749)</li>
+        <li>Spezialitäten: Grüne Soße, <strong>Äpfelwoi</strong>, Handkäse</li>
+        <li>Buchmesse Frankfurt: größte <strong>Buchmesse</strong> der Welt</li>
+        <li>Kaiserpfalz/Römer: Frankfurter Rathaus, ehem. <strong>Krönungsort</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-local">Berühmte Hessen</span>
+      <h3>Berühmte Hessen</h3>
+      <ul>
+        <li>Brüder Grimm: <strong>Jacob &amp; Wilhelm Grimm</strong>, geboren in <strong>Hanau</strong></li>
+        <li>Goethe: Frankfurter, studierte in Leipzig und <strong>Straßburg</strong></li>
+        <li>Schopenhauer: lebte lange in <strong>Frankfurt</strong></li>
+        <li>Frankfurter Schule: Adorno, <strong>Horkheimer</strong>, Max Horkheimer</li>
+        <li>Gutenberg: geboren in <strong>Mainz</strong> (Rheinland-Pfalz, direkt angrenzend)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-local">Rhein-Main Region</span>
+      <h3>Benachbarte Städte &amp; Region</h3>
+      <ul>
+        <li><strong>Wiesbaden</strong>: Landeshauptstadt, Kurstadt</li>
+        <li><strong>Mainz</strong>: Landeshauptstadt RLP; Gutenberg-Museum</li>
+        <li><strong>Darmstadt</strong>: „Wissenschaftsstadt", TU Darmstadt</li>
+        <li><strong>Limburg</strong>: bekannter Dom, an der Lahn</li>
+        <li>Rüdesheim am Rhein: <strong>Drosselgasse</strong>, Touristenziel</li>
+        <li>Loreley: Felsen im Rhein bei <strong>St. Goarshausen</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function show(id, label, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn, .mob-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  // sync sidebar/mobile counterpart
+  document.querySelectorAll('.nav-btn, .mob-btn').forEach(b => {
+    if (b !== btn) {
+      const oc = b.getAttribute('onclick') || '';
+      if (oc.includes("'" + id + "'")) b.classList.add('active');
+    }
+  });
+  document.getElementById('mobLabel').textContent = label;
+  closeMob();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleMob() {
+  document.getElementById('mobToggle').classList.toggle('open');
+  document.getElementById('mobDrop').classList.toggle('open');
+}
+function closeMob() {
+  document.getElementById('mobToggle').classList.remove('open');
+  document.getElementById('mobDrop').classList.remove('open');
+}
+</script>
+</body>
+</html>
