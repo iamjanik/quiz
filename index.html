@@ -121,17 +121,20 @@ header h1 em { color:var(--acc); font-style:normal; }
 
 .badge-new { display:inline-block; background:var(--acc); color:#111; font-size:9px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; padding:2px 6px; border-radius:6px; width:fit-content; }
 .tag { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:3px 9px; border-radius:20px; display:inline-block; }
-.tg{background:rgba(78,201,176,.14);color:var(--teal);}
-.th{background:rgba(229,92,58,.14);color:var(--red);}
-.ts{background:rgba(180,142,245,.14);color:var(--pur);}
-.tc{background:rgba(245,200,66,.14);color:var(--acc);}
-.tp{background:rgba(229,92,58,.11);color:#f07a60;}
-.tb{background:rgba(91,164,245,.14);color:var(--blue);}
-.tt{background:rgba(180,142,245,.11);color:#c9a8ff;}
-.tf{background:rgba(78,201,176,.11);color:#6dd9c0;}
-.tn{background:rgba(245,200,66,.18);color:#d4a830;}
-.tw{background:rgba(255,255,255,.08);color:#aab0c0;}
-.tur{background:rgba(20,184,166,.14);color:#2dd4bf;}
+/* ── TAG BADGE COLORS – one per category ── */
+/* news    → amber/gold    */ .tn {background:rgba(245,200,66,.18);color:#e6b800;}
+/* geo     → teal          */ .tg {background:rgba(78,201,176,.15);color:#3dc9a8;}
+/* hist    → red/coral     */ .th {background:rgba(229,92,58,.16);color:#e86b4a;}
+/* myth    → violet        */ .tm {background:rgba(167,139,250,.16);color:#a78bfa;}
+/* sci     → indigo/blue   */ .ts {background:rgba(99,149,245,.16);color:#6395f5;}
+/* natur   → green         */ .tnr{background:rgba(74,222,128,.14);color:#3db868;}
+/* cult    → yellow/gold   */ .tc {background:rgba(251,191,36,.15);color:#d4a017;}
+/* sport   → sky blue      */ .tsp{background:rgba(56,189,248,.15);color:#22b4e8;}
+/* pol     → orange        */ .tp {background:rgba(251,146,60,.15);color:#e8820a;}
+/* tech    → purple        */ .tt {background:rgba(192,132,252,.15);color:#b06bf0;}
+/* food    → pink/rose     */ .tf {background:rgba(251,113,133,.14);color:#e84d68;}
+/* local   → amber darker  */ .tl {background:rgba(217,119,6,.16);color:#d97706;}
+/* fallback                */ .tw {background:rgba(255,255,255,.08);color:#8899aa;}
 
 .card h3 { font-size:13.5px; font-weight:600; color:#fff; margin-bottom:9px; line-height:1.3; }
 
@@ -260,21 +263,7 @@ const CARDS = [
   b('Syrischer Bürgerkrieg')+': Assad-Regime fiel Dezember 2024, neue Machthaber',
 ]},
 
-// ── GEOGRAFIE ─────────────────────────────────────────,
-{ cat:'news', hot:true, tag:'Apr 2026', tc:'tn', title:'Buckelwal „Timmy" in der Ostsee', items:[
-  b('Buckelwal „Timmy"')+' irrte seit März 2026 durch die Ostsee – für Buckelwale artfremd',
-  'Strandete vor der Insel '+b('Poel')+' (Wismarbucht), ca. 12 Tonnen',
-  'Private Rettungsinitiative: finanziert von MediaMarkt-Gründer '+b('Walter Gunz'),
-  'Plan: Netz unter den Wal, mit Schwimmpontons zur '+b('Nordsee')+' schleppen',
-  '20. April 2026: Timmy schwamm kurz frei – strandete danach erneut',
-  'Umweltminister '+b('Till Backhaus (SPD)')+' übernachtete auf einem Fischereiboot',
-  b('Greenpeace')+': Überlebenschancen gering – Wal fraß kaum',
-  'Debatte: „selektive Tierempathie" (Wal vs. Ostseedorsch / Wolf)',
-]},,
-
-// ── GEOGRAFIE ─────────────────────────────────────────,
-
-// ── GEOGRAFIE ─────────────────────────────────────────,
+// ── GEOGRAFIE ─────────────────────────────────────────,,
 
 // ── GEOGRAFIE ─────────────────────────────────────────
 { cat:'geo', tag:'Planet Erde', tc:'tg', title:'Planet Erde – Daten & Fakten', items:[
@@ -289,19 +278,18 @@ const CARDS = [
   'Häufigste Elemente im Erdinneren: '+b('Eisen, Sauerstoff, Silicium, Magnesium')+' (~93 %)',
   'Häufigstes Element der Erdkruste: '+b('Sauerstoff'),
 ]},
-{ cat:'geo', tag:'Erdoberfläche', tc:'tg', title:'Ozeane, Berge & Wüsten', items:[
-  'Durchschnittliche Meerestiefe: '+b('3.800 m'),
-  'Tiefste Stelle: '+b('Marianengraben')+' ~11.000 m (Pazifik)',
-  'Höchster Berg: '+b('Mount Everest')+' 8.849 m',
-  'Tiefster Punkt Festland: '+b('Totes Meer')+' −430 m',
-  'Größte Wüste (Kälte): '+b('Antarktis')+' · Größte Heiße Wüste: '+b('Sahara')+' (Afrika)',
-  'Größte Insel: '+b('Grönland')+' · Bevölkerungsreichste Insel: '+b('Java')+' (131 Mio. Einwohner)',
-  'Längster Fluss: '+b('Nil')+' ~6.650 km · Tiefster See: '+b('Baikalsee')+' 1.620 m',
-  'Höchster Wasserfall: '+b('Angel Falls')+' (Venezuela) 979 m',
-  'Größte Halbinsel: '+b('Arabische Halbinsel')+' (~3,2 Mio. km²)',
-]},,
+{ cat:'geo', tag:'Ozeane & Extrempunkte', tc:'tg', title:'Ozeane, Berge & Extreme', items:[
+  b('Pazifik')+': größter Ozean – größer als alle Kontinente zusammen (165 Mio. km²)',
+  b('Atlantik')+': Golfstrom wärmt Westeuropa · verbindet Europa/Afrika mit Amerika',
+  b('Marianengraben')+': tiefste Stelle ~11.034 m · Durchschn. Meerestiefe: 3.800 m',
+  b('Mount Everest')+': höchster Berg 8.849 m · Tiefster Landpunkt: Totes Meer −430 m',
+  b('Sahara')+': größte heiße Wüste · Antarktis: größte Kältewüste',
+  b('Nil')+' ~6.650 km längster Fluss · Baikalsee 1.620 m tiefster See',
+  b('Angel Falls')+' (Venezuela) 979 m höchster Wasserfall · Grönland größte Insel',
+  b('Ring of Fire')+': ~75 % aller Vulkane & ~90 % aller Erdbeben weltweit',
+]},
 
-// ── GESCHICHTE ─────────────────────────────────────────,
+// ── GESCHICHTE ─────────────────────────────────────────,,
 { cat:'geo', tag:'Atmosphäre', tc:'tg', title:'Erdatmosphäre', items:[
   'Troposphäre: bodennahe Schicht, 8–18 km Höhe – hier findet '+b('Wetter')+' statt',
   'Stratosphäre: bis ~'+b('50 km')+' Höhe – enthält die Ozonschicht',
@@ -311,6 +299,17 @@ const CARDS = [
   'Wasserdampf: bis zu 4 Vol.-%, Mittelwert ca. '+b('1,3 %')+' in Bodennähe',
   'Schallgeschwindigkeit (15 °C): ~'+b('340 m/s')+' auf Meereshöhe',
 ]},
+{ cat:'geo', tag:'Kontinente', tc:'tg', title:'Kontinente – Fakten & Rekorde', items:[
+  b('Asien')+': größter Kontinent (44 Mio. km²) · 60 % der Weltbevölkerung',
+  b('Afrika')+': zweitgrößter · 54 Länder · jüngste Bevölkerung der Welt (Median: ~19 Jahre)',
+  b('Antarktika')+': kältester & trockenster Kontinent · keine permanenten Einwohner',
+  b('Australien')+': kleinster Kontinent & größte Insel · einziger Staat auf einem ganzen Kontinent',
+  b('Südamerika')+': Atacama (trockenste Wüste), Andes (längste Bergkette ~7.000 km)',
+  b('Europa')+': kleinster bewohnter Kontinent · 44 Länder · EU umfasst 27 davon',
+  b('Plattentektonik')+': Kontinente bewegen sich ~2–10 cm/Jahr · vor 250 Mio. J.: Superkontinent Pangäa',
+]},
+
+// ── GESCHICHTE – NEU ──────────────────────────────────────,
 { cat:'geo', tag:'Weltrekorde', tc:'tg', title:'Geografische Weltrekorde', items:[
   'Längster Fluss: '+b('Nil')+' (~6.650 km) · Wasserreichster: '+b('Amazonas'),
   'Größter See: '+b('Kaspisches Meer')+' · Tiefster: '+b('Baikalsee')+' (1.620 m)',
@@ -322,6 +321,15 @@ const CARDS = [
   '7 Kontinente: '+b('Asien · Afrika · N-Amerika · S-Amerika · Antarktika · Europa · Australien'),
   'Größte Wüste gesamt: '+b('Antarktis')+' · Größte Heiße Wüste: '+b('Sahara'),
   'Donau: fließt durch '+b('10 Länder')+' (Weltrekord) · Wolga: längster Fluss Europas',
+]},
+{ cat:'geo', tag:'Länderrekorde', tc:'tg', title:'Länder – Rekorde & Kurioses', items:[
+  b('Größtes Land')+': Russland (17,1 Mio. km²) · kleinstes: Vatikan (0,44 km²)',
+  b('Bevölkerungsreichste')+': Indien (2023: ~1,44 Mrd., überholte China) · China ~1,41 Mrd.',
+  b('Dünnst besiedelt')+': Mongolei (~2 Einwohner/km²) · Grönland (<0,1)',
+  b('Meiste Nachbarländer')+': China & Russland (je 14 Nachbarländer)',
+  b('Keine Meeresküste')+': 44 Länder sind Binnenstaaten · Kasachstan = größtes Binnenland',
+  b('Inselstaaten')+': Malediven (tiefst liegend) · Nauru (kleinster Inselstaat) · Australien (größter)',
+  b('Älteste Staaten')+': San Marino (~301 n. Chr.) · Frankreich (~843) · Japan (legendär: 660 v. Chr.)',
 ]},
 { cat:'geo', tag:'Länder & Grenzen', tc:'tg', title:'Länder, Grenzen & Besonderheiten', items:[
   'Meiste Nachbarländer: '+b('China & Russland')+' (je 14)',
@@ -347,6 +355,15 @@ const CARDS = [
   b('Myanmar')+' → Naypyidaw '+em('(nicht Rangun)'),
   b('Bern')+' – Schweiz · '+b('Valletta')+' – Malta · '+b('Nikosia')+' – Zypern (geteilt)',
 ]},
+{ cat:'geo', tag:'Europäische Hauptstädte', tc:'tg', title:'Europäische Hauptstädte – Überblick', items:[
+  b('D-A-CH')+': Berlin · Wien · Bern (Schweiz hat keine offizielle Hauptstadt – Bern = Bundesstadt)',
+  b('Benelux')+': Brüssel (Belgien) · Amsterdam (NL, Regierung: Den Haag) · Luxemburg',
+  b('Skandinavien')+': Oslo (Norwegen) · Stockholm (Schweden) · Kopenhagen (Dänemark) · Helsinki (Finnland)',
+  b('Südeuropa')+': Madrid · Rom · Athen · Lissabon · Zagreb · Ljubljana · Valletta (Malta)',
+  b('Osteuropa')+': Warschau · Prag · Budapest · Bukarest · Sofia · Belgrad · Kiew',
+  b('Baltikum + Ex-SU')+': Tallinn · Riga · Vilnius · Minsk · Chisinau',
+  b('Knifflige Hauptstädte')+': Astana (Kasachstan) · Nur-Sultan = alter Name · Dodoma (Tansania, nicht Daressalam)',
+]},
 { cat:'geo', tag:'Deutschland', tc:'tg', title:'Deutschland – Grundfakten', items:[
   '16 Bundesländer · Hauptstadt '+b('Berlin')+' · Fläche: '+b('357.376 km²'),
   'Bevölkerung: ca. '+b('84 Mio.')+' · 9 Nachbarstaaten',
@@ -365,6 +382,55 @@ const CARDS = [
   'Höchstgelegene Großstadt: '+b('Lhasa')+' (Tibet, ~3.650 m ü. M.)',
   'Weltreligionen: '+b('Christentum')+' (~2,4 Mrd.), Islam (~1,9 Mrd.), Hinduismus, Buddhismus',
 ]},
+{ cat:'geo', tag:'Asien – Grundwissen', tc:'tg', title:'Asien – Länder & Fakten', items:[
+  b('China')+': 1,4 Mrd. Einwohner · Hauptstadt Peking · größte Volkswirtschaft nach KKP · Mandarin',
+  b('Indien')+': seit 2023 bevölkerungsreichstes Land · 28 Bundesstaaten · 22 Amtssprachen',
+  b('Japan')+': Inselstaat · 4 Hauptinseln · Tokio (34 Mio.) größte Metropolregion der Welt',
+  b('Naher Osten')+': arabische Halbinsel · Erdölreserven · Konfliktregion Israel-Palästina seit 1948',
+  b('ASEAN')+': 10 südostasiatische Staaten · wirtschaftliche Gemeinschaft · Bangkok als Drehscheibe',
+  b('Himalaya')+': 14 Achttausender · alle in Nepal/Tibet · K2 in Pakistan = zweithöchster (8.611 m)',
+  b('Monsun')+': saisonale Windumkehr · Indischer Subkontinent Juni–September: Regenzeit',
+]},
+{ cat:'geo', tag:'Amerika – Grundwissen', tc:'tg', title:'Nord- & Südamerika – Fakten', items:[
+  b('USA')+': 50 Bundesstaaten · 331 Mio. Einwohner · Washington D.C. (Hauptstadt) ≠ New York (größte Stadt)',
+  b('Kanada')+': zweitgrößtes Land der Welt · 2 Amtssprachen (Englisch, Französisch) · Toronto größte Stadt',
+  b('Brasilien')+': größtes Land Südamerikas · Hauptstadt Brasília (nicht Rio oder São Paulo)',
+  b('Amazonas')+': fließt durch 9 Länder · mündet in den Atlantik · führt ~20 % des globalen Süßwassers',
+  b('Anden')+': längste Gebirgskette der Welt (~7.000 km) · Aconcagua höchster Gipfel außerhalb Asiens',
+  b('Lateinamerika')+': 33 Länder · Spanisch & Portugiesisch (Brasilien) · ca. 650 Mio. Einwohner',
+  b('Azteken & Inka')+': Azteken in Mexiko (Tenochtitlan) · Inka in Peru (Machu Picchu, Cusco)',
+]},
+{ cat:'geo', tag:'Afrika – Grundwissen', tc:'tg', title:'Afrika – Länder & Fakten', items:[
+  b('Größte Länder Afrikas')+': Algerien · DR Kongo · Sudan · Libyen · Chad',
+  b('Bevölkerungsreichste')+': Nigeria (~220 Mio.) · Äthiopien · Ägypten · DR Kongo',
+  b('Sahara')+': größte heiße Wüste der Welt · ~9,2 Mio. km² · Nordafrika',
+  b('Subsahara-Afrika')+': ~48 Länder südlich der Sahara · jüngste Bevölkerung der Welt',
+  b('Viktoriasee')+': größter See Afrikas · Quellgebiet des Nils · Uganda, Kenia, Tansania',
+  b('Kilimandscharo')+': höchster Berg Afrikas (5.895 m) · Tansania · freistehender Vulkan',
+  b('Apartheid')+': Rassentrennung Südafrika 1948–1994 · Nelson Mandela: Freiheitskämpfer & Präsident',
+]},
+
+// ── MENSCHENRECHTE & VÖLKERRECHT ─────────────────────────,
+{ cat:'geo', tag:'Flüsse & Gebirge', tc:'tg', title:'Wichtige Flüsse & Gebirge', items:[
+  b('Längste Flüsse')+': Nil (~6.650 km) · Amazonas (~6.400 km, größtes Einzugsgebiet) · Jangtse · Mississippi · Jenissei',
+  b('Deutsche Flüsse')+': Rhein (1.230 km) · Elbe · Donau (fließt von D nach Osten) · Weser · Main · Mosel',
+  b('Gebirgsketten')+': Himalaya (höchste) · Andes (längste) · Alpen (Europa) · Rocky Mountains · Atlas · Ural',
+  b('Alpen')+': Mont Blanc höchster Gipfel (4.808 m) · Zugspitze höchster dt. Berg (2.962 m)',
+  b('Seen')+': Kaspisches Meer (größter See/Salzsee) · Baikalsee (tiefster & größte Süßwassermasse) · Viktoriasee (Afrika)',
+  b('Wasserfälle')+': Angel Falls (Venezuela, 979 m höchster) · Niagarafälle (Nordamerika, wasserreichster)',
+]},
+
+// ── RECHT & GESELLSCHAFT ──────────────────────────────────,
+{ cat:'geo', tag:'Weltkulturerbe', tc:'tg', title:'UNESCO-Weltkulturerbe – Highlights', items:[
+  b('UNESCO-Welterbe')+': seit 1972 · >1.100 Stätten weltweit · Natur- und Kulturerbe',
+  b('Deutschland')+': 52 Welterbestätten (2024) · u.a. Kölner Dom, Wartburg, Speicherstadt Hamburg',
+  b('Weltwunder der Antike')+': Pyramiden von Gizeh (einziges erhaltenes) · Koloss von Rhodos · Artemistempel',
+  b('Neue Weltwunder')+' (2007): Chinesische Mauer · Machu Picchu · Kolosseum · Taj Mahal · Chichen Itza · Christus-Statue · Petra',
+  b('Immaterielles Erbe')+': Bier(brau)tradition (Belgien) · Flamenco · Tango · Yoga',
+  b('Bedrohtes Erbe')+': Aleppo (Syrien) · Sanaa (Jemen) · Great Barrier Reef (Klimawandel)',
+]},
+
+// ── PSYCHOLOGIE & SOZIALWISSEN ────────────────────────────,
 { cat:'geo', tag:'Funfact', tc:'tg', title:'Geografie-Funfacts', funfact:true, items:[
   'Australien ist breiter als der Mond (ca. 4.000 km vs. 3.474 km Durchmesser)',
   'Norwegen hat eine längere Küstenlinie als die USA (ca. '+b('100.000 km')+')',
@@ -380,62 +446,36 @@ const CARDS = [
 
 // ── GESCHICHTE ─────────────────────────────────────────,
 
-// ── GESCHICHTE ─────────────────────────────────────────
-{ cat:'hist', tag:'Griechische Götter', tc:'ts', title:'Olympische Götter (12)', ol:true, items:[
-  b('Zeus')+' – Göttervater, Gott des Himmels & Blitzes · Symbol: Blitz, Adler',
-  b('Hera')+' – Göttin der Ehe, Ehefrau des Zeus · Symbol: Pfau',
-  b('Poseidon')+' – Gott des Meeres · Symbol: Dreizack',
-  b('Demeter')+' – Göttin der Ernte & Fruchtbarkeit',
-  b('Athene')+' – Göttin der Weisheit & des Krieges · Symbol: Eule · Namensgeberin Athens',
-  b('Apollo')+' – Gott der Sonne, Musik & Dichtung · Zwilling der Artemis',
-  b('Artemis')+' – Göttin der Jagd & des Mondes',
-  b('Ares')+' – Gott des Krieges · römisch: Mars',
-  b('Aphrodite')+' – Göttin der Liebe & Schönheit · römisch: Venus',
-  b('Hephaistos')+' – Gott des Feuers & des Schmiedehandwerks',
-  b('Hermes')+' – Götterbote, Gott der Reisenden & Händler · Symbol: geflügelte Sandalen',
-  b('Dionysos')+' – Gott des Weines & der Ekstase',
-]},
-{ cat:'hist', tag:'Griechisch / Römisch', tc:'ts', title:'Griechisch ↔ Römisch: Götternamen', items:[
-  b('Zeus')+' = Jupiter · '+b('Hera')+' = Juno · '+b('Poseidon')+' = Neptun',
-  b('Athene')+' = Minerva · '+b('Ares')+' = Mars · '+b('Aphrodite')+' = Venus',
-  b('Hermes')+' = Merkur · '+b('Apollo')+' = Apollo (gleich!) · '+b('Artemis')+' = Diana',
-  b('Hephaistos')+' = Vulkanus · '+b('Demeter')+' = Ceres · '+b('Dionysos')+' = Bacchus',
-  b('Hades')+' = Pluto (Gott der Unterwelt)',
-  b('Eros')+' = Cupido (Gott der Liebe) · '+b('Hestia')+' = Vesta',
-]},
-{ cat:'hist', tag:'Mythologie', tc:'ts', title:'Griechische Mythen & Helden', items:[
-  b('Herakles (Herkules)')+': 12 Aufgaben, u.a. Augias-Stall, Nemeischer Löwe',
-  b('Odysseus')+': 10-jährige Irrfahrt nach dem Trojanischen Krieg (Homers Odyssee)',
-  b('Achilles')+': verwundbar nur an der Ferse – „Achillesferse"',
-  b('Ikarus')+': flog mit Wachsflügeln der Sonne zu nahe – Flügel schmolzen',
-  b('Orpheus')+': Musiker, wollte Eurydike aus dem Hades befreien',
-  b('Minotaurus')+': Halb-Mensch, Halb-Stier im Labyrinth auf Kreta',
-  b('Pandora')+': öffnete die Büchse – ließ alle Übel der Welt frei',
-  b('Prometheus')+': stahl das Feuer von den Göttern und brachte es den Menschen',
-  'Trojanisches Pferd: griech. List im '+b('Trojanischen Krieg'),
-]},
-{ cat:'hist', tag:'Nordische Mythologie', tc:'ts', title:'Nordische Götter & Mythen', items:[
-  b('Odin')+' – Allvater, Gott der Weisheit & des Krieges · zwei Raben: Hugin & Munin',
-  b('Thor')+' – Gott des Donners · Hammer: Mjölnir · Donnerstag = „Thors Tag"',
-  b('Loki')+' – Trickster-Gott, Vater von Fenriswolf & Midgardschlange',
-  b('Freya')+' – Göttin der Liebe, Fruchtbarkeit & des Krieges',
-  b('Baldur')+' – schöner Gott, stirbt durch einen Mistelzweig (durch Loki)',
-  b('Yggdrasil')+' – Weltenbaum, verbindet die 9 Welten',
-  b('Valhalla')+' – Halle der gefallenen Krieger bei Odin',
-  b('Ragnarök')+' – nordische Apokalypse, Ende der Götterwelt',
-  'Wochentage: Dienstag = Tyr, Mittwoch = Odin (Woden), Donnerstag = Thor, Freitag = '+b('Freya'),
-]},
-{ cat:'hist', tag:'Weltreligionen', tc:'ts', title:'Weltreligionen – Grundwissen', items:[
-  b('Christentum')+' (~2,4 Mrd.): Bibel (AT+NT), Trinität, Kreuz als Symbol',
-  b('Islam')+' (~1,9 Mrd.): Koran, 5 Säulen, Mekka, Mohammed (kein Gott, Prophet)',
-  b('Hinduismus')+' (~1,2 Mrd.): älteste Religion, Brahma/Vishnu/Shiva, Karma, Reinkarnation',
-  b('Buddhismus')+' (~500 Mio.): Buddha = Siddhartha Gautama, 4 edle Wahrheiten, Nirvana',
-  b('Judentum')+' (~15 Mio.): Thora, Menora, Davidstern, Sabbat am Samstag',
-  'Heilige Städte: Jerusalem (drei Religionen!), Mekka, Varanasi, Rom',
-  'Bibel: meistverkauftes Buch der Welt (>'+b('5 Mrd.')+' Exemplare)',
+// ── GESCHICHTE ─────────────────────────────────────────,
+{ cat:'geo', tag:'Funfact', tc:'tg', title:'Geografie-Funfacts 2', funfact:true, items:[
+  'Australien ist breiter als der Mond (4.000 km vs. 3.474 km Durchmesser)',
+  b('Finnland')+' hat mehr Seen als jedes andere Land: >180.000',
+  'Der '+b('Nil fließt nach Norden')+' – ungewöhnlich, da die meisten Flüsse Richtung Äquator fließen',
+  b('Kanada')+' hat mehr Seen als der Rest der Welt zusammen (~60 % aller Süßwasserseen)',
+  'Das '+b('Bermudadreieck')+' hat statistisch nicht mehr Unglücke als andere Seegebiete',
+  b('Sibirien')+' allein wäre das zweitgrößte Land der Welt (falls Russland geteilt)',
+  'Die '+b('Sahara')+' war vor ~10.000 Jahren grüne Savanne (Grüne Sahara-Periode)',
 ]},
 
-// ── WIRTSCHAFT & MARKEN ───────────────────────────────────,
+// ── GESCHICHTE ────────────────────────────────────────
+{ cat:'hist', tag:'Antikes Ägypten', tc:'th', title:'Antikes Ägypten', items:[
+  b('Pharaonen')+': gottgleiche Herrscher · Titel „Pharao" = „Großes Haus"',
+  b('Pyramiden von Gizeh')+': ~2560 v. Chr. · Cheops-Pyramide = einziges erhaltenes Weltwunder der Antike',
+  b('Hieroglyphen')+': Bilderschrift · Rosetta-Stein (1799) ermöglichte Entzifferung (Champollion 1822)',
+  b('Nil')+': Grundlage der ägyptischen Zivilisation · Überschwemmungen = fruchtbarer Schlamm',
+  b('Mumifizierung')+': Eingeweide in Kanopenkrüge · 70 Tage Prozess · Natron als Trocknungsmittel',
+  b('Bekannte Pharaonen')+': Ramses II. (Großbaumeister) · Tutanchamun (Grabfund 1922) · Kleopatra VII. (letzter Pharao)',
+  b('Ägyptische Götter')+': Ra (Sonne) · Osiris (Tod & Auferstehung) · Isis · Horus · Anubis (Totenrichter)',
+]},
+{ cat:'hist', tag:'Antikes Griechenland & Rom', tc:'th', title:'Antike: Griechenland & Rom', items:[
+  b('Athen')+': Wiege der Demokratie · Kleisthenes ~508 v. Chr. · Akropolis & Parthenon',
+  b('Sparta')+': Militärstaat · Agoge (Erziehung) · Hopliten · Thermopylen 480 v. Chr.',
+  b('Alexander der Große')+': 356–323 v. Chr. · eroberte Persien, Ägypten, Indien · größtes Reich seiner Zeit',
+  b('Römische Republik')+': 509–27 v. Chr. · Senat · Konsuln · Plebejer vs. Patrizier',
+  b('Römisches Reich')+': Höhepunkt unter Trajan (~117 n. Chr.) · Pax Romana · Kolosseum · Pantheon',
+  b('Julius Caesar')+': 100–44 v. Chr. · „Veni, vidi, vici" · ermordet an den Iden des März',
+  b('Untergang Roms')+': 476 n. Chr. Weströmisches Reich · Ostrom (Byzanz) bis 1453',
+]},
 { cat:'hist', tag:'Antike', tc:'th', title:'Antike & Mittelalter', items:[
   'Älteste Hochkultur: '+b('Mesopotamien')+' (Sumerer, ~3500 v. Chr.)',
   'Cheops-Pyramide: ca. '+b('2560 v. Chr.')+' – einziges erhaltenes Weltwunder',
@@ -447,6 +487,17 @@ const CARDS = [
   'Luthers Thesenanschlag: '+b('31. Oktober 1517'),
   'Dreißigjähriger Krieg: 1618–'+b('1648'),
 ]},
+{ cat:'hist', tag:'Mittelalter', tc:'th', title:'Mittelalter 500–1500', items:[
+  b('Karl der Große')+': 768–814 · Kaiser des Frankenreichs · Aachen als Residenz · „Vater Europas"',
+  b('Feudalsystem')+': König → Adel → Ritter → Leibeigene · Grundlage mittelalterlicher Gesellschaft',
+  b('Kreuzzüge')+': 1096–1291 · 9 Kreuzzüge · Ziel: Heiliges Land · Folgen: Kulturkontakt, Handel',
+  b('Magna Carta')+': 1215 · englischer König muss Rechte respektieren · Vorläufer moderner Verfassungen',
+  b('Schwarzer Tod')+': Pest 1347–1351 · ~30–50 % der europäischen Bevölkerung gestorben',
+  b('Hundertjähriger Krieg')+': 1337–1453 · England vs. Frankreich · Jeanne d\'Arc als Kriegsheldin',
+  b('Buchdruck')+': Gutenberg ~1450 · Bibel als erstes Massenbuch · Demokratisierung von Wissen',
+]},
+
+// ── ASTRONOMIE & SONNENSYSTEM VERTIEFT ───────────────────,
 { cat:'hist', tag:'Neuzeit & 20. Jh.', tc:'th', title:'Neuzeit bis Moderne', items:[
   'Amerikanische Unabhängigkeit: '+b('4. Juli 1776'),
   'Französische Revolution: '+b('1789')+' (Bastille: 14. Juli)',
@@ -456,6 +507,82 @@ const CARDS = [
   'Mauerbau: '+b('13. August 1961')+' · Mauerfall: '+b('9. November 1989'),
   'Deutsche Einheit: '+b('3. Oktober 1990'),
   'Ende Kalter Krieg: '+b('1991')+' (Auflösung UdSSR)',
+]},
+{ cat:'hist', tag:'Kolonialismus', tc:'th', title:'Kolonialismus & Dekolonisierung', items:[
+  b('Zeitalter der Entdeckungen')+': 15.–17. Jh. · Portugal & Spanien erschlossen Amerika, Afrika, Asien',
+  b('Dreieckshandel')+': Europa → Afrika (Waren) → Amerika (Sklaven) → Europa (Rohstoffe)',
+  b('Sklavenhandel')+': ~12 Mio. Afrikaner nach Amerika verschleppt (16.–19. Jh.)',
+  b('Berliner Konferenz 1884/85')+': Aufteilung Afrikas durch Europäer ohne afrikanische Beteiligung',
+  b('Britisches Empire')+': größtes Kolonialreich der Geschichte – umfasste ~25 % der Landmasse',
+  b('Dekolonisierung')+': v.a. 1945–1975 · India 1947 · Afrikas „Frühlingsjahr": 1960',
+  b('Postkoloniale Folgen')+': strukturelle Armut, Grenzkonflikte, Sprachpolitik bis heute wirksam',
+]},
+
+// ── WISSENSCHAFT – NEU ────────────────────────────────────,
+{ cat:'hist', tag:'Revolutionen', tc:'th', title:'Große Revolutionen der Neuzeit', items:[
+  b('Amerikanische Revolution')+': 1775–1783 · Unabhängigkeitserklärung 4. Juli 1776 · erste moderne Demokratie',
+  b('Französische Revolution')+': 1789–1799 · Sturm auf die Bastille 14. Juli 1789 · „Liberté, Égalité, Fraternité"',
+  b('Guillotine')+': Symbol der Terreur · auch König Ludwig XVI. & Marie Antoinette hingerichtet',
+  b('Russische Revolution')+': Februar & Oktober 1917 · Zar abgesetzt · Lenin & Bolschewiki an die Macht',
+  b('Chinesische Revolution')+': 1949 · Mao Zedong gründet Volksrepublik China',
+  b('Kubanische Revolution')+': 1959 · Fidel Castro stürzt Batista-Regime',
+  b('Arabischer Frühling')+': 2010/11 · Volksaufstände in Tunesien, Ägypten, Libyen, Syrien',
+]},
+
+// ── WISSENSCHAFT – MEDIZIN & GESUNDHEIT ──────────────────,
+{ cat:'hist', tag:'Erster Weltkrieg', tc:'th', title:'Erster Weltkrieg 1914–1918', items:[
+  'Auslöser: Attentat auf '+b('Erzherzog Franz Ferdinand')+' in Sarajevo, 28. Juni 1914',
+  b('Schützengräben')+': charakteristisch – statischer Stellungskrieg an der Westfront',
+  b('Verdun')+' (1916): ~300.000 Tote – eine der blutigsten Schlachten der Geschichte',
+  b('Giftgas')+': erstmals 1915 durch Deutschland (Ypern) – Chlor, später Senfgas',
+  b('USA')+' trat 1917 in den Krieg ein · Russland schied 1917 (Revolution) aus',
+  b('Waffenstillstand')+': 11. November 1918, 11:00 Uhr · Friedensvertrag: Versailles 1919',
+  'Folgen: Untergang von '+b('4 Kaiserreichen')+' (Deutsches Reich, Österreich-Ungarn, Osmanisches Reich, Russland)',
+]},
+{ cat:'hist', tag:'Zweiter Weltkrieg', tc:'th', title:'Zweiter Weltkrieg 1939–1945', items:[
+  b('Beginn')+': 1. September 1939 – Überfall Deutschlands auf Polen',
+  b('Holocaust')+': systematische Ermordung von ~6 Mio. Juden & Millionen weiterer Menschen',
+  b('D-Day')+': 6. Juni 1944 – Alliierte Landung in der Normandie (Operation Overlord)',
+  b('Stalingrad')+' (1942/43): Wendepunkt an der Ostfront – ~800.000 dt. Gefallene',
+  b('Atombombe')+': Hiroshima 6. Aug. 1945 · Nagasaki 9. Aug. 1945 → Kapitulation Japans',
+  b('Ende Europa')+': 8. Mai 1945 (Tag der Befreiung) · Ende Pazifik: 2. September 1945',
+  'Opfer gesamt: geschätzt '+b('70–85 Mio. Menschen')+' – größter Konflikt der Geschichte',
+]},
+{ cat:'hist', tag:'Weimarer Republik', tc:'th', title:'Weimarer Republik 1919–1933', items:[
+  b('Gründung')+': 9. November 1918 – Ausrufung der Republik durch Philipp Scheidemann',
+  b('Weimarer Verfassung')+': 1919 · erstmals Frauenwahlrecht in Deutschland',
+  b('Hyperinflation 1923')+': Brot kostete Milliarden Reichsmark · Ursache: Reparationszahlungen & Gelddrucken',
+  b('Goldene Zwanziger')+': Wirtschaftsaufschwung 1924–1929 · Kabarett, Bauhaus, Avantgarde',
+  b('Weltwirtschaftskrise')+': ab 1929 → Massenarbeitslosigkeit → Aufstieg der NSDAP',
+  b('Machtergreifung')+': Hitler zum Reichskanzler ernannt 30. Januar 1933',
+  b('Ermächtigungsgesetz')+': 23. März 1933 – Parlament übergibt Hitler diktatorische Vollmacht',
+]},
+{ cat:'hist', tag:'NS-Zeit & Holocaust', tc:'th', title:'Nationalsozialismus 1933–1945', items:[
+  b('NSDAP')+': Nationalsozialistische Deutsche Arbeiterpartei · gegr. 1920 · Hitler: Parteivorsitz ab 1921',
+  b('Nürnberger Gesetze')+' (1935): Juden wurden Bürgerrechte entzogen',
+  b('Kristallnacht')+': 9./10. November 1938 – Pogrom gegen jüdische Bevölkerung',
+  b('Wannsee-Konferenz')+': 20. Januar 1942 – Koordination der „Endlösung der Judenfrage"',
+  b('Konzentrationslager')+': Auschwitz-Birkenau größtes Vernichtungslager · ~1,1 Mio. Tote',
+  b('Widerstand')+': Weiße Rose (Geschwister Scholl) · Stauffenberg-Attentat 20. Juli 1944',
+  b('Nürnberger Prozesse')+': 1945/46 – erste internationale Strafverfolgung von Kriegsverbrechern',
+]},
+{ cat:'hist', tag:'Kalter Krieg', tc:'th', title:'Kalter Krieg 1947–1991', items:[
+  b('Zwei Blöcke')+': USA & NATO vs. UdSSR & Warschauer Pakt',
+  b('Berliner Mauer')+': gebaut 13. August 1961 · gefallen 9. November 1989',
+  b('Kubakrise')+' (1962): 13 Tage am Rande eines Atomkriegs – Kennedy vs. Chruschtschow',
+  b('Mondlandung')+' (1969): USA gewinnen das Weltraumrennen · Apollo 11, Armstrong & Aldrin',
+  b('Glasnost & Perestroika')+': Gorbatschows Reformen ab 1985 → Ende des Kalten Kriegs',
+  b('Auflösung UdSSR')+': 25. Dezember 1991 – 15 neue Staaten entstehen',
+  b('Deutsche Einheit')+': 3. Oktober 1990 – Wiedervereinigung nach Mauerfall',
+]},
+{ cat:'hist', tag:'BRD & DDR', tc:'th', title:'Deutschland nach 1945', items:[
+  b('Besatzungszonen')+': 1945–1949 · USA, UK, Frankreich (West) · UdSSR (Ost)',
+  b('BRD')+': gegründet 23. Mai 1949 · Hauptstadt Bonn · Grundgesetz tritt in Kraft',
+  b('DDR')+': gegründet 7. Oktober 1949 · SED-Einparteienherrschaft · Hauptstadt Ost-Berlin',
+  b('Wirtschaftswunder')+': BRD 1950er/60er – durchschnittlich +8 % Wachstum/Jahr',
+  b('Ostpolitik')+': Willy Brandt ab 1969 – Annäherung an Ostblock · Kniefall in Warschau 1970',
+  b('Mauerfall')+': 9. November 1989 · Massendemonstrationen (Montagsdemos in Leipzig)',
+  b('Wiedervereinigung')+': 3. Oktober 1990 · 5 neue Bundesländer treten der BRD bei',
 ]},
 { cat:'hist', tag:'Wichtige Personen', tc:'th', title:'Bedeutende historische Personen', items:[
   b('Sokrates')+' (~470–399 v. Chr.) – griech. Philosoph, hingerichtet',
@@ -479,7 +606,7 @@ const CARDS = [
   b('Olaf Scholz')+' (SPD) 2021–2025',
   b('Friedrich Merz')+' (CDU) seit Februar 2025',
 ]},
-{ cat:'hist', tag:'Berühmte Zitate', tc:'tc', title:'Wer sagte das? – Klassiker', items:[
+{ cat:'hist', tag:'Berühmte Zitate', tc:'th', title:'Wer sagte das? – Klassiker', items:[
   b('"Ich denke, also bin ich"')+' – René Descartes (lat.: Cogito, ergo sum)',
   b('"Zwei Dinge sind unendlich: das Universum und die menschliche Dummheit"')+' – Albert Einstein',
   b('"Ich habe einen Traum"')+' – Martin Luther King Jr. (1963, Washington D.C.)',
@@ -489,7 +616,7 @@ const CARDS = [
   b('"Phantasie ist wichtiger als Wissen"')+' – Albert Einstein',
   b('"Im Westen nichts Neues"')+' – Erich Maria Remarque (Romantitel, 1929)',
 ]},
-{ cat:'hist', tag:'Deutsche Zitate', tc:'tc', title:'Deutsche Klassiker & Redewendungen', items:[
+{ cat:'hist', tag:'Deutsche Zitate', tc:'th', title:'Deutsche Klassiker & Redewendungen', items:[
   b('"Mehr Licht!"')+' – angeblich Goethes letzte Worte (historisch unsicher)',
   b('"Die Gedanken sind frei"')+' – deutsches Volkslied, entstammt dem Mittelalter',
   b('"Wer anderen eine Grube gräbt, fällt selbst hinein"')+' – Bibel, Sprüche 26:27',
@@ -499,7 +626,7 @@ const CARDS = [
   b('"Die Würde des Menschen ist unantastbar"')+' – Art. 1, Abs. 1 Grundgesetz',
   b('"Für das Recht hat der Mensch keinen besseren Freund als den Staat"')+' – Bismarck',
 ]},
-{ cat:'hist', tag:'Film & Popkultur', tc:'tc', title:'Zitate aus Film & Popkultur', items:[
+{ cat:'hist', tag:'Film & Popkultur', tc:'th', title:'Zitate aus Film & Popkultur', items:[
   b('"May the Force be with you"')+' – Star Wars',
   b('"I\'ll be back"')+' – The Terminator (Arnold Schwarzenegger, 1984)',
   b('"You can\'t handle the truth!"')+' – A Few Good Men (Jack Nicholson, 1992)',
@@ -510,7 +637,7 @@ const CARDS = [
   b('"Life is like a box of chocolates"')+' – Forrest Gump (Tom Hanks, 1994)',
 ]},
 
-// ── MÄRCHEN & FABELN ─────────────────────────────────────,
+// ── MÄRCHEN & FABELN ─────────────────────────────────────,,
 { cat:'hist', tag:'Funfact', tc:'th', title:'Geschichte-Funfacts', funfact:true, items:[
   'Kleopatra lebte zeitlich näher am iPhone (2007) als an den Pyramiden von Gizeh',
   'Als die Mammuts ausstarben (~1650 v. Chr.), existierten bereits die Pyramiden',
@@ -526,91 +653,153 @@ const CARDS = [
 
 // ── WISSENSCHAFT ─────────────────────────────────────────,
 
-// ── WISSENSCHAFT ─────────────────────────────────────────
-{ cat:'sci', tag:'Planeten (Reihenfolge)', tc:'ts', title:'Planeten (innen → außen)', ol:true, items:[
-  b('Merkur')+' – kleinster Planet, sonnennächster',
-  b('Venus')+' – heißester Planet (~465°C), Treibhauseffekt',
-  b('Erde')+' – einziger bekannt bewohnter Planet',
-  b('Mars')+' – „Roter Planet", 2 Monde',
-  b('Jupiter')+' – größter Planet, großer roter Fleck',
-  b('Saturn')+' – markanteste Ringe',
-  b('Uranus')+' – rotiert auf der Seite',
-  b('Neptun')+' – weiteste von der Sonne',
+// ── WISSENSCHAFT ─────────────────────────────────────────,
+{ cat:'hist', tag:'Funfact', tc:'th', title:'Geschichte-Funfacts 2', funfact:true, items:[
+  b('Kleopatra')+' lebte zeitlich näher an der Mondlandung als an den Pyramiden (2.500 vs. 500 Jahre)',
+  'Die '+b('Oxford Universität')+' ist älter als die Azteken (~1096 vs. ~1300 gegründet)',
+  b('Napoleon')+' war nicht besonders klein – 1,68 m war Durchschnitt seiner Zeit',
+  'Der '+b('Erste Weltkrieg')+' hätte fast durch eine Reifenpanne verhindert werden können (Attentat-Umleitung)',
+  b('Albert Einstein')+' lehnte das Angebot ab, erster Präsident Israels zu werden (1952)',
+  'Der '+b('Fax')+' wurde 1843 erfunden – vor dem Telefon (1876)',
+  b('Wikinger')+' erreichten Nordamerika ~500 Jahre vor Kolumbus (Leif Eriksson, ~1000 n. Chr.)',
 ]},
-{ cat:'sci', tag:'Raumfahrt', tc:'ts', title:'Raumfahrt & Universum', items:[
-  '1. Satellit: '+b('Sputnik 1')+' – UdSSR, 4. Oktober 1957',
-  '1. Mensch im All: '+b('Juri Gagarin')+' – 12. April 1961',
-  'Mondlandung: '+b('Neil Armstrong')+' – 20. Juli 1969 · 2.: '+b('Buzz Aldrin'),
-  '1. Foto eines Schwarzen Lochs: '+b('2019')+' (M87*)',
-  'ISS: bewohnt seit '+b('November 2000'),
-  'Erde–Mond: ~'+b('384.400 km')+' · Erde–Sonne: ~'+b('150 Mio. km'),
-  'Alter des Universums: ~'+b('13,8 Mrd. Jahre'),
-  'Nächster Stern nach Sonne: '+b('Proxima Centauri')+' (4,24 Lichtjahre)',
+
+// ── MYTHOLOGIE & RELIGION ─────────────────────────────
+{ cat:'myth', tag:'Weltreligionen', tc:'tm', title:'Weltreligionen – Grundwissen', items:[
+  b('Christentum')+' (~2,4 Mrd.): Bibel (AT+NT), Trinität, Kreuz als Symbol',
+  b('Islam')+' (~1,9 Mrd.): Koran, 5 Säulen, Mekka, Mohammed (kein Gott, Prophet)',
+  b('Hinduismus')+' (~1,2 Mrd.): älteste Religion, Brahma/Vishnu/Shiva, Karma, Reinkarnation',
+  b('Buddhismus')+' (~500 Mio.): Buddha = Siddhartha Gautama, 4 edle Wahrheiten, Nirvana',
+  b('Judentum')+' (~15 Mio.): Thora, Menora, Davidstern, Sabbat am Samstag',
+  'Heilige Städte: Jerusalem (drei Religionen!), Mekka, Varanasi, Rom',
+  'Bibel: meistverkauftes Buch der Welt (>'+b('5 Mrd.')+' Exemplare)',
 ]},
-{ cat:'sci', tag:'Physik & Chemie', tc:'ts', title:'Physik, Chemie & Farben', items:[
-  'Lichtgeschwindigkeit: '+b('~300.000 km/s')+' · Schall (Luft): '+b('~343 m/s'),
-  'E = mc²: Einstein, '+b('1905'),
-  'Absoluter Nullpunkt: '+b('–273,15 °C')+' (= 0 Kelvin)',
-  'Netzspannung D: '+b('230 V / 50 Hz')+' · USA: 120 V / 60 Hz',
-  'Farben des Regenbogens: '+b('Rot · Orange · Gelb · Grün · Blau · Indigo · Violett'),
-  'Licht (additiv): '+b('Rot + Grün + Blau')+' = Weiß',
-  'Malerei (subtraktiv): '+b('Magenta + Cyan + Gelb')+' = Schwarz',
-  'Periodensystem: '+b('118 Elemente')+' · Häufigstes im Universum: '+b('Wasserstoff'),
-  'Wasser: '+b('H₂O')+' · Siedep. 100°C · Dichtemaximum bei 4°C',
-  'pH < 7 = '+b('sauer')+' · pH 7 = neutral · pH > 7 = basisch',
+
+// ── WIRTSCHAFT & MARKEN ───────────────────────────────────,,
+{ cat:'myth', tag:'Mythologie & Religion', tc:'tm', title:'Weltreligionen & Mythologie', items:[
+  'Weltreligionen nach Anhängern: '+b('Christentum')+' (~2,4 Mrd.) · Islam (~1,9 Mrd.) · Hinduismus (~1,2 Mrd.) · Buddhismus (~500 Mio.)',
+  b('Islam')+': Heilige Stadt Mekka · 5 Säulen: Bekenntnis, Gebet, Fasten, Almosen, Pilgerfahrt',
+  b('Christentum')+': größte Konfessionen: Katholisch, Orthodox, Protestantisch',
+  'Olympische Götter (12): Zeus, Hera, Poseidon, '+b('Athene')+', Apollo, Artemis, Ares, Aphrodite, Hephaistos, Hermes, Demeter, Dionysos',
+  'Wikinger-Götter: '+b('Odin')+' (Allvater, Weisheit) · Thor (Donner) · Loki (Trickster) · Freya (Liebe)',
+  'Ägyptische Götter: Ra (Sonne) · '+b('Osiris')+' (Totengott) · Isis · Anubis (Totenrichter)',
+  b('Konfuzius')+' (551–479 v. Chr.) – chinesischer Philosoph, Grundlage des Konfuzianismus',
 ]},
-{ cat:'sci', tag:'Biologie & Körper', tc:'ts', title:'Biologie & Menschlicher Körper', items:[
-  'DNA: Doppelhelix, entdeckt '+b('1953')+' (Watson & Crick)',
-  'Menschliche Chromosomen: '+b('46')+' (23 Paare)',
-  'Evolution: Darwin, „On the Origin of Species", '+b('1859'),
-  'Klassifikation: Reich → Stamm → Klasse → Ordnung → Familie → '+b('Gattung → Art'),
-  'Knochen: '+b('206')+' beim Erwachsenen (Baby: ~270)',
-  'Größtes Organ: '+b('Haut')+' (~1,5–2 m²)',
-  'Blutgruppen: '+b('A, B, AB, 0')+' · Universalspender: 0 negativ',
-  'Neuronen im Gehirn: ~'+b('86 Mrd.')+' · Herzschläge: ~'+b('100.000')+'/Tag',
-  'Schnellstes Tier: '+b('Gepard')+' (~112 km/h) · In der Luft: '+b('Wanderfalke')+' (~320 km/h)',
-  'Größtes Tier: '+b('Blauwal')+' · Ältestes: '+b('Grönlandhai')+' (400+ Jahre)',
+{ cat:'myth', tag:'Bibel & Christentum', tc:'tm', title:'Bibel – Grundwissen', items:[
+  b('Altes Testament')+': 39 Bücher · '+b('Neues Testament')+': 27 Bücher · Gesamt: 66 Bücher',
+  b('Genesis')+': 1. Buch Mose – Schöpfung, Adam & Eva, Noah, Turmbau zu Babel',
+  b('Zehn Gebote')+': überliefert durch Mose am Sinai · in Exodus 20 & Deuteronomium 5',
+  b('Jesus')+': geboren in Bethlehem · getauft vom Täufer Johannes · gekreuzigt unter Pontius Pilatus',
+  b('12 Apostel')+': Petrus, Andreas, Jakobus, Johannes, Philippus, Bartholomäus, Matthäus, Thomas, Jakobus (j.), Thaddäus, Simon, Judas Iskariot',
+  b('Paulus')+': wichtigster Missionar des frühen Christentums – schrieb ca. die Hälfte des NT',
+  b('Vatikan')+': kleinster Staat der Welt (~0,44 km²) · Sitz des Papstes seit Antike',
 ]},
-{ cat:'sci', tag:'Tierrekorde', tc:'ts', title:'Tierrekorde & Tierfakten', items:[
-  b('Größtes Tier')+': Blauwal (bis 33 m, 190 t) – Herz so groß wie ein Auto',
-  b('Schnellstes Tier')+': Gepard (~112 km/h) · in der Luft: Wanderfalke (~320 km/h)',
-  b('Giftigstes Tier')+': Würfelqualle · giftigste Landschlange: Inlandtaipan (Australien)',
-  b('Ältestes Tier')+': Grönlandhai (400+ Jahre) · älteste Landschildkröte: Jonathan (~192 J.)',
-  b('Höchstes Tier')+': Giraffe (bis 6 m)',
-  b('Schwerster Vogel')+': Strauß (bis 156 kg) – kann nicht fliegen',
-  b('Schnellster Vogel im Flug')+': Mauersegler (~170 km/h horizontal)',
-  b('Tiere mit meisten Beinen')+': Tausendfüßer (Illacme plenipes: bis zu 750 Beine)',
-  b('Tier mit größten Augen')+': Riesenkalmar (so groß wie ein Fußball)',
+{ cat:'myth', tag:'Islam', tc:'tm', title:'Islam – Grundwissen vertieft', items:[
+  b('Koran')+': 114 Suren · auf Arabisch offenbart · gilt als wörtliches Wort Gottes',
+  b('5 Säulen')+': Schahada (Bekenntnis) · Salat (5× tägl. beten) · Zakat (Almosen) · Saum (Ramadan-Fasten) · Hajj (Pilgerfahrt)',
+  b('Hidschra')+': Mohammeds Flucht nach Medina 622 n. Chr. → Beginn der islamischen Zeitrechnung',
+  b('Sunna vs. Schia')+': ~85 % Sunniten · ~15 % Schiiten (Hauptspaltung nach Mohammeds Tod, 632)',
+  b('Moschee')+': Gebetshaus · Freitagsgebet (Juma\'a) · Minarett für den Gebetsruf (Adhan)',
+  b('Ramadan')+': 9. Monat im Mondkalender · Fastenmonat · endet mit Eid al-Fitr',
+  b('Mekka & Medina')+': heiligste Städte · nur Muslimen zugänglich',
 ]},
-{ cat:'sci', tag:'Jahrestiere & Bäume 2026', tc:'ts', title:'„...des Jahres 2026" – Natur', items:[
-  b('Tier des Jahres 2026')+': Rothirsch (Dt. Wildtier Stiftung)',
-  'Rothirsch: größtes Landsäugetier Deutschlands · ca. '+b('220.000')+' in D',
-  'Vogel des Jahres 2026: '+b('Rebhuhn'),
-  'Baum des Jahres 2026: '+b('Zitterpappel (Espe)'),
-  'Fisch des Jahres 2026: '+b('Europäischer Wels'),
-  'Schmetterling des Jahres 2026: '+b('Dunkler Wiesenknopf-Ameisenbläuling'),
-  'Insekt des Jahres 2026: '+b('Warzenbeißer'),
-  'Tier des Jahres 2025: '+b('Alpenschneehase')+' · 2024: '+b('Braunbrustigel'),
-  'Baum des Jahres 2025: '+b('Roteiche')+' (aus Amerika stammend)',
+{ cat:'myth', tag:'Hinduismus & Buddhismus', tc:'tm', title:'Hinduismus & Buddhismus', items:[
+  b('Hinduismus')+': älteste lebende Religion (~3.500 Jahre) · ~1,2 Mrd. Anhänger, v.a. Indien',
+  b('Trimurti')+': Brahma (Schöpfer) · Vishnu (Erhalter) · Shiva (Zerstörer)',
+  b('Karma')+': Gesetz von Ursache & Wirkung · beeinflusst nächste Reinkarnation',
+  b('Buddhismus')+': gegründet von Siddhartha Gautama (~500 v. Chr.) in Nordindien',
+  b('4 Edle Wahrheiten')+': Leiden existiert · Ursache ist Begehren · Leiden kann enden · Weg: 8-facher Pfad',
+  b('Nirvana')+': Zustand der Befreiung vom Leidenszyklus · Ziel buddhistischer Praxis',
+  b('Dalai Lama')+': spiritueller Führer des tibetischen Buddhismus · aktuell: 14. Dalai Lama (Tenzin Gyatso)',
 ]},
-{ cat:'sci', tag:'Medizin', tc:'ts', title:'Medizin & Entdeckungen', items:[
-  'Penicillin: '+b('Alexander Fleming')+', 1928',
-  '1. Herztransplantation: '+b('1967')+' (Christiaan Barnard, Südafrika)',
-  'Röntgen: '+b('Wilhelm Röntgen')+', 1895 (Nobelpreis 1901)',
-  '1. Impfung: '+b('Edward Jenner')+', Pocken 1796',
-  'mRNA-Impfstoffe: breite Anwendung ab '+b('2020/21')+' (COVID-19)',
-  'Humangenomprojekt: abgeschlossen '+b('2003'),
+
+// ── NATUR & TIERE – NEU ──────────────────────────────────,
+{ cat:'myth', tag:'Griechische Götter', tc:'tm', title:'Olympische Götter (12)', ol:true, items:[
+  b('Zeus')+' – Göttervater, Gott des Himmels & Blitzes · Symbol: Blitz, Adler',
+  b('Hera')+' – Göttin der Ehe, Ehefrau des Zeus · Symbol: Pfau',
+  b('Poseidon')+' – Gott des Meeres · Symbol: Dreizack',
+  b('Demeter')+' – Göttin der Ernte & Fruchtbarkeit',
+  b('Athene')+' – Göttin der Weisheit & des Krieges · Symbol: Eule · Namensgeberin Athens',
+  b('Apollo')+' – Gott der Sonne, Musik & Dichtung · Zwilling der Artemis',
+  b('Artemis')+' – Göttin der Jagd & des Mondes',
+  b('Ares')+' – Gott des Krieges · römisch: Mars',
+  b('Aphrodite')+' – Göttin der Liebe & Schönheit · römisch: Venus',
+  b('Hephaistos')+' – Gott des Feuers & des Schmiedehandwerks',
+  b('Hermes')+' – Götterbote, Gott der Reisenden & Händler · Symbol: geflügelte Sandalen',
+  b('Dionysos')+' – Gott des Weines & der Ekstase',
 ]},
-{ cat:'sci', tag:'Nobelpreise', tc:'ts', title:'Nobelpreise – Wissenswertes', items:[
-  'Gestiftet von '+b('Alfred Nobel')+' (Dynamit-Erfinder) · Erstmals vergeben: '+b('1901'),
-  'Kategorien: Physik · Chemie · Medizin · Literatur · '+b('Frieden')+' · Wirtschaft (ab 1969)',
-  b('Friedensnobelpreis')+': vergeben in '+b('Oslo')+' – alle anderen in Stockholm',
-  b('Marie Curie')+': einzige Person mit Preis in zwei Naturwiss. (Physik 1903, Chemie 1911)',
-  b('Jüngste Preisträgerin')+': Malala Yousafzai (Frieden 2014, mit 17 Jahren)',
-  b('Ältester Preisträger')+': John Goodenough (Chemie 2019, mit 97 Jahren)',
-  'Keine Verleihung: 1940–1942 (2. Weltkrieg)',
-  'Preisgeld 2024: je '+b('11 Mio. Schwedische Kronen')+' (~1 Mio. €)',
+{ cat:'myth', tag:'Griechisch / Römisch', tc:'tm', title:'Griechisch ↔ Römisch: Götternamen', items:[
+  b('Zeus')+' = Jupiter · '+b('Hera')+' = Juno · '+b('Poseidon')+' = Neptun',
+  b('Athene')+' = Minerva · '+b('Ares')+' = Mars · '+b('Aphrodite')+' = Venus',
+  b('Hermes')+' = Merkur · '+b('Apollo')+' = Apollo (gleich!) · '+b('Artemis')+' = Diana',
+  b('Hephaistos')+' = Vulkanus · '+b('Demeter')+' = Ceres · '+b('Dionysos')+' = Bacchus',
+  b('Hades')+' = Pluto (Gott der Unterwelt)',
+  b('Eros')+' = Cupido (Gott der Liebe) · '+b('Hestia')+' = Vesta',
 ]},
+{ cat:'myth', tag:'Mythologie', tc:'tm', title:'Griechische Mythen & Helden', items:[
+  b('Herakles (Herkules)')+': 12 Aufgaben, u.a. Augias-Stall, Nemeischer Löwe',
+  b('Odysseus')+': 10-jährige Irrfahrt nach dem Trojanischen Krieg (Homers Odyssee)',
+  b('Achilles')+': verwundbar nur an der Ferse – „Achillesferse"',
+  b('Ikarus')+': flog mit Wachsflügeln der Sonne zu nahe – Flügel schmolzen',
+  b('Orpheus')+': Musiker, wollte Eurydike aus dem Hades befreien',
+  b('Minotaurus')+': Halb-Mensch, Halb-Stier im Labyrinth auf Kreta',
+  b('Pandora')+': öffnete die Büchse – ließ alle Übel der Welt frei',
+  b('Prometheus')+': stahl das Feuer von den Göttern und brachte es den Menschen',
+  'Trojanisches Pferd: griech. List im '+b('Trojanischen Krieg'),
+]},
+{ cat:'myth', tag:'Nordische Mythologie', tc:'tm', title:'Nordische Götter & Mythen', items:[
+  b('Odin')+' – Allvater, Gott der Weisheit & des Krieges · zwei Raben: Hugin & Munin',
+  b('Thor')+' – Gott des Donners · Hammer: Mjölnir · Donnerstag = „Thors Tag"',
+  b('Loki')+' – Trickster-Gott, Vater von Fenriswolf & Midgardschlange',
+  b('Freya')+' – Göttin der Liebe, Fruchtbarkeit & des Krieges',
+  b('Baldur')+' – schöner Gott, stirbt durch einen Mistelzweig (durch Loki)',
+  b('Yggdrasil')+' – Weltenbaum, verbindet die 9 Welten',
+  b('Valhalla')+' – Halle der gefallenen Krieger bei Odin',
+  b('Ragnarök')+' – nordische Apokalypse, Ende der Götterwelt',
+  'Wochentage: Dienstag = Tyr, Mittwoch = Odin (Woden), Donnerstag = Thor, Freitag = '+b('Freya'),
+]},
+
+// ── WISSENSCHAFT ──────────────────────────────────────
+{ cat:'sci', tag:'Physik Grundlagen', tc:'ts', title:'Physik – Grundgesetze', items:[
+  b('Newtons Gesetze')+': Trägheit · F=m·a · Actio = Reactio (1687)',
+  b('Spezielle Relativitätstheorie')+' (Einstein, 1905): E=mc² · Zeit dehnt sich bei hoher Geschwindigkeit',
+  b('Allgemeine Relativitätstheorie')+' (1915): Gravitation als Krümmung der Raumzeit',
+  b('Quantenmechanik')+': Heisenbergsche Unschärferelation – Position & Impuls nicht gleichzeitig exakt messbar',
+  b('Standardmodell')+': 17 Elementarteilchen · Higgs-Boson 2012 am CERN nachgewiesen',
+  b('Lichtgeschwindigkeit')+': 299.792.458 m/s – absolute Grenze im Universum',
+  b('Elektromagnetismus')+': Maxwell (1865) – Licht ist elektromagnetische Welle',
+]},
+{ cat:'sci', tag:'Chemie Grundlagen', tc:'ts', title:'Chemie – Grundwissen', items:[
+  b('Periodensystem')+': 118 Elemente · Mendelejew (1869) · nach Ordnungszahl (Protonenzahl) geordnet',
+  b('Häufigstes Element Universum')+': Wasserstoff (H) · in Erdkruste: Sauerstoff (O)',
+  b('Aggregatzustände')+': fest → flüssig (Schmelzen) → gasförmig (Verdampfen) → Plasma',
+  b('pH-Skala')+': 0–14 · pH7 = neutral · Magensäure pH ~1,5 · Blut pH ~7,4',
+  b('Radioaktivität')+': Alpha-, Beta-, Gammastrahlung · Halbwertszeit: Zeit bis zum Halbierungszerfall',
+  b('Kohlenstoff')+': Grundlage organischer Chemie · Diamant & Graphit = beide reiner Kohlenstoff',
+  b('Edelgase')+': Helium, Neon, Argon, Krypton, Xenon, Radon – reagieren kaum',
+]},
+{ cat:'sci', tag:'Alltagschemie', tc:'ts', title:'Chemie im Alltag', items:[
+  b('Rost')+': Eisenoxid (Fe₂O₃) · entsteht durch Reaktion von Eisen mit Wasser & Sauerstoff',
+  b('Seife')+': Fettsäuresalze · hydrophiler Kopf (Wasser) + hydrophober Schwanz (Fett) → Emulsion',
+  b('Backpulver')+': Natriumbicarbonat + Säure → CO₂-Blasen → Teig geht auf',
+  b('CO₂ in Getränken')+': Kohlensäure = CO₂ + H₂O → H₂CO₃ · entweicht beim Öffnen (Druckabfall)',
+  b('Koffein')+': Adenosin-Antagonist · blockiert Müdigkeitssignale im Gehirn',
+  b('Alkohol (Ethanol)')+': C₂H₅OH · wird in Leber zu Acetaldehyd abgebaut (toxisch)',
+  b('Kunststoffe')+': Polymere aus Monomeren · PET, PE, PVC, PS · nur ~9 % weltweit recycelt',
+]},
+
+// ── ETHIK & MORAL ────────────────────────────────────────,
+{ cat:'sci', tag:'Astronomie', tc:'ts', title:'Astronomie & Universum', items:[
+  b('Big Bang')+': vor ~13,8 Mrd. Jahren · Universum expandiert noch heute',
+  b('Dunkle Materie')+': ~27 % des Universums – unsichtbar, nur durch Gravitation nachweisbar',
+  b('Schwarze Löcher')+': extrem dichte Objekte · Ereignishorizont = Punkt ohne Rückkehr',
+  b('Milchstraße')+': ~200–400 Mrd. Sterne · Durchmesser ~100.000 Lichtjahre',
+  b('Nächster Stern')+': Proxima Centauri (~4,24 Lichtjahre) · Sonnenlicht braucht ~8 Minuten',
+  b('James Webb Telescope')+': seit 2021 im Orbit · sieht weiter zurück als je ein Teleskop zuvor',
+  b('Exoplaneten')+': >5.500 entdeckt (Stand 2024) · Goldlöckchen-Zone = habitabler Bereich',
+]},
+
+// ── KULTUR & KUNST – NEU ────────────────────────────────────,
 { cat:'sci', tag:'Zahlen & Formeln', tc:'ts', title:'Mathematik – Grundwissen', items:[
   b('Pi (π)')+' ≈ 3,14159… – Verhältnis Umfang zu Durchmesser eines Kreises',
   b('Euler\'sche Zahl (e)')+' ≈ 2,71828… – Basis des natürlichen Logarithmus',
@@ -622,23 +811,72 @@ const CARDS = [
   b('Binärsystem')+': Basis 2 (0 und 1) – Grundlage aller Computer',
 ]},
 { cat:'sci', tag:'Logik & Rätsel', tc:'ts', title:'Logik & Knobelklassiker', items:[
-  b('Schubfachprinzip')+': In n+1 Schubladen stecken n Gegenstände → eine Schublade hat ≥ 2',
+  b('Schubfachprinzip')+': In n Schubladen stecken n+1 Gegenstände → eine Schublade hat ≥ 2',
   b('Monty-Hall-Problem')+': Bei 3 Toren lohnt sich Wechseln (Wahrscheinlichkeit steigt von 1/3 auf 2/3)',
   b('Zeno\'s Paradoxon')+': Achilles holt die Schildkröte nie ein – mathematisch widerlegt durch Grenzwerte',
   b('Geburtstagsproblem')+': Ab 23 Personen >50 % Wahrscheinlichkeit, dass zwei denselben Geburtstag haben',
   'Klassische Reihe: 2, 4, 8, 16, 32 → '+b('64')+' (verdoppeln)',
   b('Magisches Quadrat')+': Zahlen so anordnen, dass jede Reihe/Spalte/Diagonale dieselbe Summe ergibt',
 ]},
-{ cat:'sci', tag:'Berühmte Experimente', tc:'tur', title:'Berühmte psycholog. Experimente', items:[
-  b('Milgram-Experiment')+' (1961): 65 % der Probanden bereit, tödliche Stromstöße auf Befehl zu geben',
-  b('Stanford-Gefängnisexperiment')+' (1971): Studentenrollen als Wächter/Gefangene eskalierten – abgebrochen',
-  b('Pawlowscher Hund')+': Klassische Konditionierung – Glocke löst Speichelfluss aus',
-  b('Skinner-Box')+': Operante Konditionierung – Belohnung & Bestrafung formen Verhalten',
-  b('Asch-Konformitätsexperiment')+': Menschen passen Urteil an Gruppenmeinung an',
-  b('Rosenthal-Effekt')+' (Pygmalion): Erwartungen beeinflussen tatsächliche Leistung',
-  b('Bobo-Doll-Experiment')+' (Bandura): Kinder ahmen Gewalt nach, die sie beobachten',
+{ cat:'sci', tag:'Statistik & Wahrscheinlichkeit', tc:'ts', title:'Statistik & Wahrscheinlichkeit', items:[
+  b('Wahrscheinlichkeit')+': P(A) = günstige Fälle / alle möglichen Fälle · P(Kopf) = 0,5',
+  b('Normalverteilung')+': Glockenkurve · 68 % aller Werte liegen innerhalb einer Standardabweichung',
+  b('Korrelation ≠ Kausalität')+': zwei Dinge können zusammenhängen ohne sich zu verursachen',
+  b('Stichprobe & Bias')+': zu kleine oder verzerrte Stichproben liefern falsche Schlüsse',
+  b('Simpson\'s Paradox')+': ein Trend kann in Teilgruppen umgekehrt sein als in der Gesamtgruppe',
+  b('Bayes-Theorem')+': aktualisiert Wahrscheinlichkeit anhand neuer Informationen',
+  b('Gambler\'s Fallacy')+': nach 10× Kopf ist Zahl beim nächsten Wurf nicht wahrscheinlicher',
 ]},
-{ cat:'sci', tag:'Psychologie-Grundwissen', tc:'tur', title:'Psychologie – Grundbegriffe', items:[
+
+// ── GEOGRAFIE – LÄNDER & WISSEN ──────────────────────────,
+{ cat:'sci', tag:'Nobelpreise', tc:'ts', title:'Nobelpreise – Wissenswertes', items:[
+  'Gestiftet von '+b('Alfred Nobel')+' (Dynamit-Erfinder) · Erstmals vergeben: '+b('1901'),
+  'Kategorien: Physik · Chemie · Medizin · Literatur · '+b('Frieden')+' · Wirtschaft (ab 1969)',
+  b('Friedensnobelpreis')+': vergeben in '+b('Oslo')+' – alle anderen in Stockholm',
+  b('Marie Curie')+': einzige Person mit Preis in zwei Naturwiss. (Physik 1903, Chemie 1911)',
+  b('Jüngste Preisträgerin')+': Malala Yousafzai (Frieden 2014, mit 17 Jahren)',
+  b('Ältester Preisträger')+': John Goodenough (Chemie 2019, mit 97 Jahren)',
+  'Keine Verleihung: 1940–1942 (2. Weltkrieg)',
+  'Preisgeld 2024: je '+b('11 Mio. Schwedische Kronen')+' (~1 Mio. €)',
+]},
+{ cat:'sci', tag:'Medizin', tc:'ts', title:'Medizin & Entdeckungen', items:[
+  'Penicillin: '+b('Alexander Fleming')+', 1928',
+  '1. Herztransplantation: '+b('1967')+' (Christiaan Barnard, Südafrika)',
+  'Röntgen: '+b('Wilhelm Röntgen')+', 1895 (Nobelpreis 1901)',
+  '1. Impfung: '+b('Edward Jenner')+', Pocken 1796',
+  'mRNA-Impfstoffe: breite Anwendung ab '+b('2020/21')+' (COVID-19)',
+  'Humangenomprojekt: abgeschlossen '+b('2003'),
+]},
+{ cat:'sci', tag:'Medizin vertieft', tc:'ts', title:'Medizin – Wichtige Grundbegriffe', items:[
+  b('Blutdruck')+': Systolisch/Diastolisch · Normal: ~120/80 mmHg · Hypertonie: >140/90',
+  b('BMI')+': Body-Mass-Index = Gewicht (kg) ÷ Größe² (m) · Normal: 18,5–24,9',
+  b('Antibiotika')+': wirken nur gegen Bakterien, NICHT gegen Viren · Resistenz als globales Problem',
+  b('Krebs')+': unkontrolliertes Zellwachstum · häufigste Krebsarten: Lunge, Brust, Dickdarm, Prostata',
+  b('Herzinfarkt vs. Schlaganfall')+': Infarkt = Herzmuskel · Schlaganfall = Hirngefäß (Verstopfung oder Blutung)',
+  b('MRT vs. CT')+': MRT = Magnetresonanz (keine Strahlung) · CT = Computertomographie (Röntgenstrahlen)',
+  b('Impfarten')+': Totimpfstoff, Lebendimpfstoff, mRNA-Impfstoff, Vektorimpfstoff',
+]},
+{ cat:'sci', tag:'Erste Hilfe', tc:'ts', title:'Erste Hilfe – Grundwissen', items:[
+  b('Notruf')+': 112 (Europa, Feuerwehr/Notarzt) · 110 (Polizei Deutschland)',
+  b('Bewusstlosigkeit')+': stabile Seitenlage · Atemwege freihalten · Notruf 112',
+  b('Herzdruckmassage')+': 30 Drücke (5–6 cm tief, 100–120/min) + 2 Beatmungen · bis Hilfe kommt',
+  b('AED')+': Automatisierter Defibrillator · in vielen öffentlichen Gebäuden · Gerät gibt Anweisungen',
+  b('PECH-Regel')+': Pause · Eis · Compression · Hochlagerung – bei Sportverletzungen',
+  b('Vergiftung')+': nie zum Erbrechen zwingen · Giftnotruf: 030 19240 (Berlin) oder regional',
+  b('Schock')+': Flachlagerung mit erhöhten Beinen · warm halten · beruhigen · Notruf',
+]},
+
+// ── NATUR – KLIMA & UMWELT ────────────────────────────────,
+{ cat:'sci', tag:'Pandemien & Seuchen', tc:'ts', title:'Pandemien & Seuchen der Geschichte', items:[
+  b('Pest')+': 1347–1351 · „Schwarzer Tod" · ~25–50 % der europäischen Bevölkerung gestorben',
+  b('Spanische Grippe')+': 1918–1920 · ~50–100 Mio. Tote weltweit · mehr als WK1',
+  b('Pocken')+': einzige Infektionskrankheit, die durch Impfkampagne ausgerottet wurde (1980)',
+  b('HIV/AIDS')+': identifiziert 1981 · weltweit ~40 Mio. Tote · Behandlung heute möglich',
+  b('SARS-CoV-2')+': Pandemie 2020–2023 · ~7 Mio. offizielle Todesfälle · mRNA-Impfstoffe in Rekordzeit',
+  b('R-Wert')+': Reproduktionszahl – wie viele Menschen infiziert eine erkrankte Person im Schnitt',
+  b('Herdenimmunität')+': wenn genug Personen immun sind, stoppt Ausbreitung ohne jeden zu impfen',
+]},
+{ cat:'sci', tag:'Psychologie-Grundwissen', tc:'ts', title:'Psychologie – Grundbegriffe', items:[
   b('Maslow\'s Bedürfnishierarchie')+': Physiologie → Sicherheit → Soziales → Anerkennung → Selbstverwirklichung',
   b('Kognitive Dissonanz')+': Unbehagen bei widersprüchlichen Überzeugungen (Festinger, 1957)',
   b('Dunning-Kruger-Effekt')+': Inkompetente überschätzen sich, Kompetente unterschätzen sich',
@@ -649,7 +887,60 @@ const CARDS = [
   b('IQ')+': Intelligenzquotient, Mittelwert = 100; >130 = hochbegabt',
 ]},
 
-// ── MODE & DESIGN ─────────────────────────────────────────,
+// ── MODE & DESIGN ─────────────────────────────────────────,,
+{ cat:'sci', tag:'Berühmte Experimente', tc:'ts', title:'Berühmte psycholog. Experimente', items:[
+  b('Milgram-Experiment')+' (1961): 65 % der Probanden bereit, tödliche Stromstöße auf Befehl zu geben',
+  b('Stanford-Gefängnisexperiment')+' (1971): Studentenrollen als Wächter/Gefangene eskalierten – abgebrochen',
+  b('Pawlowscher Hund')+': Klassische Konditionierung – Glocke löst Speichelfluss aus',
+  b('Skinner-Box')+': Operante Konditionierung – Belohnung & Bestrafung formen Verhalten',
+  b('Asch-Konformitätsexperiment')+': Menschen passen Urteil an Gruppenmeinung an',
+  b('Rosenthal-Effekt')+' (Pygmalion): Erwartungen beeinflussen tatsächliche Leistung',
+  b('Bobo-Doll-Experiment')+' (Bandura): Kinder ahmen Gewalt nach, die sie beobachten',
+]},
+{ cat:'sci', tag:'Sozialpsychologie', tc:'ts', title:'Sozialpsychologie – Grundphänomene', items:[
+  b('Bystander-Effekt')+': Je mehr Zuschauer, desto weniger fühlt sich jeder Einzelne verantwortlich (Kitty Genovese, 1964)',
+  b('Groupthink')+': Gruppen neigen zu schlechten Entscheidungen um Harmonie zu wahren (Janis, 1972)',
+  b('Halo-Effekt')+': eine positive Eigenschaft färbt die Wahrnehmung aller anderen Eigenschaften',
+  b('Priming')+': vorangegangene Reize beeinflussen unbewusst späteres Denken & Handeln',
+  b('Soziale Erwünschtheit')+': Menschen antworten so, wie sie glauben, dass es erwartet wird',
+  b('Mere Exposure Effect')+': Dinge werden positiver bewertet, je öfter man ihnen begegnet',
+  b('Self-fulfilling Prophecy')+': Erwartungen beeinflussen Verhalten so, dass sie sich erfüllen',
+]},
+
+// ── FUNFACTS ERGÄNZT ─────────────────────────────────────,
+{ cat:'sci', tag:'Entwicklungspsychologie', tc:'ts', title:'Entwicklungspsychologie & Persönlichkeit', items:[
+  b('Piaget')+': 4 Entwicklungsstufen · sensomotorisch → präoperational → konkret-operational → formal-operational',
+  b('Bindungstheorie')+' (Bowlby/Ainsworth): sichere, unsichere-vermeidende, ambivalente, desorganisierte Bindung',
+  b('Big Five')+': Persönlichkeitsmodell · Offenheit, Gewissenhaftigkeit, Extraversion, Verträglichkeit, Neurotizismus',
+  b('Introversion vs. Extraversion')+': Jung 1921 · Introvertierte gewinnen Energie durch Rückzug · kein Defizit',
+  b('Erikson')+': 8 Lebensphasen · jede mit Entwicklungsaufgabe (z.B. Vertrauen vs. Misstrauen als Baby)',
+  b('Intelligenztheorien')+': Spearmans g-Faktor · Gardners multiple Intelligenzen · Catells Gf/Gc',
+  b('Resilienz')+': psychische Widerstandsfähigkeit · erlernbar · Schutzfaktoren: soziale Bindungen, Selbstwirksamkeit',
+]},
+
+// ── ESSEN: KÜCHENTECHNIKEN & KOCHWISSEN ──────────────────,
+{ cat:'sci', tag:'Kommunikation & Rhetorik', tc:'ts', title:'Kommunikationsmodelle & Rhetorik', items:[
+  b('Eisbergmodell')+': nur ~20 % Kommunikation ist explizit · ~80 % unbewusst (Tonfall, Gestik, Kontext)',
+  b('4-Ohren-Modell')+' (Schulz von Thun): jede Nachricht hat 4 Seiten – Sachinhalt, Appell, Beziehung, Selbstoffenbarung',
+  b('Sender-Empfänger-Modell')+': Watzlawick: „Man kann nicht nicht kommunizieren"',
+  b('Aktives Zuhören')+': Carl Rogers · paraphrasieren, nachfragen, spiegeln',
+  b('Rhetorik')+': Logos (Vernunft) · Ethos (Glaubwürdigkeit) · Pathos (Emotion) – Aristoteles',
+  b('Körpersprache')+': Mehrabian-Studie: 55 % Körpersprache · 38 % Tonfall · 7 % Worte (bei Gefühlen)',
+  b('Manipulation')+': Dark Patterns, Nudging, Gaslighting, DARVO – wichtig zu erkennen',
+]},
+
+// ── NATUR: TIERE VERTIEFT ────────────────────────────────,
+{ cat:'sci', tag:'Ethik & Moral', tc:'ts', title:'Ethik – Grundfragen & Gedankenexperimente', items:[
+  b('Trolley-Problem')+': eine Person aktiv töten um fünf zu retten? · Utilitarismus vs. Deontologie',
+  b('Utilitarismus')+': maximale Gesamtfreude (Bentham, Mill) · „das größte Glück der größten Zahl"',
+  b('Deontologie')+' (Kant): Handlung nach Pflicht beurteilen, unabhängig vom Ergebnis',
+  b('Tugendethik')+' (Aristoteles): Was würde ein tugendhafter Mensch tun? · Charakter statt Regeln',
+  b('Verantwortungsethik')+' (Weber): Politiker müssen Folgen ihres Handelns verantworten',
+  b('Bioethik')+': Abtreibung, Sterbehilfe, Genmanipulation, Tierrechte – ethisch umstrittene Themen',
+  b('Gedankenexperiment')+': Chinesisches Zimmer (Searle) – versteht eine KI wirklich oder simuliert sie nur?',
+]},
+
+// ── DEUTSCHE LITERATUR & DICHTER ─────────────────────────,
 { cat:'sci', tag:'Funfact', tc:'ts', title:'Wissenschafts-Funfacts', funfact:true, items:[
   b('Honig')+' verdirbt nie – in Pharaonengräbern gefundener Honig (~3.000 Jahre) war noch essbar',
   'Ein Tag auf der Venus (Eigenrotation) ist länger als ein Jahr auf der Venus (Umlauf)',
@@ -667,7 +958,191 @@ const CARDS = [
 
 // ── KULTUR ─────────────────────────────────────────,
 
-// ── KULTUR ─────────────────────────────────────────
+// ── KULTUR ─────────────────────────────────────────,
+{ cat:'sci', tag:'Funfact', tc:'ts', title:'Wissenschafts-Funfacts 2', funfact:true, items:[
+  'Ein '+b('Teelöffel Neutronensternmaterial')+' würde ~1 Milliarde Tonnen wiegen',
+  b('Wasser')+' dehnt sich beim Gefrieren aus – fast alle anderen Stoffe ziehen sich zusammen',
+  'Das menschliche '+b('Auge kann einen einzelnen Lichtblitz (Photon)')+' unter idealen Bedingungen wahrnehmen',
+  b('Ameisen')+' haben zusammen mehr Biomasse als alle Menschen der Erde',
+  'In '+b('10 Minuten')+' liefert die Sonne genug Energie, um den Weltjahresbedarf zu decken',
+  b('Heiße Milch')+' friert schneller als kalte Milch unter bestimmten Umständen (Mpemba-Effekt)',
+  'Das '+b('Internet')+' wiegt schätzungsweise ~50 Gramm (Masse der bewegten Elektronen)',
+]},
+
+// ── ANTIKE HOCHKULTUREN ───────────────────────────────────,
+
+// ── NATUR & TIERE ─────────────────────────────────────
+{ cat:'natur', tag:'Planeten (Reihenfolge)', tc:'tnr', title:'Planeten (innen → außen)', ol:true, items:[
+  b('Merkur')+' – kleinster Planet, sonnennächster',
+  b('Venus')+' – heißester Planet (~465°C), Treibhauseffekt',
+  b('Erde')+' – einziger bekannt bewohnter Planet',
+  b('Mars')+' – „Roter Planet", 2 Monde',
+  b('Jupiter')+' – größter Planet, großer roter Fleck',
+  b('Saturn')+' – markanteste Ringe',
+  b('Uranus')+' – rotiert auf der Seite',
+  b('Neptun')+' – weiteste von der Sonne',
+]},
+{ cat:'natur', tag:'Sonnensystem vertieft', tc:'tnr', title:'Sonnensystem – Monde & Besonderheiten', items:[
+  b('Erdmond')+': einziger natürlicher Erdtrabant · Entstehung: Kollision vor ~4,5 Mrd. J. · Gezeiten durch Mondgravitation',
+  b('Jupitermonde')+': 95 bekannte Monde · Ganymed = größter Mond im Sonnensystem · Io = aktivste Vulkane',
+  b('Saturn')+': Ringe aus Eis & Gestein · weniger dicht als Wasser (würde auf Wasser schwimmen)',
+  b('Mars')+': 2 Monde (Phobos & Deimos) · Olympus Mons = höchster Vulkan im Sonnensystem (21 km)',
+  b('Kometen')+': Eis & Staub · Schweif zeigt immer von Sonne weg · Halleyscher Komet alle ~76 Jahre',
+  b('Asteroiden')+': Hauptgürtel zwischen Mars & Jupiter · Ceres = größter Zwergplanet',
+  b('Sonne')+': G-Typ-Stern · 99,86 % der Masse des Sonnensystems · Kerntemperatur ~15 Mio. °C',
+]},
+
+// ── ALLTAGSCHEMIE ────────────────────────────────────────,
+{ cat:'natur', tag:'Klimazonen & Ökosysteme', tc:'tnr', title:'Klimazonen & Ökosysteme', items:[
+  b('Tropischer Regenwald')+': ~6 % der Landfläche · beherbergt ~50 % aller Tier- & Pflanzenarten',
+  b('Amazonas')+': größter Regenwald der Welt · produziert ~20 % des globalen Sauerstoffs',
+  b('Tundra')+': subarktisch, kaum Baumwuchs · Permafrost als wichtiger Klimaspeicher',
+  b('Korallenriffe')+': „Regenwälder des Meeres" · Great Barrier Reef (Australien): größtes der Welt',
+  b('Ozeane')+': Pazifik > Atlantik > Indischer Ozean > Südlicher Ozean > Arktischer Ozean',
+  b('El Niño')+': periodische Erwärmung des Pazifiks → globale Wetterextreme alle 2–7 Jahre',
+  b('Klimawandel')+': +1,2 °C globale Erwärmung seit 1850 · Pariser Abkommen: Ziel max. +1,5 °C',
+]},
+{ cat:'natur', tag:'Klima & Umwelt', tc:'tnr', title:'Klimawandel & Umweltschutz', items:[
+  b('Treibhauseffekt')+': CO₂, Methan, Lachgas absorbieren Wärmestrahlung · natürlich nötig, verstärkt schädlich',
+  b('CO₂-Quellen')+': Energiegewinnung (34 %), Industrie (24 %), Landwirtschaft (21 %), Verkehr (16 %)',
+  b('Erneuerbare Energien')+': Solar, Wind, Wasserkraft, Geothermie, Biomasse',
+  b('Pariser Abkommen')+': 2015 · 196 Länder · max. 1,5 °C Erwärmung als Ziel',
+  b('Artensterben')+': 6. Massenaussterben · ~1 Mio. Tier- und Pflanzenarten bedroht (IPBES 2019)',
+  b('Ozonschicht')+': schützt vor UV-B-Strahlung · durch FCKW beschädigt · erholt sich seit Montrealer Protokoll (1987)',
+  b('Plastik')+': ~8 Mio. Tonnen landen jährlich im Meer · Mikroplastik in fast allen Ökosystemen nachweisbar',
+]},
+{ cat:'natur', tag:'Erdzeitalter & Evolution', tc:'tnr', title:'Erdzeitalter & Evolution', items:[
+  'Alter der Erde: ~'+b('4,6 Milliarden Jahre'),
+  b('Kambrische Explosion')+': vor ~540 Mio. J. – plötzliches Auftreten fast aller Tierstämme',
+  b('Dinosaurier')+': dominierten ~165 Mio. Jahre · ausgestorben vor ~66 Mio. J. (Meteoriteneinschlag)',
+  b('Homo sapiens')+': erschien vor ~300.000 Jahren in Afrika',
+  b('Out of Africa')+': Migration vor ~70.000 Jahren → Besiedelung der Welt',
+  b('Darwin')+': Evolutionstheorie (1859) – natürliche Selektion als Mechanismus',
+  b('DNA')+': Doppelhelix-Struktur 1953 von Watson & Crick (auf Basis von Rosalind Franklins Daten)',
+]},
+{ cat:'natur', tag:'Pflanzen & Botanik', tc:'tnr', title:'Pflanzen & Botanik – Grundwissen', items:[
+  b('Photosynthese')+': CO₂ + H₂O + Licht → Glucose + O₂ · findet in Chloroplasten statt',
+  b('Ältester Baum')+': Pando (Zitterpappel-Klon, Utah) ~80.000 Jahre · ältester Einzelbaum: Methuselah ~5.000 J.',
+  b('Größter Organismus')+': Hallimasch-Pilzgeflecht (Oregon) ~10 km²',
+  b('Fleischfressende Pflanzen')+': Venusfliegenfalle, Sonnentau, Kannenpflanze – in nährstoffarmen Böden',
+  b('Blütenbestäubung')+': durch Insekten (Entomophilie), Wind (Anemophilie), Vögel, Wasser',
+  b('Photosynthese-Anteil')+': Tropenwälder produzieren ca. 40 % des globalen Sauerstoffs',
+  b('Kork')+': Rinde der Korkeiche · Portugal produziert ~50 % des Weltkorkes',
+]},
+
+// ── GEOGRAFIE – NEU ──────────────────────────────────────,
+{ cat:'natur', tag:'Tiere vertieft', tc:'tnr', title:'Tiere – Verhalten & Besonderheiten', items:[
+  b('Intelligente Tiere')+': Schimpansen (Werkzeugnutzung) · Delfine (Selbsterkennung im Spiegel) · Krähen (Kausaldenken)',
+  b('Migration')+': Arktische Seeschwalbe fliegt jährlich ~70.000 km (Pol zu Pol) · Monarchfalter 4.500 km',
+  b('Symbiose')+': gegenseitiger Nutzen · Clownfisch & Anemone · Putzerfisch · Ameisen & Blattläuse',
+  b('Tarnung')+': Kraken (Farbwechsel in ms) · Chamäleon · Stabheuschrecken · Mimikry vs. Mimesis',
+  b('Bienen')+': Schwänzeltanz zur Kommunikation (von Frisch, Nobelpreis 1973) · Königin legt bis 2.000 Eier/Tag',
+  b('Hai')+': keine Knochen (Knorpel) · ~500 Mio. Jahre alt · weniger Menschen sterben durch Haie als durch Kühe',
+  b('Oktopus')+': 3 Herzen · blaues Blut · 9 Gehirne (1 zentral + 8 in Tentakeln) · kann Gläser öffnen',
+]},
+
+// ── GEOGRAFIE: ASIEN & AMERIKA ───────────────────────────,
+{ cat:'natur', tag:'Tierrekorde', tc:'tnr', title:'Tierrekorde & Tierfakten', items:[
+  b('Größtes Tier')+': Blauwal (bis 33 m, 190 t) – Herz so groß wie ein Auto',
+  b('Schnellstes Tier')+': Gepard (~112 km/h) · in der Luft: Wanderfalke (~320 km/h)',
+  b('Giftigstes Tier')+': Würfelqualle · giftigste Landschlange: Inlandtaipan (Australien)',
+  b('Ältestes Tier')+': Grönlandhai (400+ Jahre) · älteste Landschildkröte: Jonathan (~192 J.)',
+  b('Höchstes Tier')+': Giraffe (bis 6 m)',
+  b('Schwerster Vogel')+': Strauß (bis 156 kg) – kann nicht fliegen',
+  b('Schnellster Vogel im Flug')+': Mauersegler (~170 km/h horizontal)',
+  b('Tiere mit meisten Beinen')+': Tausendfüßer (Illacme plenipes: bis zu 750 Beine)',
+  b('Tier mit größten Augen')+': Riesenkalmar (so groß wie ein Fußball)',
+]},
+{ cat:'natur', tag:'Biologie & Körper', tc:'tnr', title:'Biologie & Menschlicher Körper', items:[
+  'DNA: Doppelhelix, entdeckt '+b('1953')+' (Watson & Crick)',
+  'Menschliche Chromosomen: '+b('46')+' (23 Paare)',
+  'Evolution: Darwin, „On the Origin of Species", '+b('1859'),
+  'Klassifikation: Reich → Stamm → Klasse → Ordnung → Familie → '+b('Gattung → Art'),
+  'Knochen: '+b('206')+' beim Erwachsenen (Baby: ~270)',
+  'Größtes Organ: '+b('Haut')+' (~1,5–2 m²)',
+  'Blutgruppen: '+b('A, B, AB, 0')+' · Universalspender: 0 negativ',
+  'Neuronen im Gehirn: ~'+b('86 Mrd.')+' · Herzschläge: ~'+b('100.000')+'/Tag',
+  'Schnellstes Tier: '+b('Gepard')+' (~112 km/h) · In der Luft: '+b('Wanderfalke')+' (~320 km/h)',
+  'Größtes Tier: '+b('Blauwal')+' · Ältestes: '+b('Grönlandhai')+' (400+ Jahre)',
+]},
+{ cat:'natur', tag:'Menschlicher Körper', tc:'tnr', title:'Menschlicher Körper – vertieft', items:[
+  'Anzahl Knochen (Erwachsene): '+b('206')+' · Neugeborene: ~300 (verwachsen später)',
+  'Größter Knochen: '+b('Femur')+' (Oberschenkel) · kleinster: '+b('Steigbügel')+' (Ohr, ~3 mm)',
+  'Stärkster Muskel: '+b('Masseter')+' (Kiefermuskel) · größter: Gluteus maximus',
+  b('Herz')+': schlägt ~100.000×/Tag · pumpt ~7.200 Liter Blut täglich',
+  b('Gehirn')+': ~86 Mrd. Neuronen · verbraucht ~20 % des Körperenergieverbrauchs',
+  b('Leber')+': einziges Organ, das sich vollständig regenerieren kann',
+  b('Blutgruppen')+': A, B, AB, 0 · Universalspender: 0 negativ · Universalempfänger: AB positiv',
+]},
+{ cat:'natur', tag:'Wetter & Meteorologie', tc:'tnr', title:'Wetter & Meteorologie', items:[
+  b('Wolkenarten')+': Cumulus (Haufenwolken) · Stratus (Schichtwolken) · Cirrus (Eiswolken hoch) · Nimbus (Regenwolken)',
+  b('Beaufort-Skala')+': Windstärke 0–12 · 12 = Orkan (>118 km/h)',
+  b('Tornado vs. Hurrikan')+': Tornado = lokaler Wirbelsturm über Land · Hurrikan = tropischer Wirbelsturm über Meer',
+  b('Blitz')+': elektrostatische Entladung · ~30.000 K heiß · 5× heißer als Sonnenoberfläche',
+  b('Luftdruck')+': Normaldruck 1013 hPa · Hoch = stabiles Wetter · Tief = Wolken & Regen',
+  b('Jahreszeiten')+': durch Erdachsenneigung (23,5°) verursacht, nicht durch Entfernung zur Sonne',
+  b('Wetterphänomene')+': Regenbogen (Lichtbrechung) · Aurora (Sonnenwinde) · Nebel (Tröpfchen in Bodennähe)',
+]},
+
+// ── GEOGRAFIE – EUROPA ────────────────────────────────────,
+{ cat:'natur', tag:'Jahrestiere & Bäume 2026', tc:'tnr', title:'„...des Jahres 2026" – Natur', items:[
+  b('Tier des Jahres 2026')+': Rothirsch (Dt. Wildtier Stiftung)',
+  'Rothirsch: größtes Landsäugetier Deutschlands · ca. '+b('220.000')+' in D',
+  'Vogel des Jahres 2026: '+b('Rebhuhn'),
+  'Baum des Jahres 2026: '+b('Zitterpappel (Espe)'),
+  'Fisch des Jahres 2026: '+b('Europäischer Wels'),
+  'Schmetterling des Jahres 2026: '+b('Dunkler Wiesenknopf-Ameisenbläuling'),
+  'Insekt des Jahres 2026: '+b('Warzenbeißer'),
+  'Tier des Jahres 2025: '+b('Alpenschneehase')+' · 2024: '+b('Braunbrustigel'),
+  'Baum des Jahres 2025: '+b('Roteiche')+' (aus Amerika stammend)',
+]},
+{ cat:'natur', hot:true, tag:'Apr 2026', tc:'tnr', title:'Buckelwal „Timmy" in der Ostsee', items:[
+  b('Buckelwal „Timmy"')+' irrte seit März 2026 durch die Ostsee – für Buckelwale artfremd',
+  'Strandete vor der Insel '+b('Poel')+' (Wismarbucht), ca. 12 Tonnen',
+  'Private Rettungsinitiative: finanziert von MediaMarkt-Gründer '+b('Walter Gunz'),
+  'Plan: Netz unter den Wal, mit Schwimmpontons zur '+b('Nordsee')+' schleppen',
+  '20. April 2026: Timmy schwamm kurz frei – strandete danach erneut',
+  'Umweltminister '+b('Till Backhaus (SPD)')+' übernachtete auf einem Fischereiboot',
+  b('Greenpeace')+': Überlebenschancen gering – Wal fraß kaum',
+  'Debatte: „selektive Tierempathie" (Wal vs. Ostseedorsch / Wolf)',
+]},
+
+// ── GEOGRAFIE ─────────────────────────────────────────,
+
+// ── GEOGRAFIE ─────────────────────────────────────────,
+
+// ── GEOGRAFIE ─────────────────────────────────────────,
+
+// ── KULTUR & KUNST ────────────────────────────────────
+{ cat:'cult', tag:'Philosophie', tc:'tc', title:'Philosophie – Große Denker', items:[
+  b('Sokrates')+' (470–399 v. Chr.): „Ich weiß, dass ich nichts weiß" · sokratische Methode',
+  b('Platon')+': Ideeenlehre · „Höhlengleichnis" · Schüler des Sokrates',
+  b('Aristoteles')+': Logik, Biologie, Ethik, Politik · Lehrer Alexanders des Großen',
+  b('Kant')+': Kategorischer Imperativ: „Handle nur nach der Maxime, die du zum allg. Gesetz machen könntest"',
+  b('Nietzsche')+': „Gott ist tot" · Übermensch · Wille zur Macht',
+  b('Descartes')+': „Cogito ergo sum" – Ich denke, also bin ich',
+  b('Marx & Engels')+': Kommunistisches Manifest (1848) · Kapital · Klassenkampf als Motor der Geschichte',
+]},
+{ cat:'cult', tag:'Weltliteratur', tc:'tc', title:'Weltliteratur – Pflichtlektüre', items:[
+  b('Homer')+': Ilias & Odyssee (~800 v. Chr.) – Grundlage europäischer Literatur',
+  b('Dante')+': Göttliche Komödie (1320) – Hölle, Fegefeuer, Paradies',
+  b('Cervantes')+': Don Quijote (1605) – gilt als erster moderner Roman',
+  b('Goethe')+': Faust I (1808) & Faust II (1832) – größtes Werk der deutschen Literatur',
+  b('Kafka')+': Die Verwandlung · Der Prozess · Das Schloss – Absurdität, Entfremdung',
+  b('Orwell')+': 1984 (1949) – Totalitarismus, Überwachungsstaat · Tier Farm (1945)',
+  b('García Márquez')+': Hundert Jahre Einsamkeit (1967) – magischer Realismus',
+]},
+{ cat:'cult', tag:'Deutsche Dichter & Denker', tc:'tc', title:'Deutsche Dichter & Klassiker', items:[
+  b('Friedrich Schiller')+': 1759–1805 · Räuber, Kabale und Liebe, Wilhelm Tell, Don Karlos · „Ode an die Freude"',
+  b('Gotthold Ephraim Lessing')+': 1729–1781 · Nathan der Weise · Vater des dt. bürgerlichen Dramas',
+  b('Heinrich Heine')+': 1797–1856 · Loreley · scharfe politische Satire · exilierte in Paris',
+  b('Bertolt Brecht')+': 1898–1956 · Dreigroschenoper · Episches Theater · Verfremdungseffekt',
+  b('Thomas Mann')+': 1875–1955 · Buddenbrooks · Der Zauberberg · Nobelpreis 1929',
+  b('Hermann Hesse')+': 1877–1962 · Siddhartha · Steppenwolf · Glasperlenspiel · Nobelpreis 1946',
+  b('Friedrich Nietzsche')+': 1844–1900 · Also sprach Zarathustra · Jenseits von Gut und Böse',
+]},
+
+// ── SPORT: WEITERE DISZIPLINEN ────────────────────────────,
 { cat:'cult', tag:'Literatur & Kunst', tc:'tc', title:'Literatur, Kunst & Bauwerke', items:[
   'Meistverkauftes Buch: '+b('Bibel')+' (>5 Mrd.) · Meistverkaufter Roman: '+b('Don Quijote'),
   'Shakespeare: '+b('37 Stücke')+' (Hamlet, Othello, Romeo & Julia, Macbeth…)',
@@ -689,28 +1164,26 @@ const CARDS = [
   b('Die Erschaffung Adams')+' – Michelangelo (1508–12) · Sixtinische Kapelle',
   b('Campbells Soup Cans')+' – Andy Warhol (1962) · Pop Art',
 ]},
-{ cat:'cult', tag:'Klassische Musik', tc:'tc', title:'Klassische Musik – Komponisten & Werke', items:[
-  b('Johann Sebastian Bach')+' (1685–1750): Barock, Matthäuspassion, Wohltemperiertes Klavier',
-  b('Wolfgang Amadeus Mozart')+' (1756–1791): 41 Sinfonien, Zauberflöte, Don Giovanni',
-  b('Ludwig van Beethoven')+' (1770–1827): 9. Sinfonie taub komponiert, Mondscheinsonate',
-  b('Franz Schubert')+' (1797–1828): Winterreise, Die Forelle, starb mit 31',
-  b('Richard Wagner')+' (1813–1883): Der Ring des Nibelungen, Bayreuther Festspiele',
-  b('Johannes Brahms')+' (1833–1897): 4 Sinfonien, Ungarische Tänze',
-  b('Pjotr Tschaikowski')+' (1840–1893): Schwanensee, Nussknacker, 1812-Ouvertüre',
-  b('Claude Monet')+em(' (Maler, kein Komponist!)')+' – häufige Verwechslung mit '+b('Claude Debussy')+' (Impressionist der Musik)',
+{ cat:'cult', tag:'Kunststile', tc:'tc', title:'Kunststile & -epochen', items:[
+  b('Renaissance')+': 14.–17. Jh. · Wiedergeburt antiker Ideale · Perspektive in der Malerei',
+  b('Barock')+': 17.–18. Jh. · Dramatik, Bewegung, Kontraste · Caravaggio, Rubens',
+  b('Impressionismus')+': Monet, Renoir · Licht & Atmosphäre statt exakter Darstellung (Paris, 1860er)',
+  b('Expressionismus')+': Gefühl über Realität · Munch, Kirchner',
+  b('Surrealismus')+': Dalí, Magritte · Traumwelten, Unterbewusstsein',
+  b('Bauhaus')+': 1919–1933 · „Form follows function" · Gropius · Einfluss bis heute',
+  b('Pop Art')+': 1950er/60er · Warhol, Lichtenstein · Alltagskultur als Kunst',
 ]},
-{ cat:'cult', tag:'Musik', tc:'tc', title:'Musik – Klassik bis Pop', items:[
-  b('Beethoven')+' – 9. Sinfonie taub komponiert · Ode an die Freude: '+b('EU-Hymne'),
-  b('Mozart')+' – starb mit nur '+b('35 Jahren')+' (1756–1791)',
-  b('Bach')+' – Barockkomponist, Matthäuspassion',
-  'Tonarten: '+b('Dur')+' (hell/fröhlich) vs. '+b('Moll')+' (dunkel/traurig)',
-  'Stimmton: '+b('440 Hz')+' = Kammerton A',
-  'Meistverkauftes Album: '+b('Thriller')+' – Michael Jackson (~70 Mio.)',
-  'Meistverkaufter Künstler: '+b('The Beatles')+' (~600 Mio. Alben)',
-  'ESC erstmals: '+b('1956')+' · Deutschland siegte '+b('1982')+' (Nicole)',
-  'Meiste ESC-Siege: '+b('Irland & Schweden')+' (je 7×)',
-  'Saxofon erfunden von: '+b('Adolphe Sax')+' (1840er) – trotz Blattmundstück: Holzbläser',
+{ cat:'cult', tag:'Architekturstile', tc:'tc', title:'Architekturstile durch die Epochen', items:[
+  b('Romanik')+': ~1000–1200 · massive Mauern, Rundbogen, Türme · Beispiel: Speyer, Worms, Mainz',
+  b('Gotik')+': ~1140–1500 · Spitzbogen, Strebewerk, Rosettenfenster · Notre-Dame, Kölner Dom',
+  b('Renaissance')+': ~1420–1600 · Symmetrie, Kuppeln · Brunelleschi (Florenz), Petersdom (Rom)',
+  b('Barock')+': ~1600–1750 · Prunk, Kurven, Illusion · Versailles, Schönbrunn, Zwinger (Dresden)',
+  b('Klassizismus')+': ~1750–1850 · Säulen, Dreiecksgiebel · Brandenburger Tor, Altes Museum Berlin',
+  b('Jugendstil')+': ~1890–1914 · organische Formen, Ornamente · Antoni Gaudí, Otto Wagner',
+  b('Moderne')+': ab ~1920 · Flachdächer, Stahl & Glas · Bauhaus, Mies van der Rohe, Le Corbusier',
 ]},
+
+// ── TECH: QUANTENCOMPUTER & BIOTECH ──────────────────────,
 { cat:'cult', tag:'Architektur & Bauwerke', tc:'tc', title:'Berühmte Bauwerke & Architektur', items:[
   b('Kolosseum')+' – Rom, ~72–80 n. Chr., fasste ~50.000 Zuschauer',
   b('Pantheon')+' – Rom, ~125 n. Chr., best erhaltener röm. Tempel, Kuppel ohne Stützen',
@@ -723,6 +1196,50 @@ const CARDS = [
   b('Akropolis')+' – Athen, Parthenon ~447 v. Chr., Göttin Athene geweiht',
   b('Schloss Versailles')+' – Frankreich, Ludwig XIV., 1682, Spiegelsaal berühmt',
 ]},
+{ cat:'cult', tag:'Klassische Musik', tc:'tc', title:'Klassische Musik – Komponisten & Werke', items:[
+  b('Johann Sebastian Bach')+' (1685–1750): Barock, Matthäuspassion, Wohltemperiertes Klavier',
+  b('Wolfgang Amadeus Mozart')+' (1756–1791): 41 Sinfonien, Zauberflöte, Don Giovanni',
+  b('Ludwig van Beethoven')+' (1770–1827): 9. Sinfonie taub komponiert, Mondscheinsonate',
+  b('Franz Schubert')+' (1797–1828): Winterreise, Die Forelle, starb mit 31',
+  b('Richard Wagner')+' (1813–1883): Der Ring des Nibelungen, Bayreuther Festspiele',
+  b('Johannes Brahms')+' (1833–1897): 4 Sinfonien, Ungarische Tänze',
+  b('Pjotr Tschaikowski')+' (1840–1893): Schwanensee, Nussknacker, 1812-Ouvertüre',
+  b('Claude Monet')+em(' (Maler, kein Komponist!)')+' – häufige Verwechslung mit '+b('Claude Debussy')+' (Impressionist der Musik)',
+]},
+{ cat:'cult', tag:'Oper & Musiktheater', tc:'tc', title:'Oper & Musiktheater – Grundwissen', items:[
+  b('Oper')+': Musiktheater mit Gesang · entstand ~1600 in Florenz (Camerata)',
+  b('Stimmlagen')+': Sopran (hoch, weiblich) · Alt · Tenor (hoch, männlich) · Bariton · Bass',
+  b('Wichtige Opern')+': La Traviata (Verdi) · Carmen (Bizet) · Zauberflöte (Mozart) · Tosca (Puccini)',
+  b('Richard Wagner')+': Ring des Nibelungen · Bayreuther Festspiele · Leitmotiv-Technik',
+  b('Musical')+': Broadway & West End · Hamilton, Les Misérables, Phantom of the Opera, Cats',
+  b('Berühmte Opernhäuser')+': La Scala (Mailand) · Wiener Staatsoper · Met (New York) · Covent Garden',
+  b('Dirigenten')+': Herbert von Karajan · Leonard Bernstein · Claudio Abbado · Simon Rattle',
+]},
+
+// ── PSYCHOLOGIE: ENTWICKLUNG & PERSÖNLICHKEIT ────────────,
+{ cat:'cult', tag:'Musik', tc:'tc', title:'Musik – Klassik bis Pop', items:[
+  b('Beethoven')+' – 9. Sinfonie taub komponiert · Ode an die Freude: '+b('EU-Hymne'),
+  b('Mozart')+' – starb mit nur '+b('35 Jahren')+' (1756–1791)',
+  b('Bach')+' – Barockkomponist, Matthäuspassion',
+  'Tonarten: '+b('Dur')+' (hell/fröhlich) vs. '+b('Moll')+' (dunkel/traurig)',
+  'Stimmton: '+b('440 Hz')+' = Kammerton A',
+  'Meistverkauftes Album: '+b('Thriller')+' – Michael Jackson (~70 Mio.)',
+  'Meistverkaufter Künstler: '+b('The Beatles')+' (~600 Mio. Alben)',
+  'ESC erstmals: '+b('1956')+' · Deutschland siegte '+b('1982')+' (Nicole)',
+  'Meiste ESC-Siege: '+b('Irland & Schweden')+' (je 7×)',
+  'Saxofon erfunden von: '+b('Adolphe Sax')+' (1840er) – trotz Blattmundstück: Holzbläser',
+]},
+{ cat:'cult', tag:'Musikgeschichte', tc:'tc', title:'Musikgeschichte & Genres', items:[
+  b('Blues')+': Wurzel moderner Popmusik · Afroamerikaner US-Südstaaten · um 1900',
+  b('Jazz')+': New Orleans ~1900 · Improvisation · Louis Armstrong, Miles Davis',
+  b('Rock \'n\' Roll')+': 1950er · Chuck Berry, Elvis Presley – Fusion aus Blues & Country',
+  b('Beatles')+': 1960–1970 · revolutionierten Popmusik · ~600 Mio. verkaufte Alben',
+  b('Hip-Hop')+': Bronx NYC, 1973 (DJ Kool Herc) · 4 Elemente: Rap, DJing, Breakdance, Graffiti',
+  b('Techno/Electronic')+': Detroit & Berlin ab 1980er · Kraftwerk als Pioniere',
+  b('Streaming')+': Spotify (2008), Apple Music (2015) · haben physische Tonträger weitgehend verdrängt',
+]},
+
+// ── SPORT – NEU ────────────────────────────────────────────,
 { cat:'cult', tag:'Film & TV', tc:'tc', title:'Film, Oscars & Serien', items:[
   'Erfolgreichster Film: '+b('Avatar')+' (James Cameron, ~2,9 Mrd. $)',
   'Meiste Oscar-Siege: '+b('Ben-Hur, Titanic, Lord of the Rings')+' (je 11)',
@@ -752,8 +1269,28 @@ const CARDS = [
   b('How to Sell Drugs Online (Fast)')+' (Netflix, 2019–): dt. Comedy-Serie, Darknet',
 ]},
 
-// ── MATHEMATIK & LOGIK ────────────────────────────────────,
-{ cat:'cult', tag:'Brüder Grimm', tc:'tg', title:'Grimm-Märchen – Grundwissen', items:[
+// ── MATHEMATIK & LOGIK ────────────────────────────────────,,
+{ cat:'cult', tag:'Brettspiele & Kartenspiele', tc:'tc', title:'Brettspiele & Kartenspiele', items:[
+  b('Schach')+': ~6. Jh. in Indien erfunden (Chaturanga) · 32 Figuren · unendliche Möglichkeiten',
+  b('Go')+': ältestes Brettspiel (~2.500 Jahre) · mehr mögliche Stellungen als Atome im Universum',
+  b('Monopoly')+': 1935 · basiert auf „The Landlord\'s Game" (1903, Elizabeth Magie)',
+  b('Skat')+': dt. Nationalkartenspiel · 3 Spieler · 32 Karten · seit ~1810',
+  b('Poker')+': Texas Hold\'em populärste Variante · Blatt-Hierarchie: Royal Flush > Straight Flush > Vierling…',
+  b('Würfelspiele')+': Backgammon (~5.000 Jahre alt) · Kniffel · Craps',
+  b('Magic the Gathering')+': erstes Sammelkartenspiel (1993) · Vorbild für Yu-Gi-Oh!, Pokémon-Karten',
+]},
+{ cat:'cult', tag:'Videospiele', tc:'tc', title:'Videospiele – Geschichte & Rekorde', items:[
+  b('Pong')+': 1972 (Atari) – erstes kommerziell erfolgreiches Videospiel',
+  b('Pac-Man')+': 1980 · Tetris (1984, Sowjetunion) · Super Mario (1985)',
+  b('Meistverkaufte Spiele')+': Minecraft (~300 Mio.) · GTA V (~200 Mio.) · Tetris (~170 Mio.)',
+  b('E-Sports')+': professionelles Gaming · Preisgelder >30 Mio. $ pro Turnier (Dota 2)',
+  b('Konsolengenerationen')+': Atari → NES → SNES → PlayStation → Xbox → aktuelle Gen (PS5, Xbox Series)',
+  b('Valve/Steam')+': größte PC-Spieleplattform · >50.000 Spiele · ~130 Mio. aktive Nutzer',
+  b('Mobile Gaming')+': >50 % aller Spielumsätze weltweit · Candy Crush, PUBG Mobile',
+]},
+
+// ── MATH & LOGIK VERTIEFT ────────────────────────────────,
+{ cat:'cult', tag:'Brüder Grimm', tc:'tc', title:'Grimm-Märchen – Grundwissen', items:[
   b('Rotkäppchen')+': Mädchen, Großmutter, böser Wolf – Wolf verkleidet sich als Oma',
   b('Hänsel und Gretel')+': Geschwister im Wald, Hexenhaus, Knusperhaus',
   b('Schneewittchen')+': Sieben Zwerge, vergifteter Apfel, böse Stiefmutter',
@@ -763,7 +1300,7 @@ const CARDS = [
   b('Rapunzel')+': Turm, lange Haare, Hexe',
   'Brüder Grimm: '+b('Jacob & Wilhelm')+', geboren in Hanau – Märchen ab 1812 gesammelt',
 ]},
-{ cat:'cult', tag:'Andere Märchen', tc:'tg', title:'Weitere bekannte Märchen & Fabeln', items:[
+{ cat:'cult', tag:'Andere Märchen', tc:'tc', title:'Weitere bekannte Märchen & Fabeln', items:[
   b('Aschenputtel')+' – Cinderella · '+b('Die Schöne und das Biest')+' – frz. Märchen (La Belle et la Bête)',
   b('Hans Christian Andersen')+': Die kleine Meerjungfrau, Das hässliche Entlein, Die Prinzessin auf der Erbse',
   b('1001 Nacht')+': Scheherazade, Aladdin, Ali Baba, Sindbad der Seefahrer',
@@ -773,7 +1310,7 @@ const CARDS = [
   b('Faust')+': Goethe – Pakt mit dem Teufel (Mephisto), Gretchenfrage',
 ]},
 
-// ── SPRICHWÖRTER & REDEWENDUNGEN ─────────────────────────,
+// ── SPRICHWÖRTER & REDEWENDUNGEN ─────────────────────────,,
 { cat:'cult', tag:'Luxusmarken & Designer', tc:'tc', title:'Mode & Luxus – Grundwissen', items:[
   b('Coco Chanel')+': Gründerin von Chanel (1910) – befreite Frauen vom Korsett, Chanel No. 5',
   b('Christian Dior')+': Gründer Dior (1946) – „New Look" nach dem 2. WK',
@@ -795,18 +1332,8 @@ const CARDS = [
   b('2020er')+': Sustainability, Genderfluid Fashion, Cottagecore, Y2K Revival',
 ]},
 
-// ── TV-SERIEN & STREAMING ─────────────────────────────────,
-{ cat:'cult', tag:'Essen & Trinken', tc:'tf', title:'Essen & Trinken', items:[
-  b('Pizza')+' – Neapel, Italien',
-  b('Sushi')+' – Japan (urspr. Konservierung in Reis)',
-  b('Currywurst')+' – erfunden 1949 von '+b('Herta Heuwer')+', Berlin',
-  b('Döner Kebab')+' (heutige Form) – in Berlin der 1970er entwickelt',
-  b('Croissant')+' – österr. Ursprung (Kipferl), in Frankreich berühmt',
-  'Reinheitsgebot: seit '+b('1516')+' · Champagner: nur aus der '+b('Champagne'),
-  'Kaffee: ursprünglich aus '+b('Äthiopien')+' · Schokolade: von '+b('Azteken/Maya'),
-  'Teuerstes Gewürz: '+b('Safran')+' · Tomaten: botanisch '+b('Obst'),
-]},
-{ cat:'cult', tag:'Redewendungen', tc:'tg', title:'Redewendungen – Herkunft & Bedeutung', items:[
+// ── TV-SERIEN & STREAMING ─────────────────────────────────,,
+{ cat:'cult', tag:'Redewendungen', tc:'tc', title:'Redewendungen – Herkunft & Bedeutung', items:[
   b('"Den Nagel auf den Kopf treffen"')+' – präzise das Richtige sagen (vom Schmieden)',
   b('"Ins Fettnäpfchen treten"')+' – einen sozialen Fehler begehen (Näpfe mit Schuhfett)',
   b('"Die Katze aus dem Sack lassen"')+' – ein Geheimnis preisgeben (Bauernmarkt-Betrug)',
@@ -816,7 +1343,7 @@ const CARDS = [
   b('"Das Handtuch werfen"')+' – aufgeben (Boxen: Trainer wirft Handtuch in Ring)',
   b('"Über den grünen Klee loben"')+' – übertrieben loben',
 ]},
-{ cat:'cult', tag:'Sprachgeschichte', tc:'tg', title:'Sprache & Linguistik – Grundwissen', items:[
+{ cat:'cult', tag:'Sprachgeschichte', tc:'tc', title:'Sprache & Linguistik – Grundwissen', items:[
   b('Meistgesprochene Sprachen')+': Mandarin (Muttersprachler), Englisch (gesamt), Spanisch, Hindi, Arabisch',
   b('Romanische Sprachen')+': Latein-Ableger – Französisch, Spanisch, Portugiesisch, Italienisch, Rumänisch',
   b('Germanische Sprachen')+': Deutsch, Englisch, Niederländisch, Schwedisch, Norwegisch',
@@ -826,7 +1353,7 @@ const CARDS = [
   b('UNESCO')+': schützt bedrohte Sprachen – ca. 7.000 Sprachen weltweit, ~50 % gefährdet',
   b('Anglizismus')+': englische Lehnwörter im Deutschen (Baby, Computer, Handy)',
 ]},
-{ cat:'cult', tag:'Latein & Fremdwörter', tc:'tg', title:'Lateinische Begriffe & Abkürzungen', items:[
+{ cat:'cult', tag:'Latein & Fremdwörter', tc:'tc', title:'Lateinische Begriffe & Abkürzungen', items:[
   b('et cetera (etc.)')+' – und so weiter',
   b('per se')+' – an sich, von Natur aus',
   b('pro forma')+' – der Form halber',
@@ -839,16 +1366,27 @@ const CARDS = [
   b('tabula rasa')+' – leere Tafel (Neuanfang)',
 ]},
 
-// ── PSYCHOLOGIE ───────────────────────────────────────────,
-{ cat:'cult', tag:'Mythologie & Religion', tc:'tc', title:'Weltreligionen & Mythologie', items:[
-  'Weltreligionen nach Anhängern: '+b('Christentum')+' (~2,4 Mrd.) · Islam (~1,9 Mrd.) · Hinduismus (~1,2 Mrd.) · Buddhismus (~500 Mio.)',
-  b('Islam')+': Heilige Stadt Mekka · 5 Säulen: Bekenntnis, Gebet, Fasten, Almosen, Pilgerfahrt',
-  b('Christentum')+': größte Konfessionen: Katholisch, Orthodox, Protestantisch',
-  'Olympische Götter (12): Zeus, Hera, Poseidon, '+b('Athene')+', Apollo, Artemis, Ares, Aphrodite, Hephaistos, Hermes, Demeter, Dionysos',
-  'Wikinger-Götter: '+b('Odin')+' (Allvater, Weisheit) · Thor (Donner) · Loki (Trickster) · Freya (Liebe)',
-  'Ägyptische Götter: Ra (Sonne) · '+b('Osiris')+' (Totengott) · Isis · Anubis (Totenrichter)',
-  b('Konfuzius')+' (551–479 v. Chr.) – chinesischer Philosoph, Grundlage des Konfuzianismus',
+// ── PSYCHOLOGIE ───────────────────────────────────────────,,
+{ cat:'cult', tag:'Sprachen der Welt', tc:'tc', title:'Sprachen – Zahlen & Fakten', items:[
+  b('Meistgesprochene Sprachen')+': Englisch (1,5 Mrd. gesamt) · Mandarin (1,1 Mrd. Muttersprachler) · Hindi · Spanisch · Französisch',
+  b('Sprachfamilien')+': Indogermanisch (größte) · Sino-Tibetisch · Afroasiatisch · Niger-Kongo',
+  b('Tote Sprachen')+': Latein · Altgriechisch · Sanskrit · Sumerisch (älteste bekannte Schriftsprache)',
+  b('Revitalisierung')+': Hebräisch – einzige „tote" Sprache die zur Alltagssprache wiederbelebt wurde',
+  b('Gebärdensprachen')+': eigene vollwertige Sprachen · ca. 300 verschiedene weltweit',
+  b('Linguas Francas')+': Englisch (global) · Swahili (Ostafrika) · Arabisch (arabische Welt) · Russisch (ex-SU)',
+  b('Schriftsysteme')+': Alphabetisch (lat., kyrill., arab.) · Syllabisch (Kana) · Logographisch (Chinesisch)',
 ]},
+{ cat:'cult', tag:'Medien & Journalismus', tc:'tc', title:'Medien, Presse & Meinungsfreiheit', items:[
+  b('Öffentlich-rechtlich D')+': ARD, ZDF, Deutschlandradio · finanziert durch Rundfunkbeitrag (18,36 €/Monat)',
+  b('Pressefreiheit')+': Art. 5 GG · weltweite Lage: RSF-Index · viele Journalisten in Gefängnissen',
+  b('Soziale Medien')+': Instagram, TikTok, YouTube · Algorithmen bestimmen Sichtbarkeit',
+  b('Filterblasen')+': Algorithmen zeigen, was Nutzer bestätigt → Polarisierung',
+  b('Fake News')+': gezielte Falschinformationen · Deepfakes als neue Herausforderung',
+  b('Gutenberg')+': ~1450 Buchdruck mit beweglichen Lettern → Demokratisierung von Wissen',
+  b('Öffentlich-rechtlich weltweit')+': BBC (UK) · NHK (Japan) · CBC (Kanada) · ABC (Australien)',
+]},
+
+// ── SPORT – WEITERE SPORTARTEN ────────────────────────────,
 { cat:'cult', tag:'Royals & Promis', tc:'tc', title:'Britische Royals – aktuell', items:[
   b('König Charles III.')+': Krönung Mai 2023 · Krebsdiagnose 2024, Behandlung erfolgreich',
   b('Prinzessin Kate')+': Krebsdiagnose 2024 · Remission Jan. 2025 · langsame Rückkehr zu Pflichten',
@@ -861,7 +1399,7 @@ const CARDS = [
 ]},
 { cat:'cult', tag:'Prominente & Pop-Kultur', tc:'tc', title:'Prominente & Pop-Kultur', items:[
   b('Taylor Swift')+': meistgestreamte Künstlerin weltweit (2023–24) · 4× Grammy Album des Jahres',
-  b('Beyoncé')+': meiste Grammy-Gewinne aller Zeiten (32+)',
+  b('Beyoncé')+': meiste Grammy-Gewinne aller Zeiten (35)',
   b('Elon Musk')+': CEO Tesla & SpaceX, Eigentümer von X (ehem. Twitter) · zeitweise reichster Mensch',
   b('Kim Kardashian')+': ~370 Mio. Instagram-Follower · SKIMS-Gründerin',
   b('Lionel Messi')+': 8x Weltfußballer (Ballon dOr) · WM 2022 Sieger',
@@ -885,8 +1423,10 @@ const CARDS = [
 
 // ── SPORT ─────────────────────────────────────────,
 
-// ── SPORT ─────────────────────────────────────────
-{ cat:'sport', tag:'WM-Sieger 1930–2026', tc:'tb', title:'FIFA WM-Sieger (alle)', ol:true, collapsible:true, items:[
+// ── SPORT ─────────────────────────────────────────,
+
+// ── SPORT ─────────────────────────────────────────────
+{ cat:'sport', tag:'WM-Sieger 1930–2026', tc:'tsp', title:'FIFA WM-Sieger (alle)', ol:true, collapsible:true, items:[
   '1930 Uruguay – '+b('Uruguay'),
   '1934 Italien – '+b('Italien'),
   '1938 Frankreich – '+b('Italien'),
@@ -911,7 +1451,7 @@ const CARDS = [
   '2022 Katar – '+b('Argentinien'),
   '2026 USA/KAN/MEX – '+b('?'),
 ]},
-{ cat:'sport', tag:'Fußball', tc:'tb', title:'Fußball-Rekorde', items:[
+{ cat:'sport', tag:'Fußball', tc:'tsp', title:'Fußball-Rekorde', items:[
   'Meiste WM-Titel: '+b('Brasilien')+' (5×) · Deutschland & Italien (je 4×)',
   'Bester WM-Torschütze: '+b('Miroslav Klose')+' (16 Tore, D)',
   'Jüngster WM-Torschütze: '+b('Pelé')+' (17 Jahre, 1958)',
@@ -921,7 +1461,7 @@ const CARDS = [
   'Meiste CL-Titel: '+b('Real Madrid')+' (15+)',
   'Meiste Länderspiele: '+b('Cristiano Ronaldo')+' (>210)',
 ]},
-{ cat:'sport', tag:'Olympia', tc:'tb', title:'Olympische Spiele', items:[
+{ cat:'sport', tag:'Olympia', tc:'tsp', title:'Olympische Spiele', items:[
   'Erste moderne Olympiade: '+b('Athen 1896'),
   'Motto: „Citius, Altius, Fortius" = Schneller, Höher, '+b('Stärker'),
   'Farben Olympia-Ringe: '+b('Blau · Gelb · Schwarz · Grün · Rot')+' (auf weiß)',
@@ -930,8 +1470,27 @@ const CARDS = [
   'Winter 2026: '+b('Mailand-Cortina'),
   'Dt. Rekord: '+b('Birgit Fischer')+' (Kanu, 8 Gold)',
 ]},
-{ cat:'sport', tag:'Tennis & F1', tc:'tb', title:'Tennis, F1 & Leichtathletik', items:[
-  'Meiste Grand-Slam-Titel Herren: '+b('Novak Djokovic')+' (24+)',
+{ cat:'sport', tag:'Olympia Geschichte', tc:'tsp', title:'Olympische Spiele – Geschichte & Rekorde', items:[
+  b('Antike Olympia')+': ~776 v. Chr. bis 393 n. Chr. · Zeus-Heiligtum in Olympia (Griechenland)',
+  b('Moderne Wiederbelebung')+': Pierre de Coubertin · erste Spiele 1896 Athen',
+  b('Berühmteste Momente')+': Jesse Owens 1936 (4× Gold unter Hitlers Augen) · Cassius Clay 1960 · Fosbury-Flop 1968',
+  b('Boykotte')+': 1980 Moskau (Westen boykottiert) · 1984 Los Angeles (Ostblock boykottiert)',
+  b('Meiste Goldmedaillen Land')+': USA (gesamt) · Norwegen (Winterspiele)',
+  b('Doping-Skandale')+': Ben Johnson 1988 · Lance Armstrong · Russland-Staatsdoping (2014–2022)',
+  b('Paralympics')+': seit 1960 · für Athleten mit Behinderungen · gleicher Veranstaltungsort',
+]},
+{ cat:'sport', tag:'Deutsche Sportlegenden', tc:'tsp', title:'Deutsche Sportlegenden', items:[
+  b('Michael Schumacher')+': 7× F1-Weltmeister (1994, 95, 2000–04) · 91 Siege',
+  b('Steffi Graf')+': einziger Golden Slam 1988 · 22 Grand-Slam-Titel',
+  b('Boris Becker')+': jüngster Wimbledon-Sieger 1985 (17 J.) · 6 Grand-Slam-Titel',
+  b('Miroslav Klose')+': WM-Rekordtorschütze (16 Tore) · WM-Sieger 2014',
+  b('Gerd Müller')+': „Bomber der Nation" · 68 Länderspieltore · 365 Bundesliga-Tore',
+  b('Birgit Fischer')+': 8 Olympia-Gold im Kanu · Weltspitze über 4 Jahrzehnte',
+]},
+
+// ── POLITIK & WIRTSCHAFT – NEU ────────────────────────────,
+{ cat:'sport', tag:'Tennis & F1', tc:'tsp', title:'Tennis, F1 & Leichtathletik', items:[
+  'Meiste Grand-Slam-Titel Herren: '+b('Novak Djokovic')+' (24)',
   'Wimbledon: ältestes Grand-Slam-Turnier ('+b('1877')+')',
   '4 Grand Slams: '+b('Australian Open · Roland Garros · Wimbledon · US Open'),
   'Boris Becker: jüngster Wimbledon-Sieger mit '+b('17 Jahren')+' (1985)',
@@ -941,7 +1500,44 @@ const CARDS = [
   '100m-Weltrekord: '+b('Usain Bolt')+' (9,58 s, 2009)',
   'Marathon-Weltrekord: '+b('Kelvin Kiptum')+' (2:00:35, 2023)',
 ]},
-{ cat:'sport', tag:'Wintersport & Mehr', tc:'tb', title:'Wintersport, Golf & Kampfsport', items:[
+{ cat:'sport', tag:'Leichtathletik', tc:'tsp', title:'Leichtathletik – Weltrekorde & Fakten', items:[
+  b('100m Männer')+': Usain Bolt 9,58 s (2009, Berlin) · 100m Frauen: Florence Griffith-Joyner 10,49 s (1988)',
+  b('Marathon Männer')+': Kelvin Kiptum 2:00:35 (2023, Chicago) · Frauen: Tigst Assefa 2:11:53 (2023)',
+  b('Hochsprung')+': Fosbury-Flop revolutionierte 1968 die Technik · Rekord: Javier Sotomayor 2,45 m',
+  b('Weitsprung')+': Bob Beamon 8,90 m (1968, Mexico) · 23 Jahre Weltrekord',
+  b('Stabhochsprung')+': Renaud Lavillenie & Armand Duplantis · aktuell: Mondo Duplantis 6,26 m',
+  b('Deutsche Leichtathleten')+': Heike Drechsler (Weitsprung) · Astrid Kumbernuss (Kugelstoßen) · Carl Lewis-Gegner',
+  b('Zehnkampf')+': gilt als härteste athletische Disziplin · „König der Athleten"',
+]},
+{ cat:'sport', tag:'Schwimmen & Wassersport', tc:'tsp', title:'Schwimmen & Wassersport', items:[
+  b('Michael Phelps')+': 23 Olympia-Gold · meistausgezeichneter Olympionike aller Zeiten',
+  b('4 Schwimmstile')+': Freistil (Kraulen) · Rücken · Brust · Schmetterling (schnellste nach Freistil)',
+  b('Katie Ledecky')+': US-Schwimmerin · dominiert Freistil-Langstrecken · mehrfache Weltrekordhalterin',
+  b('Wasserball')+': älteste olympische Mannschaftssportart (1900) · Ungarn historisch stärkste Nation',
+  b('Rudern')+': Deutschland traditionell stark · Achter = Paradedisziplin · seit 1896 olympisch',
+  b('Kanu')+': Kajak (geschlossenes Cockpit) vs. Canadier (offenes Boot) · Birgit Fischer: dt. Legende',
+  b('Freiwasserschwimmen')+': 10 km im offenen Gewässer · seit 2008 olympisch',
+]},
+{ cat:'sport', tag:'US-Sport', tc:'tsp', title:'NBA, NFL & US-Sport', items:[
+  b('NBA')+': 30 Teams · Saison: Okt–Juni · Finals Best-of-7 · gegründet 1946',
+  b('Michael Jordan')+': 6× NBA-Champion · gilt als bester Basketballer aller Zeiten',
+  b('LeBron James')+': meiste Punkte in NBA-Geschichte (>40.000) · 4× Champion',
+  b('Super Bowl')+': NFL-Finale · meistgesehenes US-TV-Ereignis (~100 Mio. Zuschauer)',
+  b('Tom Brady')+': 7× Super Bowl Champion – NFL-Rekord',
+  b('Baseball / MLB')+': Nationalsport der USA · World Series seit 1903 · 9 Innings',
+]},
+{ cat:'sport', tag:'Radsport & Ausdauer', tc:'tsp', title:'Radsport, Marathon & Ausdauersport', items:[
+  b('Tour de France')+': seit 1903 · 21 Etappen · ~3.500 km · Gelbes Trikot = Führender',
+  b('Trikotfarben Tour')+': Gelb (Gesamtführender) · Grün (Punkte) · Gepunktet (Bergwertung) · Weiß (bester Junger)',
+  b('Giro d\'Italia')+': 1909 · Rosatrikot · Vuelta Española 1935 · rotes Trikot',
+  b('Marathon')+': 42,195 km · Weltrekord Männer: Kelvin Kiptum 2:00:35 (2023)',
+  b('Ironman Triathlon')+': 3,86 km Schwimmen + 180 km Rad + 42,2 km Laufen',
+  b('Tour de France Rekord')+': Lance Armstrong 7× Titel (alle aberkannt) · Eddy Merckx 5× (1969–1974)',
+  b('Chris Froome')+': 4× Tour-Sieger · Sky/INEOS-Dominanz 2010er Jahre',
+]},
+
+// ── TECHNIK – VERTIEFT ────────────────────────────────────,
+{ cat:'sport', tag:'Wintersport & Mehr', tc:'tsp', title:'Wintersport, Golf & Kampfsport', items:[
   b('Ski Alpin')+': meiste WM-Titel: Marcel Hirscher (Österreich, 8× Gesamtweltcup)',
   b('Skispringen')+': Vierschanzentournee (Oberstdorf, Garmisch, Innsbruck, Bischofshofen)',
   b('Biathlon')+': Kombination aus Langlauf & Schießen · Weltcup-Hochburg: Ruhpolding',
@@ -950,7 +1546,18 @@ const CARDS = [
   b('Box-Weltverbände')+': WBC, WBA, IBF, WBO – Muhammad Ali gilt als größter aller Zeiten',
   b('Kampfsport')+': Judo & Karate olympisch; UFC (MMA) seit 1993; Sumo: höchste Klasse = Yokozuna',
 ]},
-{ cat:'sport', tag:'Sport-Rekorde & Besonderheiten', tc:'tb', title:'Sport-Rekorde & Kurioses', items:[
+{ cat:'sport', tag:'Handball & Ballsport', tc:'tsp', title:'Handball, Rugby & andere Ballsportarten', items:[
+  b('Handball')+': in Deutschland beliebteste Hallensportart · DHB-Team: WM-Sieger 2007',
+  b('Rugby')+': Rugby Union (15 Spieler) vs. Rugby League (13) · Rugby World Cup seit 1987',
+  b('Volleyball')+': 6 Spieler pro Team · Beach-Volleyball seit 1996 olympisch',
+  b('Cricket')+': populärster Sport in Indien, Pakistan, Australien, England · Test, ODI, T20',
+  b('Lacrosse')+': ältester Teamsport Nordamerikas (indigener Ursprung) · seit 2028 olympisch',
+  b('American Football')+': 11 Spieler · 4 Downs · Super Bowl meistgesehenes jährliches Sportevent USA',
+  b('Squash & Badminton')+': Badminton schnellster Racketsport (Federball bis 493 km/h gemessen)',
+]},
+
+// ── WIRTSCHAFT: WICHTIGE UNTERNEHMEN ─────────────────────,
+{ cat:'sport', tag:'Sport-Rekorde & Besonderheiten', tc:'tsp', title:'Sport-Rekorde & Kurioses', items:[
   b('Höchster Fußball-Sieg')+': Australien 31:0 gegen Amerikanisch-Samoa (2001)',
   b('Längste Sportveranstaltung')+': Tour de France (seit 1903, jährlich ~3.500 km)',
   b('Meistbesuchtes Sportevent')+': Formel-1-Saison (mehrere Mio. Zuschauer gesamt)',
@@ -967,7 +1574,18 @@ const CARDS = [
 
 // ── POLITIK ─────────────────────────────────────────,
 
-// ── POLITIK ─────────────────────────────────────────
+// ── POLITIK ─────────────────────────────────────────,
+{ cat:'sport', tag:'Sport-Funfacts', tc:'tsp', title:'Sport-Funfacts & Kuriositäten', items:[
+  'Ein '+b('Golfball')+' hat zwischen 300 und 500 Dellen (Dimples) – sie erzeugen Auftrieb',
+  b('Tischtennis')+' ist in China quasi Nationalsport – bei WM gewinnen sie meist alle Goldmedaillen',
+  'Die '+b('Formel 1')+' verbraucht pro Rennen ~100 kg Reifenabrieb auf der Strecke',
+  b('Sumo-Ringer')+' essen bis zu 5.000 kcal pro Tag – gezielt um Gewicht aufzubauen',
+  'Der '+b('Marathonläufer Pheidippides')+' soll 490 v. Chr. von Marathon nach Athen gelaufen und tot zusammengebrochen sein',
+  b('Curling')+': „Schach auf Eis" – komplexe Strategie · Kanada & Schweden als Weltmächte',
+  'Im '+b('Tennis')+' bedeutet „Love" (0 Punkte) wahrscheinlich vom frz. „l\'œuf" (das Ei = Null)',
+]},
+
+// ── POLITIK & WIRTSCHAFT ──────────────────────────────
 { cat:'pol', tag:'System & Parteien', tc:'tp', title:'Deutsches Politisches System', items:[
   'Staatsform: '+b('Parlamentarische Bundesrepublik'),
   'Grundgesetz: '+b('23. Mai 1949'),
@@ -989,6 +1607,15 @@ const CARDS = [
   'USA: '+b('Donald Trump')+' (seit Jan. 2025) · UK: '+b('Keir Starmer'),
   'Papst: '+b('Leo XIV.')+' (Robert F. Prevost, USA, seit 8. Mai 2025)',
 ]},
+{ cat:'pol', tag:'UN & Internationale Org.', tc:'tp', title:'Internationale Organisationen', items:[
+  b('UN')+': 193 Mitgliedsstaaten · Gründung 1945 · Hauptorgane: Generalversammlung, Sicherheitsrat',
+  b('WHO')+': Weltgesundheitsorganisation · Sitz Genf · erklärte COVID-19 am 11. März 2020 zur Pandemie',
+  b('IWF')+': 190 Mitglieder · vergibt Kredite bei Zahlungsbilanzkrise · Sitz Washington',
+  b('WTO')+': Welthandelsorganisation · regelt internationalen Handel · 164 Mitglieder',
+  b('G7')+': USA, UK, Frankreich, Deutschland, Italien, Japan, Kanada + EU',
+  b('G20')+': G7 + Schwellenländer (China, Indien, Brasilien…) · ~85 % der Weltwirtschaft',
+  b('OPEC+')+': Saudi-Arabien, Russland u.a. · kontrollieren ~40 % der Weltölproduktion',
+]},
 { cat:'pol', tag:'Wahlen & Demokratie', tc:'tp', title:'Wahlen & Demokratie weltweit', items:[
   b('Älteste Demokratie')+': Island – Althing gegründet ~930 n. Chr.',
   b('Erste Demokratie der Neuzeit')+': USA (1776) – England (Magna Carta 1215 als Vorläufer)',
@@ -999,7 +1626,87 @@ const CARDS = [
   'Bundestag: '+b('598 Regelmandate')+', oft durch Überhangmandate mehr (2021: 736 Abgeordnete)',
 ]},
 
-// ── TECHNIK ───────────────────────────────────────────,
+// ── TECHNIK ───────────────────────────────────────────,,
+{ cat:'pol', tag:'Menschenrechte & Asyl', tc:'tp', title:'Menschenrechte, Asyl & Völkerrecht', items:[
+  b('Genfer Konventionen')+': 1949 · Schutz von Kriegsgefangenen & Zivilisten · Rotes Kreuz als Hüter',
+  b('Flüchtlingskonvention')+': 1951 · UNHCR · Asylrecht für politisch Verfolgte · Non-Refoulement-Prinzip',
+  b('Todesstrafe weltweit')+': in >100 Ländern abgeschafft · China, USA, Iran, Saudi-Arabien: noch aktiv',
+  b('Kinderrechte')+': UN-Kinderrechtskonvention 1989 · Recht auf Bildung, Schutz, Beteiligung',
+  b('Folterverbot')+': absolutes Verbot · UN-Antifolterkonvention 1984 · keinerlei Ausnahmen',
+  b('Internationaler Strafgerichtshof')+': Den Haag seit 2002 · Kriegsverbrechen, Völkermord, Verbrechen gegen die Menschlichkeit',
+  b('Vetorecht')+': USA, UK, Frankreich, Russland, China können UN-Sicherheitsratsbeschlüsse blockieren',
+]},
+
+// ── KULTUR: ARCHITEKTUR VERTIEFT ─────────────────────────,
+{ cat:'pol', tag:'Recht & Gesetze', tc:'tp', title:'Recht – Grundbegriffe', items:[
+  b('BGB')+': Bürgerliches Gesetzbuch (1900) · regelt Verträge, Eigentum, Familie, Erbrecht',
+  b('StGB')+': Strafgesetzbuch · Vergehen vs. Verbrechen (ab 1 Jahr Freiheitsstrafe)',
+  b('Zivilrecht vs. Strafrecht')+': Zivilrecht = zwischen Privatpersonen · Strafrecht = Staat gegen Täter',
+  b('Strafmündigkeit')+': in Deutschland ab 14 Jahren · Jugendstrafrecht bis 21',
+  b('Verjährung')+': Mord: nie · schwere Verbrechen: 20 Jahre · Alltagsdelikte: 3–5 Jahre',
+  b('Unschuldsvermutung')+': gilt bis zur rechtskräftigen Verurteilung · Art. 6 EMRK',
+  b('Notwehr')+': § 32 StGB – Angriff darf mit erforderlichen Mitteln abgewehrt werden',
+]},
+{ cat:'pol', tag:'Soziales & Gesellschaft', tc:'tp', title:'Sozialstaat & Gesellschaft', items:[
+  b('Sozialversicherungen D')+': Kranken-, Renten-, Arbeitslosen-, Pflege-, Unfallversicherung',
+  b('Rentenversicherung')+': Umlageverfahren – Aktive zahlen für heutige Rentner',
+  b('Mindestlohn')+': in Deutschland eingeführt 2015 · wird regelmäßig angehoben',
+  b('Gini-Koeffizient')+': Maß für Ungleichverteilung · 0 = vollständige Gleichheit · 1 = maximale Ungleichheit',
+  b('HDI')+': Human Development Index · misst Lebensqualität (Einkommen, Bildung, Lebenserwartung)',
+  b('Demokratieindex')+': The Economist · Norwegen, Island, Schweden regelmäßig an Spitze',
+  b('Pressefreiheit')+': Reporteurs sans Frontières Ranking · Skandinavien führend · Deutschland meist Top 15',
+]},
+
+// ── WIRTSCHAFT & FINANZEN VERTIEFT ────────────────────────,
+{ cat:'pol', tag:'Wirtschaftswissen', tc:'tp', title:'Wirtschaft & Finanzen – Grundbegriffe', items:[
+  b('BIP (Bruttoinlandsprodukt)')+': Gesamtwert aller Güter/Dienstleistungen eines Landes pro Jahr',
+  b('Inflation')+': allgemeiner Preisanstieg · Gegenteil: Deflation',
+  b('EZB')+': Europäische Zentralbank, Sitz Frankfurt – gibt Euro-Geldpolitik vor',
+  b('IWF')+': Internationaler Währungsfonds, Sitz Washington D.C.',
+  b('Weltbank')+': fördert Entwicklung in ärmeren Ländern, Sitz Washington D.C.',
+  b('OPEC')+': Erdöl-Exportländer-Kartell (gegr. 1960, Sitz Wien)',
+  'Größte Volkswirtschaften: '+b('USA')+', China, Deutschland, Japan, Indien',
+  b('Schwarzer Donnerstag/Freitag')+': '+b('24. Oktober 1929')+' (USA) / 25. Oktober (Europa) – Börsencrash, Auslöser der Weltwirtschaftskrise',
+]},
+
+// ── ZITATE ────────────────────────────────────────────────,
+
+// ── TECHNIK ─────────────────────────────────────────,
+
+// ── TECHNIK ─────────────────────────────────────────,
+
+// ── TECHNIK ─────────────────────────────────────────,
+{ cat:'pol', tag:'Wirtschaftssysteme', tc:'tp', title:'Wirtschaftssysteme & -theorien', items:[
+  b('Kapitalismus')+': Privateigentum, Marktmechanismus · Adam Smith: „unsichtbare Hand" (1776)',
+  b('Keynesianismus')+': staatliche Konjunktursteuerung durch Ausgaben (Keynes, 1936)',
+  b('Neoliberalismus')+': freier Markt, weniger Staat · Friedman, Reagan, Thatcher (1980er)',
+  b('Inflation vs. Deflation')+': Inflation = Kaufkraftverlust · Deflation = fallende Preise, oft gefährlicher',
+  b('Zentralbanken')+': EZB, Fed, Bank of England · steuern Zinsen & Geldmenge',
+  b('BIP vs. BNE')+': BIP = Produktion im Inland · BNE = Einkommen der Inländer (inkl. Ausland)',
+  b('Globalisierung')+': seit 1990er beschleunigt · Freihandel, Outsourcing, globale Lieferketten',
+]},
+
+// ── TECHNIK – NEU ────────────────────────────────────────,
+{ cat:'pol', tag:'Industrielle Revolution', tc:'tp', title:'Industrielle Revolution', items:[
+  b('1. Industrielle Revolution')+': ~1760–1840 · England · Dampfmaschine, Textilindustrie, Eisenbahn',
+  b('2. Industrielle Revolution')+': ~1870–1914 · Elektrizität, Stahl, Chemie, Verbrennungsmotor',
+  b('Fließband')+': Henry Ford 1913 – Massenproduktion des Modell T · Taylorismus',
+  b('3. Industrielle Revolution')+': ab 1970er · Elektronik, Computer, Automatisierung',
+  b('4. Industrielle Revolution')+' (Industrie 4.0): KI, IoT, 3D-Druck, autonome Systeme',
+  b('Urbanisierung')+': 1800: ~3 % der Menschen in Städten · heute: >56 % · 2050: ~68 % erwartet',
+  b('Arbeiterbewegung')+': Gewerkschaften, Streiks, 8-Stunden-Tag (Deutschland: 1918)',
+]},
+
+// ── KULTUR – SPRACHE & KOMMUNIKATION ─────────────────────,
+{ cat:'pol', tag:'Börse & Geldanlage', tc:'tp', title:'Börse, Aktien & Geldanlage', items:[
+  b('Aktie')+': Unternehmensanteil · Dividende = Gewinnausschüttung · Kursgewinn = Wertsteigerung',
+  b('DAX')+': Deutscher Aktienindex · 40 größte börsennotierte Unternehmen · gegr. 1988',
+  b('Dow Jones')+': ältester US-Index (1896) · 30 Unternehmen · S&P 500 = 500 Unternehmen',
+  b('ETF')+': Exchange Traded Fund · bildet Index nach · kostengünstig · breit gestreut',
+  b('Anleihen')+': Schuldtitel · Staat oder Unternehmen leiht Geld → zahlt Zinsen (Kupon)',
+  b('Inflation & Anlage')+': reale Rendite = nominale Rendite minus Inflationsrate',
+  b('Zinseszins')+': Einstein: „achtes Weltwunder" · Kapital wächst exponentiell über Zeit',
+]},
 { cat:'pol', tag:'Flaggen & Symbole', tc:'tp', title:'Flaggen & Staatssymbole', items:[
   b('Älteste Nationalflagge')+': Dänemark (Dannebrog) – seit ca. 1370 unverändert',
   'Einzige nicht-rechteckige Nationalflagge: '+b('Nepal')+' (doppeltes Dreieck)',
@@ -1010,7 +1717,7 @@ const CARDS = [
   b('Rotes Kreuz')+': gegründet von Henry Dunant, 1863 (Genf) – umgekehrte Schweizer Flagge',
   b('UN-Flagge')+': Weltkarte + Olivenzweige (Symbol des Friedens)',
 ]},
-{ cat:'pol', tag:'Firmen-Gründer', tc:'tb', title:'Wer gründete was?', items:[
+{ cat:'pol', tag:'Firmen-Gründer', tc:'tp', title:'Wer gründete was?', items:[
   b('Apple')+': Steve Jobs & Steve Wozniak (1976, Garage in Cupertino)',
   b('Microsoft')+': Bill Gates & Paul Allen (1975, Albuquerque)',
   b('Amazon')+': Jeff Bezos (1994, Seattle – zuerst nur Bücher)',
@@ -1022,7 +1729,7 @@ const CARDS = [
   b('Adidas')+': Adolf „Adi" Dassler (1949, Herzogenaurach) – Bruder Rudolf gründete Puma',
   b('Red Bull')+': Dietrich Mateschitz & Chaleo Yoovidhya (1987, Österreich)',
 ]},
-{ cat:'pol', tag:'Firmensitze & Logos', tc:'tb', title:'Firmensitze & Markenwissen', items:[
+{ cat:'pol', tag:'Firmensitze & Logos', tc:'tp', title:'Firmensitze & Markenwissen', items:[
   b('Silicon Valley')+': Tech-Zentrum in Kalifornien (Apple, Google, Meta, Netflix…)',
   b('Wolfsburg')+': VW-Sitz · '+b('Stuttgart')+': Mercedes & Porsche · '+b('München')+': BMW',
   b('Leverkusen')+': Bayer AG · '+b('Ludwigshafen')+': BASF',
@@ -1032,24 +1739,19 @@ const CARDS = [
   b('LVMH')+': größter Luxuskonzern der Welt (Louis Vuitton, Moët, Hennessy…)',
   b('Stiftung Warentest')+': gegründet 1964, finanziert vom Bund',
 ]},
-{ cat:'pol', tag:'Wirtschaftswissen', tc:'tb', title:'Wirtschaft & Finanzen – Grundbegriffe', items:[
-  b('BIP (Bruttoinlandsprodukt)')+': Gesamtwert aller Güter/Dienstleistungen eines Landes pro Jahr',
-  b('Inflation')+': allgemeiner Preisanstieg · Gegenteil: Deflation',
-  b('EZB')+': Europäische Zentralbank, Sitz Frankfurt – gibt Euro-Geldpolitik vor',
-  b('IWF')+': Internationaler Währungsfonds, Sitz Washington D.C.',
-  b('Weltbank')+': fördert Entwicklung in ärmeren Ländern, Sitz Washington D.C.',
-  b('OPEC')+': Erdöl-Exportländer-Kartell (gegr. 1960, Sitz Wien)',
-  'Größte Volkswirtschaften: '+b('USA')+', China, Deutschland, Japan, Indien',
-  b('Schwarzer Freitag')+': 25. Oktober 1929 – Börsencrash, Auslöser der Weltwirtschaftskrise',
+{ cat:'pol', tag:'Größte Unternehmen', tc:'tp', title:'Größte Unternehmen & Marktkapitalisierung', items:[
+  b('Apple')+': zeitweise wertvollstes Unternehmen der Welt (>3 Bio. $) · iPhone, Mac, Services',
+  b('Microsoft')+': Windows, Azure, LinkedIn, GitHub, Activision · KI-Partner OpenAI',
+  b('Saudi Aramco')+': wertvollstes Energieunternehmen · staatlich (Saudi-Arabien) · ~2 Bio. $',
+  b('Amazon')+': E-Commerce + AWS (Cloud-Marktführer) + Prime Video · Bezos gründete es in Garage',
+  b('Alphabet (Google)')+': Suche, YouTube, Android, Google Cloud, Waymo (autonomes Fahren)',
+  b('LVMH')+': größter Luxusgüterkonzern (Bernard Arnault) · Louis Vuitton, Dior, Moët & Chandon',
+  b('Top dt. Unternehmen')+': Volkswagen, SAP, Allianz, Siemens, Mercedes-Benz, Deutsche Telekom',
 ]},
 
-// ── ZITATE ────────────────────────────────────────────────,
+// ── KOMMUNIKATION & RHETORIK ──────────────────────────────,
 
-// ── TECHNIK ─────────────────────────────────────────,
-
-// ── TECHNIK ─────────────────────────────────────────,
-
-// ── TECHNIK ─────────────────────────────────────────
+// ── TECHNIK ───────────────────────────────────────────
 { cat:'tech', tag:'Erfindungen', tc:'tt', title:'Wichtige Erfindungen (Zeitleiste)', ol:true, collapsible:true, items:[
   '~1450 – '+b('Buchdruck')+' (Gutenberg, Mainz)',
   '1769 – '+b('Dampfmaschine')+' (James Watt)',
@@ -1066,14 +1768,46 @@ const CARDS = [
   '2007 – '+b('iPhone')+' (Steve Jobs)',
   '2022 – '+b('ChatGPT')+' (OpenAI)',
 ]},
-{ cat:'tech', tag:'Internet & Smartphones', tc:'tt', title:'Internet, Tech-Firmen & KI', items:[
-  'WWW erfunden: '+b('Tim Berners-Lee')+', 1989 (CERN, Genf)',
-  'Apple: '+b('1976')+' (Wozniak & Jobs) · Microsoft: '+b('1975')+' · Google: '+b('1998'),
-  'Facebook: '+b('2004')+' · YouTube: 2005 · Twitter/X: 2006 · TikTok: '+b('ByteDance'),
-  'Erstes iPhone: '+b('9. Januar 2007')+' (Steve Jobs)',
-  'ChatGPT: veröffentlicht '+b('November 2022')+' (OpenAI)',
-  'Wichtige KI-Firmen: '+b('OpenAI · Anthropic · Google DeepMind · Meta AI'),
-  'KI-Chip-Marktführer: '+b('NVIDIA'),
+{ cat:'tech', tag:'Kommunikation & Medien', tc:'tt', title:'Kommunikation & Übertragungstechnik', items:[
+  b('Morse-Code')+': 1837 von Samuel Morse · SOS = ··· --- ··· · Erste Fernübertragung von Nachrichten',
+  b('Telefon')+': Alexander Graham Bell 1876 · erstes transatlantisches Kabel 1858',
+  b('Radio')+': Marconi 1895 · erste reguläre Sendung 1920 · UKW, AM, DAB+',
+  b('Fernsehen')+': John Logie Baird 1926 · Farbfernsehen 1950er · HDTV, 4K, Streaming',
+  b('Satellitenkommunikation')+': GPS (USA), GLONASS (RU), Galileo (EU), BeiDou (CN)',
+  b('LiDAR')+': Laserbasierte Entfernungsmessung · in autonomen Fahrzeugen & 3D-Kartierung',
+  b('Quantenkommunikation')+': theoretisch abhörsicher · erste Quantennetzwerke im Aufbau',
+]},
+
+// ── KULTUR – SPIELE & UNTERHALTUNG ────────────────────────,
+{ cat:'tech', tag:'Internet & Tech-Firmen', tc:'tt', title:'Internet & Tech-Giganten', items:[
+  b('WWW')+': Tim Berners-Lee, 1989 (CERN) · TCP/IP: ARPANET 1970er',
+  b('Apple')+': 1976 (Wozniak & Jobs) · Microsoft: 1975 · Google: 1998 (Page & Brin)',
+  b('Facebook')+': 2004 (Zuckerberg) · YouTube: 2005 · Twitter/X: 2006 · TikTok: ByteDance',
+  b('iPhone')+': vorgestellt 9. Januar 2007 · revolutionierte Mobiltelefonie',
+  b('Marktkapitalisierung')+': Apple, Microsoft, NVIDIA, Alphabet, Amazon – Top 5 weltweit (2024)',
+  b('NVIDIA')+': KI-Chip-Marktführer · GPU-Architektur als KI-Beschleuniger',
+  b('Streaming')+': Netflix (2007), Spotify (2008), YouTube-Dominanz · lineares TV schrumpft',
+]},
+{ cat:'tech', tag:'Internet & Sicherheit', tc:'tt', title:'Internet, Krypto & Datenschutz', items:[
+  b('TCP/IP')+': Grundprotokoll des Internets · entwickelt 1970er (ARPANET)',
+  b('HTTPS')+': verschlüsselte Übertragung · TLS-Zertifikat · Schloss im Browser',
+  b('Blockchain')+': dezentrale, manipulationssichere Datenbank · Grundlage von Bitcoin (2009)',
+  b('Quantencomputer')+': nutzen Qubits statt Bits · könnten heutige Verschlüsselung brechen',
+  b('DSGVO')+': EU-Datenschutz-Grundverordnung seit 2018 · Recht auf Auskunft, Löschung',
+  b('5G')+': bis zu 10 Gbit/s · Grundlage für IoT & autonomes Fahren',
+  b('Phishing & Social Engineering')+': häufigste Einfallstore für Cyberangriffe',
+]},
+
+// ── ESSEN & KÜCHE – NEU ──────────────────────────────────,
+{ cat:'tech', tag:'Mobilität & Autos', tc:'tt', title:'Autos, Mobilität & Verkehr', items:[
+  b('Erstes Automobil')+': Carl Benz, Patent 1886 (Benz Patent-Motorwagen)',
+  b('Henry Ford')+': Fließbandproduktion ab 1913 (Ford Modell T) – Massenproduktion erfunden',
+  b('Autobahn')+': erste Kraftfahrstraße 1932 (Köln–Bonn, Adenauer) – von Nazis zur Landstraße herabgestuft; erste Reichsautobahn 1935 (Frankfurt–Darmstadt)',
+  b('Volkswagen')+': „Käfer" – meistgebautes Auto der Welt (21,5 Mio. Stück)',
+  b('Tesla Model S')+' (2012): erste Massentauglich E-Limousine, Reichweite >400 km',
+  b('Hyperloop')+': Vakuumröhren-Transport, Elon Musk 2013 vorgestellt – noch nicht realisiert',
+  b('Transrapid')+': dt. Magnetschwebebahn – in China (Shanghai) kommerziell genutzt',
+  b('Airbus A380')+': größtes Passagierflugzeug der Welt (2005), bis zu 853 Passagiere',
 ]},
 { cat:'tech', tag:'Energie & Physik', tc:'tt', title:'Energie, Strom & Alltagsphysik', items:[
   b('Netzspannung')+': Deutschland 230 V / 50 Hz · USA 120 V / 60 Hz · Japan 100 V',
@@ -1085,16 +1819,44 @@ const CARDS = [
   b('Lithium-Ionen-Akku')+': Nobelpreis Chemie 2019 (Whittingham, Goodenough, Yoshino)',
   b('Glasfaser')+': überträgt Daten mit ~200.000 km/s (2/3 Lichtgeschwindigkeit)',
 ]},
-{ cat:'tech', tag:'Mobilität & Autos', tc:'tt', title:'Autos, Mobilität & Verkehr', items:[
-  b('Erstes Automobil')+': Carl Benz, Patent 1886 (Benz Patent-Motorwagen)',
-  b('Henry Ford')+': Fließbandproduktion ab 1913 (Ford Modell T) – Massenproduktion erfunden',
-  b('Autobahn')+': erstes Teilstück 1932 (Köln–Bonn), weltweites Vorbild',
-  b('Volkswagen')+': „Käfer" – meistgebautes Auto der Welt (21,5 Mio. Stück)',
-  b('Tesla Model S')+' (2012): erste Massentauglich E-Limousine, Reichweite >400 km',
-  b('Hyperloop')+': Vakuumröhren-Transport, Elon Musk 2013 vorgestellt – noch nicht realisiert',
-  b('Transrapid')+': dt. Magnetschwebebahn – in China (Shanghai) kommerziell genutzt',
-  b('Airbus A380')+': größtes Passagierflugzeug der Welt (2005), bis zu 853 Passagiere',
+{ cat:'tech', tag:'Energie & Klimatechnik', tc:'tt', title:'Energie – Quellen & Zukunft', items:[
+  b('Fossile Energieträger')+': Kohle, Öl, Gas · entstanden über Millionen Jahre · CO₂-Hauptquelle',
+  b('Kernkraft')+': Spaltung von Uran-235 · Frankreich: ~70 % Atomstrom · D: AKWs 2023 abgeschaltet',
+  b('Photovoltaik')+': Solarzellen wandeln Licht in Strom · Wirkungsgrad ~20–25 % (kommerziell)',
+  b('Windkraft')+': Onshore & Offshore · Deutschland: ~27 % Stromerzeugung aus Wind (2023)',
+  b('Wasserstoff')+': H₂ als Energieträger · grüner H₂ = aus Elektrolyse mit Ökostrom',
+  b('Energiewende D')+': Ziel 80 % erneuerbare Energien bis 2030',
+  b('Wirkungsgrad')+': Verbrennungsmotor ~25–40 % · Elektromotor ~90–95 % · Glühbirne ~5 %',
 ]},
+{ cat:'tech', tag:'Raumfahrt & Raketen', tc:'tt', title:'Raumfahrt – Meilensteine', items:[
+  b('Sputnik 1')+': 4. Oktober 1957 – erster künstlicher Satellit (UdSSR)',
+  b('Juri Gagarin')+': 12. April 1961 – erster Mensch im Weltall',
+  b('Apollo 11')+': 20. Juli 1969 – erste Mondlandung · Armstrong & Aldrin',
+  b('ISS')+': seit 2000 bewohnt · Umlaufbahn ~400 km · 16 Länder beteiligt',
+  b('SpaceX Falcon 9')+': erste wiederverwendbare Rakete (Landung 2015) – revolutionierte Kosten',
+  b('Mars-Rover')+': Curiosity (2012), Perseverance (2021) · suchen nach Lebensspuren',
+  b('Artemis')+': NASA-Rückkehr zum Mond (~2026) · erstmals Astronautin geplant',
+]},
+{ cat:'tech', tag:'KI & Digitalisierung', tc:'tt', title:'Künstliche Intelligenz – Grundwissen', items:[
+  b('KI-Typen')+': Schwache KI (spezifische Aufgaben) · Starke KI (allgemein, noch nicht erreicht)',
+  b('Machine Learning')+': System lernt aus Daten ohne explizite Programmierung',
+  b('Deep Learning')+': mehrschichtige neuronale Netze · Grundlage von ChatGPT, Bildgenerierung',
+  b('LLMs')+': Große Sprachmodelle (GPT-4, Claude, Gemini) – Text verstehen & generieren',
+  b('Transformer-Architektur')+': 2017 von Google vorgestellt – revolutionierte KI',
+  b('Turing-Test')+': 1950 von Alan Turing – kann eine Maschine von einem Menschen unterschieden werden?',
+  b('EU AI Act')+': 2024 in Kraft · weltweit erstes umfassendes KI-Gesetz · Risikokategorien',
+]},
+{ cat:'tech', tag:'Zukunftstechnologien', tc:'tt', title:'Zukunftstechnologien', items:[
+  b('Quantencomputer')+': nutzen Superposition & Verschränkung · exponentiell schneller für bestimmte Probleme',
+  b('CRISPR-Cas9')+': Gen-Schere · gezielte DNA-Veränderung · Nobelpreis 2020 (Charpentier & Doudna)',
+  b('mRNA-Technologie')+': Zellen produzieren selbst Proteine · Grundlage COVID-Impfstoffe · Krebstherapie',
+  b('Autonomes Fahren')+': Level 0–5 · Level 5 = vollständig autonom ohne Eingriff · noch nicht marktreif',
+  b('Augmented Reality')+': digitale Inhalte über reale Welt · Meta Quest, Apple Vision Pro',
+  b('3D-Druck')+': additive Fertigung · Plastik, Metall, Beton, Gewebe · Revolution in Prototyping',
+  b('Fusionsenergie')+': NIF (USA) 2022: erstmals mehr Energie erzeugt als zugeführt · ITER-Projekt läuft',
+]},
+
+// ── MUSIK: OPER & KLASSIK VERTIEFT ───────────────────────,
 { cat:'tech', tag:'Funfact', tc:'tt', title:'Technik-Funfacts', funfact:true, items:[
   'Das erste Handy von Motorola (1983) kostete '+b('3.995 $')+' und hatte 30 Minuten Akkuzeit',
   'Der erste Computer-Bug war ein echter '+b('Käfer')+' (Moth im Harvard Mark II, 1947)',
@@ -1110,8 +1872,71 @@ const CARDS = [
 
 // ── HESSEN ─────────────────────────────────────────,
 
-// ── HESSEN ─────────────────────────────────────────
-{ cat:'local', hot:true, tag:'Hessentag', tc:'tn', title:'Hessentag – Allgemein', items:[
+// ── HESSEN ─────────────────────────────────────────,
+
+// ── ESSEN & KÜCHE ─────────────────────────────────────
+{ cat:'food', tag:'Weltküchen', tc:'tf', title:'Weltküchen – Grundwissen', items:[
+  b('Französische Küche')+': Basis der klassischen Haute Cuisine · Saucen, Terrinen · UNESCO-Kulturerbe',
+  b('Japanische Küche')+': Umami als 5. Geschmack · Dashi, Miso, Sojasauce als Grundlagen',
+  b('Italienische Küche')+': regional sehr verschieden · Pasta, Risotto, Pizza, Antipasti',
+  b('Mexikanische Küche')+': UNESCO-Kulturerbe · Mais, Bohnen, Chili als Basis seit Azteken',
+  b('Indische Küche')+': Gewürze (Kurkuma, Kreuzkümmel, Kardamom) · Curry, Tandoori, Biryani',
+  b('Chinesische Küche')+': 8 Regionalküchen · Kanton, Sichuan, Peking, Shanghai u.a.',
+  b('Streetfood')+': Thailand & Vietnam gelten weltweit als Streetfood-Hochburgen',
+]},
+{ cat:'food', tag:'Getränke & Genuss', tc:'tf', title:'Wein, Bier & Kaffee', items:[
+  b('Wein')+': Weiß-, Rot-, Roséwein · Champagner nur aus der Champagne (Frankreich)',
+  b('Bordeaux vs. Burgund')+': Bordeaux = Cuvées (Cabernet+Merlot) · Burgund = reinsortiger Pinot Noir',
+  b('Bier')+': Reinheitsgebot seit 1516 (Bayern) · Obergärig (Ale) vs. Untergärig (Lager)',
+  b('Kaffee')+': Arabica (mild) vs. Robusta (stark) · meistgehandeltes Agrarprodukt nach Erdöl',
+  b('Kaffeeherkunft')+': Äthiopien (Kaffa-Region) · nach Europa durch Arabien im 17. Jh.',
+  b('Tee')+': zweitmeistgetrunkenes Getränk nach Wasser · China, Indien, Sri Lanka als Hauptproduzenten',
+  b('Cocktailklassiker')+': Negroni (Gin+Campari+Vermouth) · Old Fashioned (Whiskey) · Daiquiri (Rum)',
+]},
+{ cat:'food', tag:'Essen & Trinken', tc:'tf', title:'Essen & Trinken', items:[
+  b('Pizza')+' – Neapel, Italien',
+  b('Sushi')+' – Japan (urspr. Konservierung in Reis)',
+  b('Currywurst')+' – erfunden 1949 von '+b('Herta Heuwer')+', Berlin',
+  b('Döner Kebab')+' (heutige Form) – in Berlin der 1970er entwickelt',
+  b('Croissant')+' – österr. Ursprung (Kipferl), in Frankreich berühmt',
+  'Reinheitsgebot: seit '+b('1516')+' · Champagner: nur aus der '+b('Champagne'),
+  'Kaffee: ursprünglich aus '+b('Äthiopien')+' · Schokolade: von '+b('Azteken/Maya'),
+  'Teuerstes Gewürz: '+b('Safran')+' · Tomaten: botanisch '+b('Obst'),
+]},
+{ cat:'food', tag:'Ernährungswissen', tc:'tf', title:'Ernährung & Lebensmittelwissen', items:[
+  b('Makronährstoffe')+': Kohlenhydrate (4 kcal/g) · Proteine (4 kcal/g) · Fette (9 kcal/g)',
+  b('Vitamine')+': fettlöslich (A, D, E, K – speicherbar) · wasserlöslich (B-Komplex, C)',
+  b('Fermentation')+': Käse, Joghurt, Sauerteig, Sauerkraut, Kimchi, Miso – durch Bakterien/Hefen',
+  b('Maillard-Reaktion')+': Bräunung beim Braten/Backen durch Zucker-Protein-Reaktion → Röstaroma',
+  b('Umami')+': 5. Geschmack · in Parmesan, reifen Tomaten, Sojasauce, Fleisch',
+  b('Vegane Ernährung')+': verzichtet auf alle tierischen Produkte · B12-Mangel als häufiges Risiko',
+  b('Kaloriengehalt Alkohol')+': 7 kcal/g – zwischen Fett und Protein',
+]},
+
+// ── GESCHICHTE – DEUTSCHE GESCHICHTE ─────────────────────,
+{ cat:'food', tag:'Kochtechniken', tc:'tf', title:'Kochtechniken & Küchenwissen', items:[
+  b('Blanschieren')+': kurz in kochendem Wasser, dann Eiswasser · erhält Farbe & Vitamine',
+  b('Pochieren')+': gar ziehen lassen in ~70–90 °C Wasser · schonend für Eier, Fisch',
+  b('Sous-vide')+': vakuumiert im Wasserbad bei exakter Temperatur · perfekte Garung',
+  b('Karamellisieren')+': Zucker schmilzt ab ~160 °C · Maillard-Reaktion ≠ Karamellisierung (unterschiedlich)',
+  b('Emulsion')+': Verbindung nicht mischbarer Flüssigkeiten · Mayonnaise (Öl + Eigelb + Säure)',
+  b('Reduktion')+': Flüssigkeit einkochen → konzentrierter Geschmack → Soßengrundlage',
+  b('Mise en place')+': französ. „alles an seinem Platz" · Grundprinzip professioneller Küche',
+]},
+{ cat:'food', tag:'Käse & Fermentiertes', tc:'tf', title:'Käse, Charcuterie & Fermentation', items:[
+  b('Käsearten')+': Frischkäse · Weichkäse (Brie, Camembert) · Halbfest · Hartkäse (Parmesan, Gruyère) · Blauschimmel',
+  b('Parmesan')+': Parmigiano Reggiano · mind. 12 Monate Reifung · DOP-Schutz · Umami-Bombe',
+  b('Wurstwaren')+': Salami, Prosciutto, Serrano, Jamón Ibérico · Rohwurst vs. Kochwurst vs. Brühwurst',
+  b('Kimchi')+': koreanisches Nationalgericht · fermentierter Kohl · probiotisch',
+  b('Kombucha')+': fermentierter Tee · Symbiose aus Hefen & Bakterien (SCOBY)',
+  b('Miso')+': fermentierte Sojabohnenpaste · weiß (mild) · rot (kräftig) · Grundlage Misosuppe',
+  b('Sourdough/Sauerteig')+': natürliche Hefen & Laktobazillen · länger haltbar · bessere Bekömmlichkeit',
+]},
+
+// ── SPORT: WEITERE FUNFACTS ───────────────────────────────,
+
+// ── HESSEN ────────────────────────────────────────────
+{ cat:'local', hot:true, tag:'Hessentag', tc:'tl', title:'Hessentag – Allgemein', items:[
   b('Hessentag')+': Deutschlands ältestes und größtes Landesfest',
   'Gegründet '+b('1961')+' von Ministerpräsident '+b('Georg-August Zinn'),
   'Ziel: Heimatvertriebene und Einheimische zusammenbringen – Hessen-Identität stärken',
@@ -1121,7 +1946,7 @@ const CARDS = [
   'Am Ende: traditioneller '+b('Festzug')+' + Übergabe der Hessentagsfahne an nächste Stadt',
   'Fördermittel des Landes: ca. '+b('7–11 Mio. €')+' pro Veranstaltung',
 ]},
-{ cat:'local', hot:true, tag:'Hessentag 2026 Fulda', tc:'tn', title:'63. Hessentag – Fulda 2026', items:[
+{ cat:'local', hot:true, tag:'Hessentag 2026 Fulda', tc:'tl', title:'63. Hessentag – Fulda 2026', items:[
   b('63. Hessentag')+': '+b('12.–21. Juni 2026')+' in Fulda',
   'Motto: '+b('"FD – Foll hessisch!"'),
   'Fulda war bereits 1990 Gastgeberstadt (damals erste Teilnahme Thüringer nach Mauerfall)',
@@ -1130,7 +1955,7 @@ const CARDS = [
   'Konzert-Arena auf dem '+b('Domplatz')+': Künstler wie Peter Maffay & Sarah Connor',
   'Hessentagspaar: '+b('Vera & Max Dudyka')+' (waren auch schon 2021 nominiert – Corona-Ausfall)',
 ]},
-{ cat:'local', hot:true, tag:'Hessentag 2027 Idstein', tc:'tn', title:'64. Hessentag – Idstein 2027', items:[
+{ cat:'local', hot:true, tag:'Hessentag 2027 Idstein', tc:'tl', title:'64. Hessentag – Idstein 2027', items:[
   b('64. Hessentag')+': 2027 in Idstein – Beschluss Kabinett '+b('10. März 2026'),
   'Idstein erhält vom Land bis zu '+b('11,5 Mio. €')+' (inkl. Sprinterzuschlag wegen kurzer Vorbereitungszeit)',
   b('Jubiläum')+': Idstein war bereits 2002 Hessentagsstadt (42. Hessentag)',
@@ -1140,7 +1965,7 @@ const CARDS = [
   'Hessentagsbeauftragte: '+b('Sabine Fritz')+' (Leiterin Wirtschaftsentwicklung & Stadtmarketing)',
   'BM: '+b('Christian Herfurth')+' (CDU) setzt auf Vorfreude und das Idsteiner „Wir-Gefühl"',
 ]},
-{ cat:'local', tag:'Kommunalwahl März 2026', tc:'tn', title:'Hessische Kommunalwahl 15. März 2026', hot:true,
+{ cat:'local', tag:'Kommunalwahl März 2026', tc:'tl', title:'Hessische Kommunalwahl 15. März 2026', hot:true,
   wahlData:[
     { label:'CDU',    pct:29.8, prev:28.5, color:'#1f5cb5' },
     { label:'SPD',    pct:20.8, prev:24.0, color:'#e3000f' },
@@ -1149,8 +1974,8 @@ const CARDS = [
     { label:'Linke',  pct:5.7,  prev:4.0,  color:'#be3075' },
     { label:'FDP',    pct:3.9,  prev:6.7,  color:'#ffed00' },
   ]
-},
-{ cat:'local', hot:true, tag:'Kommunalwahl', tc:'tn', title:'Hessen-Wahl 2026 – Trends & Fakten', items:[
+},,
+{ cat:'local', hot:true, tag:'Kommunalwahl', tc:'tl', title:'Hessen-Wahl 2026 – Trends & Fakten', items:[
   'Wahlbeteiligung: '+b('54,5 %')+' (2021: 50,4 % – leichter Anstieg)',
   b('CDU')+' stärkste Kraft landesweit mit 29,8 % (+1,3 Pp)',
   b('AfD')+' verdoppelte Stimmenanteil: 14,8 % (2021: 6,8 %)',
@@ -1160,26 +1985,7 @@ const CARDS = [
   'Kommunalwahl: Kreistage & Gemeinderäte aller '+b('421 Gemeinden')+' gewählt',
   'Frankfurt Römer: CDU als Wahlsieger kündigte Koalitionsgespräche an, Grüne außen vor',
 ]},
-{ cat:'local', tag:'Idstein', tc:'tb', title:'Idstein – Stadtfakten', items:[
-  'Landkreis: '+b('Rheingau-Taunus-Kreis'),
-  'Einwohner: ca. '+b('25.000')+' · Fläche: 79,8 km²',
-  'Wahrzeichen: '+b('Hexenturm')+' (ehem. Bergfried der Burg)',
-  'Schloss Idstein: heute '+b('Nassau-Gymnasium'),
-  'Hexenprozess: '+b('1676')+' – über 30 Hinrichtungen',
-  'Hochschule: '+b('Hochschule Fresenius')+' (Campus Idstein)',
-  'Wörsdorf: westlicher '+b('Stadtteil')+' von Idstein',
-  b('Fachwerkaltstadt')+' – Teil der Deutschen Fachwerkstraße',
-]},
-{ cat:'local', tag:'Taunus & Rheingau', tc:'tb', title:'Taunus & Rheingau', items:[
-  'Höchster Taunusgipfel: '+b('Großer Feldberg')+' (879 m)',
-  'Saalburg: '+b('Römerkastell')+' (UNESCO Limes)',
-  'Bad Homburg: Kurstadt, bekannte '+b('Spielbank'),
-  'Rheingau: berühmtes '+b('Weinanbaugebiet')+' (Riesling)',
-  'Bad Schwalbach: Kreisstadt des '+b('Rheingau-Taunus-Kreises'),
-  'Rüdesheim: '+b('Drosselgasse')+', Touristenziel',
-  'Oberes Mittelrheintal: '+b('UNESCO')+'-Welterbe',
-]},
-{ cat:'local', tag:'Frankfurt & Hessen', tc:'tb', title:'Frankfurt & Hessen', items:[
+{ cat:'local', tag:'Frankfurt & Hessen', tc:'tl', title:'Frankfurt & Hessen', items:[
   'Finanzmetropole: Sitz '+b('EZB')+', Deutsche Börse, Bundesbank',
   'Größter Flughafen D: '+b('Frankfurt Airport')+' (FRA)',
   'Geburtsort: '+b('Johann Wolfgang von Goethe')+' (1749)',
@@ -1189,9 +1995,8 @@ const CARDS = [
   'Landesfarben: '+b('Rot-Weiß'),
 ]},
 
-// ── MYTHOLOGIE & RELIGION ─────────────────────────────────,
-
-{ cat:'local', hot:true, tag:'Apr 2026', tc:'tb', title:'Frankfurt Airport – Terminal 3', items:[
+// ── MYTHOLOGIE & RELIGION ─────────────────────────────────,,
+{ cat:'local', hot:true, tag:'Apr 2026', tc:'tl', title:'Frankfurt Airport – Terminal 3', items:[
   b('Eröffnung')+': feierlich am '+b('22. April 2026')+' · Flugbetrieb ab 23. April 2026',
   'Eines der größten '+b('privat finanzierten Infrastrukturprojekte Europas'),
   'Lage: '+b('Süden des Flughafens')+' – auf dem Gelände der früheren US-Airbase',
@@ -1204,7 +2009,157 @@ const CARDS = [
   b('Terminal 1')+': seit 1972 · '+b('Terminal 2')+': seit 1994 (wird nach T3-Umzug renoviert)',
 ]},
 
-]; // END CARDS
+// ── MYTHOLOGIE & RELIGION – NEU ──────────────────────────,
+{ cat:'local', tag:'Idstein', tc:'tl', title:'Idstein – Stadtfakten', items:[
+  'Landkreis: '+b('Rheingau-Taunus-Kreis'),
+  'Einwohner: ca. '+b('25.000')+' · Fläche: 79,8 km²',
+  'Wahrzeichen: '+b('Hexenturm')+' (ehem. Bergfried der Burg)',
+  'Schloss Idstein: heute '+b('Nassau-Gymnasium'),
+  'Hexenprozess: '+b('1676')+' – über 30 Hinrichtungen',
+  'Hochschule: '+b('Hochschule Fresenius')+' (Campus Idstein)',
+  'Wörsdorf: westlicher '+b('Stadtteil')+' von Idstein',
+  b('Fachwerkaltstadt')+' – Teil der Deutschen Fachwerkstraße',
+]},
+{ cat:'local', tag:'Taunus & Rheingau', tc:'tl', title:'Taunus & Rheingau', items:[
+  'Höchster Taunusgipfel: '+b('Großer Feldberg')+' (879 m)',
+  'Saalburg: '+b('Römerkastell')+' (UNESCO Limes)',
+  'Bad Homburg: Kurstadt, bekannte '+b('Spielbank'),
+  'Rheingau: berühmtes '+b('Weinanbaugebiet')+' (Riesling)',
+  'Bad Schwalbach: Kreisstadt des '+b('Rheingau-Taunus-Kreises'),
+  'Rüdesheim: '+b('Drosselgasse')+', Touristenziel',
+  'Oberes Mittelrheintal: '+b('UNESCO')+'-Welterbe',
+]},
+
+// ── NEUE KARTEN: LÜCKEN GESCHLOSSEN ──────────────────────
+
+// MUSIK: Rockbands & Poplegenden
+{ cat:'cult', tag:'Rock & Pop Legenden', tc:'tc', title:'Rockbands & Poplegenden – Must-Know', items:[
+  b('Rolling Stones')+': gegr. 1962 · Mick Jagger & Keith Richards · „Sympathy for the Devil", „Paint It Black"',
+  b('Queen')+': Freddie Mercury (†1991) · „Bohemian Rhapsody" · Brian May, Roger Taylor',
+  b('Led Zeppelin')+': 1968–1980 · Robert Plant & Jimmy Page · Väter des Hard Rock',
+  b('Pink Floyd')+': „The Dark Side of the Moon" (1973) – meistverkauftes Album aller Zeiten',
+  b('AC/DC')+': australische Hard-Rock-Band · Angus Young · „Highway to Hell", „Back in Black"',
+  b('Metallica')+': gegr. 1981 · Thrash Metal · „Master of Puppets", „Enter Sandman"',
+  b('David Bowie')+': 1947–2016 · Ziggy Stardust · Chamäleon des Rock – ständige Neuerfindung',
+  b('Elvis Presley')+': 1935–1977 · „King of Rock \'n\' Roll" · Graceland · über 1 Mrd. verkaufte Tonträger',
+]},
+
+// BIOLOGIE: Genetik & Zelle
+{ cat:'sci', tag:'Genetik & Zellbiologie', tc:'ts', title:'Genetik & Zellbiologie – Grundwissen', items:[
+  b('DNA')+': Desoxyribonukleinsäure · Doppelhelix · 4 Basen: Adenin, Thymin, Guanin, Cytosin',
+  b('Gen')+': Abschnitt der DNA · codiert ein Protein · Mensch: ~20.000 Gene',
+  b('Chromosomen')+': Mensch hat 46 (23 Paare) · XX = weiblich · XY = männlich',
+  b('Mitose')+': Zellteilung (identische Kopien) · Meiose: Bildung von Keimzellen (halber Chromosomensatz)',
+  b('Mutation')+': Veränderung der DNA-Sequenz · Grundlage von Evolution & Krankheiten',
+  b('CRISPR-Cas9')+': Gen-Schere · Nobelpreis 2020 (Charpentier & Doudna) · revolutioniert Medizin',
+  b('Epigenetik')+': Genexpression durch Umwelt veränderbar ohne DNA-Änderung',
+  b('Humangenom')+': ~3,2 Mrd. Basenpaare · Sequenzierung abgeschlossen 2003 · 99,9 % identisch zwischen Menschen',
+]},
+
+// WIRTSCHAFT: Währungen & Euro
+{ cat:'pol', tag:'Währungen & Euro', tc:'tp', title:'Währungen & Euro – Grundwissen', items:[
+  b('Euro')+': eingeführt 1999 (Buchgeld), Münzen & Scheine ab 1. Januar 2002',
+  b('Eurozone')+': 20 Länder (2024) · EZB in Frankfurt steuert Geldpolitik',
+  b('Wichtige Währungen')+': USD (Weltreservewährung) · EUR · JPY · GBP · CHF · CNY',
+  b('Bretton-Woods')+': 1944 – Goldstandard + Dollar als Leitwährung · aufgegeben 1971 (Nixon)',
+  b('Inflation')+': Hyperinflation Deutschland 1923 · 1 Billion Mark für ein Brot',
+  b('Kryptowährungen')+': Bitcoin (2009, Satoshi Nakamoto) · keine zentrale Kontrolle · volatil',
+  b('Währungsreform D')+': 1948 – DM löste Reichsmark ab (10:1) · 2002 DM durch Euro ersetzt',
+]},
+
+// GEOGRAFIE: Wüsten, Vulkane & Naturkatastrophen
+{ cat:'geo', tag:'Vulkane & Naturkatastrophen', tc:'tg', title:'Vulkane, Erdbeben & Naturkatastrophen', items:[
+  b('Vulkane')+': ca. 1.500 aktive weltweit · Ring of Fire = 75 % aller Vulkane',
+  b('Vesuv')+': 79 n. Chr. – begrub Pompeji & Herculaneum · noch aktiv',
+  b('Krakatau')+': 1883 · lauteste Explosion der Geschichte · Tsunami tötete ~36.000',
+  b('Richter-Skala')+': logarithmisch · Stärke 7 = 32× mehr Energie als Stärke 6',
+  b('Stärkste Erdbeben')+': Valdivia/Chile 1960 (Stärke 9,5) · Sumatra 2004 (Tsunami, ~230.000 Tote)',
+  b('Tohoku 2011')+': Erdbeben + Tsunami + Fukushima-Atomkatastrophe · Japan',
+  b('Wüsten der Welt')+': Sahara (9,2 Mio. km²) · Gobi · Atacama (trockenste) · Namib · Kalahari',
+]},
+
+// ASTRONOMIE: Sternbilder & Tierkreis
+{ cat:'natur', tag:'Sternbilder & Tierkreis', tc:'tnr', title:'Sternbilder & Tierkreiszeichen', items:[
+  b('Tierkreiszeichen')+' (12): Widder, Stier, Zwillinge, Krebs, Löwe, Jungfrau, Waage, Skorpion, Schütze, Steinbock, Wassermann, Fische',
+  b('Bekannteste Sternbilder')+': Orion · Großer Bär (Ursa Major) · Kleiner Bär (Polarstern!) · Kassiopeia',
+  b('Polarstern')+': zeigt geografischen Norden · Teil des Kleinen Bären · ~430 Lichtjahre entfernt',
+  b('Sirius')+': hellster Stern am Nachthimmel · im Sternbild Großer Hund',
+  b('Milchstraße')+': von der Erde aus als Band sichtbar · wir sehen die Scheibe von innen',
+  b('Lichtjahr')+': Entfernung, die Licht in einem Jahr zurücklegt · ~9,46 Billionen km',
+  b('Mondphasen')+': Neumond → zunehmend → Vollmond → abnehmend → Neumond (~29,5 Tage)',
+]},
+
+// GUINNESS-REKORDE & KURIOSA
+{ cat:'cult', tag:'Guinness & Weltrekorde', tc:'tc', title:'Guinness-Weltrekorde – Kurioses & Extremes', items:[
+  b('Ältester Mensch je')+': Jeanne Calment (Frankreich) – 122 Jahre, 164 Tage (1875–1997)',
+  b('Größter Mensch je')+': Robert Wadlow (USA) – 2,72 m (1918–1940)',
+  b('Schnellster Mensch')+': Usain Bolt – 100 m in 9,58 s = ~44,72 km/h Spitze',
+  b('Meistverkauftes Buch')+': Bibel (>5 Mrd.) · meistverkaufter Roman: Don Quijote (~500 Mio.)',
+  b('Längste Herrschaft')+': Ludwig XIV. – 72 Jahre König von Frankreich (1643–1715)',
+  b('Tiefster Tauchgang Mensch')+': Ahmed Gabr (2014) – 332,35 m mit Gerätetauchen',
+  b('Höchster Sprung')+': Felix Baumgartner 2012 – Stratosphärensprung aus 39.045 m Höhe',
+  b('Meiste Sprachen')+': Ziad Fazah spricht angeblich 58 Sprachen – offiziell schwer verifizierbar',
+]},
+
+// DEUTSCHE TRADITIONEN & FESTE
+{ cat:'cult', tag:'Traditionen & Feste', tc:'tc', title:'Deutsche Traditionen & Feste', items:[
+  b('Oktoberfest')+': München · seit 1810 · ~6 Mio. Besucher jährlich · größtes Volksfest der Welt',
+  b('Karneval/Fasching')+': Köln, Mainz, Düsseldorf · Weiberfastnacht · Rosenmontag · 11.11. um 11:11 Uhr',
+  b('Weihnachtsmärkte')+': Nürnberg, Dresden, Straßburg · Tradition seit dem 14. Jh.',
+  b('Schützenfeste')+': ältestes Volksfest-Format · Hannover (größtes), Neuss',
+  b('Sonnenwende')+': 21. Juni (Sommer), 21. Dez. (Winter) · Johannifeuer',
+  b('Tag der Deutschen Einheit')+': 3. Oktober (Nationalfeiertag) · seit 1990',
+  b('Maifeiertag')+': 1. Mai – Tag der Arbeit · internationale Tradition seit 1889 (Haymarket Chicago)',
+  b('Erntedankfest')+': erster Sonntag im Oktober · Kirche & ländliche Tradition',
+]},
+
+// INTERNET & POP-KULTUR / SOCIAL MEDIA
+{ cat:'cult', tag:'Internet & Pop-Kultur', tc:'tc', title:'Internet-Kultur & Social Media', items:[
+  b('Social Media Nutzer')+': Facebook ~3 Mrd., YouTube ~2,7 Mrd., Instagram ~2 Mrd., TikTok ~1,5 Mrd.',
+  b('Influencer-Wirtschaft')+': Mega (~1 Mio. Follower), Makro (100K–1M), Mikro (<100K)',
+  b('Meme')+': Begriff von Richard Dawkins (1976) · viraler Kulturinhalt im Internet',
+  b('Wikipedia')+': seit 2001 · >60 Mio. Artikel · 300+ Sprachen · ehrenamtliche Autoren',
+  b('E-Mail')+': erste Nachricht 1971 (Ray Tomlinson) · ~333 Mrd. E-Mails täglich (2022)',
+  b('Podcast')+': Begriff seit 2004 · >3 Mio. aktive Podcasts weltweit',
+  b('NFT')+': Non-Fungible Token · Boom 2021 · Beeple-Kunstwerk für 69 Mio. $ verkauft',
+  b('Metaverse')+': virtuelle 3D-Welte · Meta, Microsoft & andere investieren Milliarden',
+]},
+
+// GESUNDHEIT & ERNÄHRUNG: Alkohol, Rauchen, Drogen
+{ cat:'sci', tag:'Sucht & Gesundheitsrisiken', tc:'ts', title:'Sucht, Drogen & Gesundheitsrisiken', items:[
+  b('Rauchen')+': ~8 Mio. Todesfälle/Jahr weltweit · Nikotin macht stark abhängig · Lungenkrebs-Hauptrisiko',
+  b('Alkohol')+': ~3 Mio. Todesfälle/Jahr · Abbau: ~0,1 Promille/Stunde · ab 1,5‰ akute Vergiftung',
+  b('Cannabis')+': THC als Wirkstoff · medizinisch in vielen Ländern legal · in D seit 2024 teillegalisiert',
+  b('Opioid-Krise')+': USA: >100.000 Tote/Jahr durch Überdosierung · OxyContin als Auslöser',
+  b('Zucker')+': WHO-Empfehlung: max. 25 g freier Zucker/Tag · versteckter Zucker in 75 % aller Produkte',
+  b('Schlaf')+': Erwachsene brauchen 7–9 Stunden · Schlafmangel erhöht Risiko für Herzkrankheiten & Demenz',
+  b('Bewegungsmangel')+': WHO: min. 150 Min. moderate Aktivität/Woche · vierthäufigster Todesrisikofaktor',
+]},
+
+// GEOGRAFIE: Grenzen & geopolitische Besonderheiten  
+{ cat:'geo', tag:'Grenzen & Geopolitik', tc:'tg', title:'Geopolitik – Grenzen & Konflikte', items:[
+  b('Meistumstrittene Grenzen')+': Israel-Palästina · Kaschmir (Indien/Pakistan/China) · Taiwan-Straße',
+  b('Größte Grenzen')+': USA-Kanada (8.891 km) · Russland-Kasachstan (7.644 km) · längste Seegrenze: Kanada',
+  b('Failed States')+': Fragile Staaten ohne Kontrolle · Somalia, Jemen, Sudan, Haiti',
+  b('Territorien & Abhängigkeiten')+': Grönland (Dänemark) · Gibraltar (UK) · Französisch-Guyana (Frankreich)',
+  b('Enklaven & Exklaven')+': San Marino & Vatikan (in Italien) · Kaliningrad (Russland, zwischen Polen & Litauen)',
+  b('Umstrittene Gebiete')+': Krim (seit 2014 russisch besetzt) · Westsahara · Südchinesisches Meer',
+  b('Neutralität')+': Schweiz (seit 1815) · Österreich (seit 1955) · Costa Rica (keine Armee seit 1949)',
+]},
+
+// KULTURGESCHICHTE: Antike Hochkulturen
+{ cat:'hist', tag:'Mesopotamien & Hochkulturen', tc:'th', title:'Frühe Hochkulturen der Welt', items:[
+  b('Mesopotamien')+': Sumerer & Babylonier · ~3500 v. Chr. · Keilschrift · Gilgamesch-Epos (ältestes Epos)',
+  b('Hammurabi')+': babylonischer König ~1750 v. Chr. · Codex Hammurabi: ältestes bekanntes Gesetzbuch',
+  b('Indus-Tal-Zivilisation')+': ~2500 v. Chr. · Mohenjo-Daro & Harappa · hochentwickelte Städte · Pakistan/Indien',
+  b('Alte China')+': Shang-Dynastie (~1600 v. Chr.) · Jade & Bronzearbeiten · älteste chinesische Schrift',
+  b('Maya')+': Mesoamerika 250–900 n. Chr. · Pyramiden, Kalender, Astronomie',
+  b('Azteken')+': 1300–1521 n. Chr. · Tenochtitlan (heutiges Mexiko-Stadt) · von Spanien zerstört (Cortés)',
+  b('Inka')+': 1400–1533 n. Chr. · Peru · Machu Picchu · Quipu als Schriftsystem (Knotenschrift)',
+]},
+
+];
+
 
 // ══════════════════════════════════════════════════════
 // CATEGORIES
@@ -1214,11 +2169,14 @@ const CATS = [
   { id:'news',  label:'Aktuelles' },
   { id:'geo',   label:'Geografie' },
   { id:'hist',  label:'Geschichte' },
+  { id:'myth',  label:'Mythologie & Religion' },
   { id:'sci',   label:'Wissenschaft' },
-  { id:'cult',  label:'Kultur' },
+  { id:'natur', label:'Natur & Tiere' },
+  { id:'cult',  label:'Kultur & Kunst' },
   { id:'sport', label:'Sport' },
-  { id:'pol',   label:'Politik' },
+  { id:'pol',   label:'Politik & Wirtschaft' },
   { id:'tech',  label:'Technik' },
+  { id:'food',  label:'Essen & Küche' },
   { id:'local', label:'Hessen' },
 ];
 
@@ -1284,11 +2242,6 @@ function buildCard(c) {
   return html;
 }
 
-function renderGrid() {
-  const visible = activeCat === 'all' ? CARDS : CARDS.filter(c => c.cat === activeCat);
-  document.getElementById('grid').innerHTML = visible.map(c => buildCard(c)).join('');
-}
-
 // ── SEARCH ──
 let searchQuery = '';
 
@@ -1343,6 +2296,13 @@ function cardMatches(c, q) {
 function renderGrid() {
   let pool = activeCat === 'all' ? CARDS : CARDS.filter(c => c.cat === activeCat);
   if(searchQuery) pool = pool.filter(c => cardMatches(c, searchQuery));
+
+  // Trefferzahl anzeigen
+  if(searchQuery) {
+    resultCount.innerHTML = '<span>'+pool.length+'</span> Treffer für „'+searchQuery+'"';
+  } else {
+    resultCount.innerHTML = '';
+  }
 
   if(pool.length === 0) {
     document.getElementById('grid').innerHTML =
