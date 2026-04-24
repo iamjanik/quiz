@@ -85,6 +85,8 @@ header h1 em { color:var(--acc); font-style:normal; }
 }
 .result-count { font-size:11.5px; font-weight:600; color:var(--mut); white-space:nowrap; padding: 10px 0 0; }
 .result-count span { color:var(--acc); }
+.ai-disclaimer { font-size:11px; color:var(--mut); opacity:0.7; padding:6px 0 4px; display:flex; align-items:center; gap:5px; }
+.ai-disclaimer svg { flex-shrink:0; opacity:0.6; }
 .chip-row {
   display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; align-items:center;
   padding:10px 0;
@@ -197,6 +199,10 @@ header h1 em { color:var(--acc); font-style:normal; }
     </div>
   </div>
   <div class="result-count" id="resultCount"></div>
+  <div class="ai-disclaimer">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Diese Website und ihre Inhalte wurden mit KI-Unterstützung erstellt und recherchiert. Alle Angaben ohne Gewähr.
+  </div>
   <div class="chip-row" id="chipRow"></div>
 </div>
 
@@ -246,7 +252,7 @@ const CARDS = [
   'Entlastungspaket: geplanter '+b('Tankrabatt')+' Mai–Juni 2026',
 ]},
 { cat:'news', hot:true, tag:'Mai 2025', tc:'tn', title:'Neuer Papst: Leo XIV.', items:[
-  'Papst '+b('Franziskus')+' starb am '+b('21. April 2025')+', 88 Jahre (Schlaganfall, Vatikan)',
+  'Papst '+b('Franziskus')+' starb am '+b('21. April 2025')+', 88 Jahre (Schlaganfall + irreversibles Herzversagen, Vatikan)',
   'Erster Papst aus '+b('Südamerika')+' & erster Jesuit auf dem Papststuhl (seit 2013)',
   'Über '+b('250.000 Menschen')+' bei der Trauerfeier auf dem Petersplatz',
   'Nachfolger: Kardinal '+b('Robert Francis Prevost')+' (USA, Augustiner)',
@@ -262,10 +268,6 @@ const CARDS = [
   b('Starlink')+' (SpaceX): größtes Satellitennetz der Welt (~6.000+ Satelliten)',
   b('Syrischer Bürgerkrieg')+': Assad-Regime fiel Dezember 2024, neue Machthaber',
 ]},
-
-// ── GEOGRAFIE ─────────────────────────────────────────
-
-// ── GEOGRAFIE ─────────────────────────────────────────
 
 // ── GEOGRAFIE ───────────────────────────────────────────
 { cat:'geo', tag:'Planet Erde', tc:'tg', title:'Planet Erde – Daten & Fakten', items:[
@@ -481,10 +483,6 @@ const CARDS = [
   'Das Tote Meer sinkt jedes Jahr um ca. '+b('1 Meter')+' (Wasserentzug durch Umleitung des Jordan)',
 ]},
 
-// ── GESCHICHTE ────────────────────────────────────────
-
-// ── GESCHICHTE ─────────────────────────────────────────
-
 // ── GESCHICHTE ─────────────────────────────────────────
 { cat:'geo', tag:'Funfact', tc:'tg', title:'Geografie-Funfacts 2', funfact:true, items:[
   b('Finnland')+' hat mehr Seen als jedes andere Land: >180.000',
@@ -527,7 +525,7 @@ const CARDS = [
   b('Untergang Roms')+': 476 n. Chr. Weströmisches Reich · Ostrom (Byzanz) bis 1453',
 ]},
 { cat:'hist', tag:'Mittelalter', tc:'th', title:'Mittelalter 500–1500', items:[
-  b('Karl der Große')+': 768–814 · Kaiser des Frankenreichs · Aachen als Residenz · „Vater Europas"',
+  b('Karl der Große')+': König ab 768, Kaiser ab 800 · Frankenreich · Aachen als Residenz · „Vater Europas"',
   b('Feudalsystem')+': König → Adel → Ritter → Leibeigene · Grundlage mittelalterlicher Gesellschaft',
   b('Kreuzzüge')+': 1096–1291 · 9 Kreuzzüge · Ziel: Heiliges Land · Folgen: Kulturkontakt, Handel',
   b('Magna Carta')+': 1215 · erste rechtliche Beschränkung der Königsmacht · Vorläufer moderner Verfassungen',
@@ -572,7 +570,7 @@ const CARDS = [
 { cat:'hist', tag:'Erster Weltkrieg', tc:'th', title:'Erster Weltkrieg 1914–1918', items:[
   'Auslöser: Attentat auf '+b('Erzherzog Franz Ferdinand')+' in Sarajevo, 28. Juni 1914',
   b('Schützengräben')+': charakteristisch – statischer Stellungskrieg an der Westfront',
-  b('Verdun')+' (1916): ~300.000 Tote – eine der blutigsten Schlachten der Geschichte',
+  b('Verdun')+' (1916): ~300.000 Tote · >700.000 Gesamtopfer (Verwundete inkl.) – „Blutmühle Verdun"',
   b('Giftgas')+': erstmals 1915 durch Deutschland (Ypern) – Chlor, später Senfgas',
   b('USA')+' trat 1917 in den Krieg ein · Russland schied 1917 (Revolution) aus',
   b('Waffenstillstand')+': 11. November 1918, 11:00 Uhr · Friedensvertrag: Versailles 1919',
@@ -685,10 +683,6 @@ const CARDS = [
   'Napoleon war nicht besonders klein – er war mit ~1,70 m für seine Zeit '+b('durchschnittlich groß'),
   'Der Erste Weltkrieg begann wegen eines '+b('Sandwich')+': Franz Ferdinand hätte nach dem ersten Attentat die Route geändert, der Attentäter war beim Mittagessen als die Kutsche vorbeifuhr',
 ]},
-
-// ── WISSENSCHAFT ──────────────────────────────────────
-
-// ── WISSENSCHAFT ─────────────────────────────────────────
 
 // ── WISSENSCHAFT ─────────────────────────────────────────
 
@@ -1004,14 +998,10 @@ const CARDS = [
   'Das menschliche Auge kann ca. '+b('10 Mio. Farben')+' unterscheiden',
   'Octopusse haben '+b('drei Herzen')+' und blaues Blut (Hämocyanin statt Hämoglobin)',
   'Schmetterlinge schmecken mit ihren '+b('Füßen'),
-  'Ein Blitz ist 5× heißer als die Oberfläche der Sonne (~30.000 K)',
+  'Ein Blitz ist 5× heißer als die Oberfläche der Sonne (~30.000 K vs. ~5.800 K)',
   'Bananen sind leicht '+b('radioaktiv')+' (Kalium-40) – unbedenklich',
-  b('Cleopatra')+' lebte näher am Mondlandung als an den Pyramiden (nur 300 Jahre nach Bau vs. 2.500 davor)',
+  b('Licht von der Sonne')+' braucht ~8 Minuten zur Erde – wir sehen die Sonne also 8 Minuten "in der Vergangenheit"',
 ]},
-
-// ── KULTUR ────────────────────────────────────────────
-
-// ── KULTUR ─────────────────────────────────────────
 
 // ── KULTUR ─────────────────────────────────────────
 
@@ -1025,10 +1015,6 @@ const CARDS = [
   b('Heiße Milch')+' friert schneller als kalte Milch unter bestimmten Umständen (Mpemba-Effekt)',
   'Das '+b('Internet')+' wiegt schätzungsweise ~50 Gramm (Masse der bewegten Elektronen)',
 ]},
-
-// ── ANTIKE HOCHKULTUREN ───────────────────────────────────
-
-// ── NATUR & TIERE ─────────────────────────────────────
 
 // ── NATUR & TIERE ───────────────────────────────────────
 { cat:'natur', tag:'Planeten (Reihenfolge)', tc:'tnr', title:'Planeten (innen → außen)', ol:true, items:[
@@ -1065,7 +1051,7 @@ const CARDS = [
 // GUINNESS-REKORDE & KURIOSA,
 { cat:'natur', tag:'Klimazonen & Ökosysteme', tc:'tnr', title:'Klimazonen & Ökosysteme', items:[
   b('Tropischer Regenwald')+': ~6 % der Landfläche · beherbergt ~50 % aller Tier- & Pflanzenarten',
-  b('Amazonas')+': größter Regenwald der Welt · produziert ~20 % des globalen Sauerstoffs',
+  b('Amazonas')+': größter Regenwald der Welt · produziert viel O₂ durch Photosynthese, verbraucht aber fast alles selbst wieder (Netto-Beitrag ≈ 0)',
   b('Tundra')+': subarktisch, kaum Baumwuchs · Permafrost als wichtiger Klimaspeicher',
   b('Korallenriffe')+': „Regenwälder des Meeres" · Great Barrier Reef (Australien): größtes der Welt',
   b('Ozeane')+': Pazifik > Atlantik > Indischer Ozean > Südlicher Ozean > Arktischer Ozean',
@@ -1107,7 +1093,7 @@ const CARDS = [
   b('Größter Organismus')+': Hallimasch-Pilzgeflecht (Oregon) ~10 km²',
   b('Fleischfressende Pflanzen')+': Venusfliegenfalle, Sonnentau, Kannenpflanze – in nährstoffarmen Böden',
   b('Blütenbestäubung')+': durch Insekten (Entomophilie), Wind (Anemophilie), Vögel, Wasser',
-  b('Photosynthese-Anteil')+': Tropenwälder produzieren ca. 40 % des globalen Sauerstoffs',
+  b('Photosynthese-Anteil')+': Tropenwälder verantwortlich für ~30–34 % der Landphotosynthese · Netto-Sauerstoffbeitrag zur Atmosphäre jedoch nahe null (Eigenverbrauch)',
   b('Kork')+': Rinde der Korkeiche · Portugal produziert ~50 % des Weltkorkes',
 ]},
 
@@ -1142,7 +1128,6 @@ const CARDS = [
   b('Gehirn')+': ~86 Mrd. Neuronen · 20 % des Energieverbrauchs · Leber: einziges Organ das sich voll regeneriert',
   b('Blutgruppen')+': A, B, AB, 0 · Universalspender: 0 neg. · Universalempfänger: AB pos. · Rh-Faktor +/−',
   b('Sinne')+': Sehen, Hören, Riechen, Schmecken, Tasten · + Gleichgewichtssinn, Propriozeption, Temperatur',
-  b('Schnellstes Tier')+': Gepard ~112 km/h (Land) · Wanderfalke ~320 km/h (Sturzflug) · Mauersegler ~170 km/h (horizontal)',
 ]},
 { cat:'natur', tag:'Jahrestiere & Bäume 2026', tc:'tnr', title:'„...des Jahres 2026" – Natur', items:[
   b('Tier des Jahres 2026')+': Rothirsch (Dt. Wildtier Stiftung)',
@@ -1158,17 +1143,13 @@ const CARDS = [
 { cat:'natur', hot:true, tag:'Apr 2026', tc:'tnr', title:'Buckelwal „Timmy" in der Ostsee', items:[
   b('Buckelwal „Timmy"')+' irrte seit März 2026 durch die Ostsee – für Buckelwale artfremd',
   'Strandete vor der Insel '+b('Poel')+' (Wismarbucht), ca. 12 Tonnen',
-  'Private Rettungsinitiative: finanziert von MediaMarkt-Gründer '+b('Walter Gunz'),
+  'Private Rettungsinitiative: finanziert von MediaMarkt-Mitgründer '+b('Walter Gunz'),
   'Plan: Netz unter den Wal, mit Schwimmpontons zur '+b('Nordsee')+' schleppen',
   '20. April 2026: Timmy schwamm kurz frei – strandete danach erneut',
   'Umweltminister '+b('Till Backhaus (SPD)')+' übernachtete auf einem Fischereiboot',
   b('Greenpeace')+': Überlebenschancen gering – Wal fraß kaum',
   'Debatte: „selektive Tierempathie" (Wal vs. Ostseedorsch / Wolf)',
 ]},
-
-// ── GEOGRAFIE ─────────────────────────────────────────
-
-// ── GEOGRAFIE ─────────────────────────────────────────
 
 // ── GEOGRAFIE ─────────────────────────────────────────
 
@@ -1248,11 +1229,10 @@ const CARDS = [
 ]},
 { cat:'cult', tag:'Literatur & Kunst', tc:'tc', title:'Literatur, Kunst & Bauwerke', items:[
   'Meistverkauftes Buch: '+b('Bibel')+' (>5 Mrd.) · Meistverkaufter Roman: '+b('Don Quijote'),
-  'Shakespeare: '+b('37 Stücke')+' (Hamlet, Othello, Romeo & Julia, Macbeth…)',
-  'Mona Lisa: '+b('Leonardo da Vinci')+', im Louvre Paris',
+  'Shakespeare: '+b('37–38 Stücke')+' (je nach Zählung) · Hamlet, Othello, Romeo & Julia, Macbeth…',
+  b('Louvre Paris')+': meistbesuchtes Museum der Welt · >9 Mio. Besucher/Jahr',
   'Sixtinische Kapelle: '+b('Michelangelo')+', 1508–1512',
-  'Louvre Paris: '+b('meistbesuchtes Museum')+' der Welt',
-  'Eiffelturm: '+b('1889')+' · Sagrada Família (Gaudí): noch unfertig',
+  'Eiffelturm: '+b('1889')+' · Sagrada Família (Gaudí): seit 1882, noch im Bau',
   'Chinesische Mauer: ~'+b('21.196 km')+' · Taj Mahal: Agra, Indien, 1632–1653',
 ]},
 { cat:'cult', tag:'Architekturstile', tc:'tc', title:'Architekturstile durch die Epochen', items:[
@@ -1352,7 +1332,7 @@ const CARDS = [
 ]},
 { cat:'cult', tag:'Deutsche Serien', tc:'tc', title:'Deutsche Serien & Klassiker', items:[
   b('Tatort')+': Älteste dt. Krimireihe, seit 1970, über 1.200 Folgen',
-  b('Derrick')+' (1974–1998): Österr.-bayrischer Krimi, international bekannt',
+  b('Derrick')+' (1974–1998): Dt. ZDF-Krimiserie · Hauptkommissar Stephan Derrick (Horst Tappert) · in 100+ Ländern ausgestrahlt',
   b('Das Boot')+' (1981): U-Boot-Film/Serie, Kult – Regisseur Wolfgang Petersen',
   b('Babylon Berlin')+' (2017–): Weimarer Republik, 1920er, international erfolgreich',
   b('4 Blocks')+' (2017–2019): Berliner Araberclan, erster dt. Premium-Gangster-Krimi',
@@ -1556,10 +1536,6 @@ const CARDS = [
   'In Frankreich ist es '+b('illegal')+', ein Schwein "Napoleon" zu nennen',
   'Die erste Webcam wurde 1991 aufgestellt – zur '+b('Kaffeeüberwachung')+' in Cambridge',
 ]},
-
-// ── SPORT ─────────────────────────────────────────────
-
-// ── SPORT ─────────────────────────────────────────
 
 // ── SPORT ─────────────────────────────────────────
 
@@ -1782,14 +1758,9 @@ const CARDS = [
   'Im '+b('Tennis')+' bedeutet „Love" (0 Punkte) wahrscheinlich vom frz. „l\'œuf" (das Ei = Null)',
 ]},
 
-// ── POLITIK & WIRTSCHAFT – NEU ────────────────────────────
-
-// ── TECHNIK – VERTIEFT ────────────────────────────────────
-
 // ── WIRTSCHAFT: WICHTIGE UNTERNEHMEN ─────────────────────
 
 // ── SPORT-FUNFACTS ────────────────────────────────────────
-
 
 // ── POLITIK & WIRTSCHAFT ──────────────────────────────
 
@@ -1877,10 +1848,6 @@ const CARDS = [
   b('Konjunkturzyklus')+': Aufschwung → Boom → Abschwung → Rezession → Erholung',
 ]},
 
-// ── ZITATE ────────────────────────────────────────────────
-
-// ── TECHNIK ─────────────────────────────────────────
-
 // ── TECHNIK ─────────────────────────────────────────
 
 // ── TECHNIK ─────────────────────────────────────────
@@ -1888,7 +1855,8 @@ const CARDS = [
   b('Kapitalismus')+': Privateigentum, freier Markt · Adam Smith: „unsichtbare Hand" (1776) · Grundlage westlicher Demokratien',
   b('Keynesianismus')+': staatliche Konjunktursteuerung durch Ausgaben in der Krise (Keynes, 1936) · „Deficit Spending"',
   b('Angebotsorientierung')+': niedrige Steuern & Deregulierung stärken Investitionen · Reagan/Thatcher-Politik',
-  b('Planwirtschaft')+': Staat steuert Produktion & Preise · UdSSR, DDR · scheiterte an Ineffizienz',  b('Soziale Marktwirtschaft')+': dt. Modell (Erhard, 1948) – Markt + sozialer Ausgleich + staatliche Rahmensetzung',
+  b('Planwirtschaft')+': Staat steuert Produktion & Preise · UdSSR, DDR · scheiterte an Ineffizienz',
+  b('Soziale Marktwirtschaft')+': dt. Modell (Erhard, 1948) – Markt + sozialer Ausgleich + staatliche Rahmensetzung',
   b('BIP-Wachstum D')+': Zielwert ~1,5–2 % p.a. · Rezession = 2 Quartale negatives Wachstum',
   b('Globalisierung')+': seit 1990er beschleunigt · Freihandel, Outsourcing · WTO · De-Globalisierung als Gegentrend',
 ]},
@@ -1910,7 +1878,7 @@ const CARDS = [
   b('Eurozone')+': 20 Länder (2024) · EZB in Frankfurt steuert Geldpolitik',
   b('Wichtige Währungen')+': USD (Weltreservewährung) · EUR · JPY · GBP · CHF · CNY',
   b('Bretton-Woods')+': 1944 – Goldstandard + Dollar als Leitwährung · aufgegeben 1971 (Nixon)',
-  b('Inflation')+': Hyperinflation Deutschland 1923 · 1 Billion Mark für ein Brot',
+  b('Hyperinflation D 1923')+': Reparationszahlungen + Gelddrucken → Brot kostete Milliarden Reichsmark',
   b('Kryptowährungen')+': Bitcoin (2009, Satoshi Nakamoto) · keine zentrale Kontrolle · volatil',
   b('Währungsreform D')+': 1948 – DM löste Reichsmark ab (10:1) · 2002 DM durch Euro ersetzt',
 ]},
@@ -2028,7 +1996,7 @@ const CARDS = [
   b('Tesla Model S')+' (2012): erste Massentauglich E-Limousine, Reichweite >400 km',
   b('Hyperloop')+': Vakuumröhren-Transport, Elon Musk 2013 vorgestellt – noch nicht realisiert',
   b('Transrapid')+': dt. Magnetschwebebahn – in China (Shanghai) kommerziell genutzt',
-  b('Airbus A380')+': größtes Passagierflugzeug der Welt (2005), bis zu 853 Passagiere',
+  b('Airbus A380')+': größtes Passagierflugzeug der Welt · Erstflug 2005, Passagierbetrieb ab 2007 · bis zu 853 Passagiere · Produktion 2021 eingestellt',
 ]},
 { cat:'tech', tag:'Energie & Physik', tc:'tt', title:'Energie, Strom & Alltagsphysik', items:[
   b('Netzspannung')+': Deutschland 230 V / 50 Hz · USA 120 V / 60 Hz · Japan 100 V',
@@ -2087,10 +2055,6 @@ const CARDS = [
   'YouTube hatte im ersten Monat nach Launch nur ein Video (Me at the zoo) – heute werden '+b('500 Stunden Video')+' pro Minute hochgeladen',
 ]},
 
-// ── HESSEN ────────────────────────────────────────────
-
-// ── HESSEN ─────────────────────────────────────────
-
 // ── HESSEN ─────────────────────────────────────────
 
 // ── HESSEN ─────────────────────────────────────────
@@ -2122,9 +2086,8 @@ const CARDS = [
   b('Currywurst')+' – erfunden 1949 von '+b('Herta Heuwer')+', Berlin',
   b('Döner Kebab')+' (heutige Form) – in Berlin der 1970er entwickelt',
   b('Croissant')+' – österr. Ursprung (Kipferl), in Frankreich berühmt',
-  'Reinheitsgebot: seit '+b('1516')+' · Champagner: nur aus der '+b('Champagne'),
-  'Kaffee: ursprünglich aus '+b('Äthiopien')+' · Schokolade: von '+b('Azteken/Maya'),
-  'Teuerstes Gewürz: '+b('Safran')+' · Tomaten: botanisch '+b('Obst'),
+  b('Schokolade')+': von Azteken/Maya · nach Europa durch spanische Conquistadoren ~1528',
+  'Teuerstes Gewürz: '+b('Safran')+' (bis 30.000 €/kg) · Tomaten: botanisch '+b('Obst'),
 ]},
 { cat:'food', tag:'Ernährungswissen', tc:'tf', title:'Ernährung & Lebensmittelwissen', items:[
   b('Makronährstoffe')+': Kohlenhydrate (4 kcal/g) · Proteine (4 kcal/g) · Fette (9 kcal/g)',
@@ -2182,10 +2145,6 @@ const CARDS = [
   b('Miso')+': fermentierte Sojabohnenpaste · weiß (mild) · rot (kräftig) · Grundlage Misosuppe',
   b('Sourdough/Sauerteig')+': natürliche Hefen & Laktobazillen · länger haltbar · bessere Bekömmlichkeit',
 ]},
-
-// ── SPORT: WEITERE FUNFACTS ───────────────────────────────
-
-// ── HESSEN ────────────────────────────────────────────
 
 // ── HESSEN ──────────────────────────────────────────────
 { cat:'local', hot:true, tag:'Hessentag', tc:'tl', title:'Hessentag – Allgemein', items:[
@@ -2287,7 +2246,6 @@ const CARDS = [
 // MUSIK: Rockbands & Poplegenden,
 
 ];
-
 
 // ══════════════════════════════════════════════════════
 // CATEGORIES
